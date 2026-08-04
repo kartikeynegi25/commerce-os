@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conversation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: [
+                    colors: {
+                        gold: '#C9A24B',
+                    }
+                ]
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="css/custom.css">
+</head>
+<body class="bg-gray-50 text-gray-900">
+    <div class="flex h-screen">
+        <aside class="w-64 bg-black text-white flex flex-col">
+            <div class="p-6">
+                <span class="text-xl font-bold tracking-wide">Nexus</span>
+            </div>
+            <nav class="flex-1 px-4 space-y-1">
+                <a href="dashboard.html" class="flex items-center gap-3 py-2 px-3 rounded-lg text-gray-400 hover:bg-gray-800 hover:text-white transition">Dashboard</a>
+                <a href="inbox.html" class="flex items-center gap-3 py-2 px-3 rounded-lg bg-gray-800 text-white font-medium">Inbox</a>
+                <a href="orders.html" class="flex items-center gap-3 py-2 px-3 rounded-lg text-gray-400 hover:bg-gray-800 hover:text-white transition">Orders</a>
+                <a href="products.html" class="flex items-center gap-3 py-2 px-3 rounded-lg text-gray-400 hover:bg-gray-800 hover:text-white transition">Products</a>
+                <a href="calls.html" class="flex items-center gap-3 py-2 px-3 rounded-lg text-gray-400 hover:bg-gray-800 hover:text-white transition">Calls</a>
+                <a href="invoices.html" class="flex items-center gap-3 py-2 px-3 rounded-lg text-gray-400 hover:bg-gray-800 hover:text-white transition">Invoices</a>
+                <a href="settings.html" class="flex items-center gap-3 py-2 px-3 rounded-lg text-gray-400 hover:bg-gray-800 hover:text-white transition">Settings</a>
+            </nav>
+            <div class="p-4 text-xs text-gray-500 border-t border-gray-800"> Signed in as Kartikey Negi</div>
+        </aside>
+
+        <main class="flex-1 overflow-y-auto p-8">
+            <div class="flex items-center gap-3 mb-8">
+                <a href="inbox.html" class="text-gray-400 hover:text-gray-900 transition text-xl">←</a>
+                <div>
+                    <h1 class="text-lg font-bold">Priya Sharma</h1>
+                    <p class="text-xs text-gray-500">Whatsapp · +91 98XXX XXXXX</p>
+                </div>
+            </div>
+
+            <div class="max-w-2xl space-y-4">
+
+                <!--customer message -->
+                <div class="flex justify-start">
+                    <div class="bg-white border border-gray-200 rounded-2xl rounded-tl-sm px-4 py-3 max-w-md">
+                        <p class="text-sm">Do you have the wireless headphones? How much?</p>
+                    </div>
+                </div>
+
+                <!-- Nexus reply-->
+                 <div class="flex justify-end">
+                    <div class="bg-emerald-50 border border-emerald-100 rounded-2xl rounded-tr-sm px-4 py-3 max-w-md">
+                        <p class="text-sm">Yes, in stock - ₹2,999. Want me to place the order?</p>
+                        <p class="text-xs text-emerald-600 mt-1">Nexus · auto-reply</p>
+                    </div>
+                 </div>
+
+                 <!-- customer message -->
+                  <div class="flex justify-start">
+                    <div class="bg-white border border-gray-200 rounded-2xl rounded-tl-sm px-4 py-3 max-w-md">
+                        <p class="text-sm">Yes, send to Jaipur, same number</p>
+                    </div>
+                  </div>
+
+                  <!-- Nexus reply-->
+                   <div class="flex justify-end">
+                    <div class="bg-emerald-50 border border-emerald-100 rounded-2xl rounded-tr-sm px-4 py-3 max-w-md">
+                        <p class="text-sm">Got it - 1x Wireless Headphones, ₹2,999 + ₹50 shipping. Here's your payment link: commerce.os/pay/9F2A - or reply COD.</p>
+                        <p class="text-xs text-emerald-600 mt-1">Nexus · auto-reply</p>
+                    </div>
+                   </div>
+
+                   <!--Customer message-->
+                    <div class="flex justify-start">
+                        <div class="bg-white border border-gray-200 rounded-2xl rounded-tl-sm px-4 py-3 max-w-md">
+                            <p class="text-sm">Can i get it for ₹2,999?</p>
+                        </div>
+                    </div>
+
+                    <!--Nexus escalation-->
+                    <div class="flex justify-end">
+                        <div class="bg-amber-50 border border-amber-200 rounded-2xl rounded-tr-sm px-4 py-3 max-w-md">
+                            <p class="text-sm">Let me check with the team on that - one moment!</p>
+                            <p class="text-xs text-amber-700 font-medium mt-1">⚠ Escalated — owner notified</p>
+                        </div>
+                    </div>
+            </div>
+        </main>
+    </div>
+    
+</body>
+</html>

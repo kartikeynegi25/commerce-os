@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orders</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        gold: '#C9A24B',
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="css/custom.css">
+</head>
+<body class="bg-gray-50 text-gray-900">
+
+    <div class = "flex h-screen">
+        <aside class="w-64 bg-black text-white flex flex-col">
+            <div class="p-6">
+                <span class="text-xl font-bold tracking-wide">Nexus</span>
+            </div>
+            <nav class="flex-1 px-4 space-y-1">
+                <a href="dashboard.html" class="flex items-center gap-3 py-2 px-3 rounded-lg text-gray-400 hover:bg-gray-800 hover:text-white transition">Dashboard</a>
+                <a href="inbox.html" class="flex items-center gap-3 py-2 px-3 rounded-lg text-gray-400 hover:bg-gray-800 hover:text-white transition">Inbox</a>
+                <a href="orders.html" class="flex items-center gap-3 py-2 px-3 rounded-lg bg-gray-800 text-white font-medium">Orders</a>
+                <a href="products.html" class="flex items-center gap-3 py-2 px-3 rounded-lg text-gray-400 hover:bg-gray-800 hover:text-white transition">Products</a>
+                <a href="calls.html" class="flex items-center gap-3 py-2 px-3 rounded-lg text-gray-400 hover:bg-gray-800 hover:text-white transition">Calls</a>
+                <a href="invoices.html" class="flex items-center gap-3 py-2 px-3 rounded-lg text-gray-400 hover:bg-gray-800 hover:text-white transition">Invoices</a>
+                <a href="settings.html" class="flex items-center gap-3 py-2 px-3 rounded-lg text-gray-400 hover:bg-gray-800 hover:text-white transition">Settings</a>
+            </nav>
+
+            <div class="p-4 text-xs text-gray-500 border-t border-gray-800">Signed in as Kartikey Negi</div>
+        </aside>
+
+        <main class="flex-1 overflow-y-auto p-8">
+            <div class="flex items-center justify-between mb-8">
+                <div>
+                    <h1 class="text-2xl font-bold">Orders</h1>
+                    <p class="text-gray-500 text-sm mt-1">Every order, one pipeline.</p>
+                </div>
+                <div class="flex items-center gap-4">
+                    <button class="relative p-2 rounded-lg hover:bg-gray-100 transition">
+                        🔔
+                        <span class="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full"></span>
+                    </button>
+
+                    <div class="flex items-center gap-2 pl-4 border-1 border-gray-200">
+                        <div class="w-9 h-9 rounded-full bg-gold flex items-center justify-center text-white font-semibold text-sm">KN</div>
+                        <span class="text-sm font-medium">Kartikey</span>
+                    </div>
+                </div>
+            </div>
+
+            <!--Orders table goes here-->
+            <div class="bg-white border border-gray-200 rounded-2xl overflow-hidden">
+                <table class="w-full text-sm">
+                    <thead class="bg-gray-50 text-gray-500 text-xs uppercase tracking-wide">
+                        <tr>
+                            <th class="text-left px-4 py-3 font-medium">Order</th>
+                            <th class="text-left px-4 py-3 font-medium">Customer</th>
+                            <th class="text-left px-4 py-3 font-medium">Items</th>
+                            <th class="text-left px-4 py-3 font-medium">Status</th>
+                            <th class="text-left px-4 py-3 font-medium">Payment</th>
+                            <th class="text-left px-4 py-3 font-medium">Total</th>
+                        </tr>
+                    </thead>
+
+                    <tbody class="divide-y divide-gray-100">
+                        <tr onclick="window.location='order-detail.html'" class="hover:bg-gray-50 transition cursor-pointer">
+                            <td class="px-4 py-3 font-medium">#1240</td>
+                            <td class="px-4 py-3">Priya Sharma</td>
+                            <td class="px-4 py-3 text-gray-500">Wireless Headphones x1</td>
+                            <td class="px-4 py-3">
+                                <span class="text-xs font-semibold bg-blue-100 text-blue-700 px-2 py-1 rounded-md">Confirmed</span>
+                            </td>
+                            <td class="px-4 py-3">
+                                <span class="text-xs font-semibold bg-amber-100 text-amber-700 px-2 py-1 rounded-md">Pending</span>
+                            </td>
+                            <td class="px-4 py-3 font-medium">₹2,999</td>
+                        </tr>
+
+                        <tr onclick="window.location='order-detail.html'" class="hover:bg-gray-50 transition cursor-pointer">
+                            <td class="px-4 py-3 font-medium">#1236</td>
+                            <td class="px-4 py-3">meher.jewels</td>
+                            <td class="px-4 py-3 text-gray-500">Jhumkas x1</td>
+                            <td class="px-4 py-3">
+                                <span class="text-xs font-semibold bg-purple-100 text-purple-700 px-2 py-1 rounded-md">Packed</span>
+                            </td>
+                            <td class="px-4 py-3">
+                                <span class="text-xs font-semibold bg-emerald-100 text-green-700 px-2 py-1 rounded-md">Paid</span>
+                            </td>
+                            <td class="px-4 py-3 font-medium">₹1,499</td>
+                        </tr>
+
+                        <tr onclick="window.location='order-detail.html'" class="hover:bg-gray-50 transition cursor-pointer">
+                            <td class="px-4 py-3 font-medium">#1244</td>
+                            <td class="px-4 py-3">Anjali Mehta</td>
+                            <td class="px-4 py-3 text-gray-500">Jhumkas x1</td>
+                            <td class="px-4 py-3">
+                                <span class="text-xs font-semibold bg-indigo-100 text-indigo-700 px-2 py-1 rounded-md">Shipped</span>
+                            </td>
+                            <td class="px-4 py-3">
+                                <span class="text-xs font-semibold bg-gray-100 text-gray-700 px-2 py-1 rounded-md">COD</span>
+                            </td>
+                            <td class="px-4 py-3 font-medium">₹1,450</td>
+                        </tr>
+
+                        <tr onclick="window.location='order-detail.html'" class="hover:bg-gray-50 transition cursor-pointer">
+                            <td class="px-4 py-3 font-medium">#1229</td>
+                            <td class="px-4 py-3">Rohan Kapoor</td>
+                            <td class="px-4 py-3 text-gray-500">Perfume Set x2</td>
+                            <td class="px-4 py-3">
+                                <span class="text-xs font-semibold bg-green-100 text-green-700 px-2 py-1 rounded-md">Delivered</span>
+                            </td>
+                            <td class="px-4 py-3">
+                                <span class="text-xs font-semibold bg-emerald-100 text-emerald-700 px-2 py-1 rounded-md">Paid</span>
+                            </td>
+                            <td class="px-4 py-3 font-medium">₹3,200</td>
+                        </tr>
+
+                        <tr onclick="window.location='order-detail.html'" class="hover:bg-gray-50 transition cursor-pointer">
+                            <td class="px-4 py-3 font-medium">#1188</td>
+                            <td class="px-4 py-3">Sana Iyer</td>
+                            <td class="px-4 py-3 text-gray-500">Home Decor Set x1</td>
+                            <td class="px-4 py-3">
+                                <span class="text-xs font-semibold bg-red-100 text-red-700 px-2 py-1 rounded-md">New</span>
+                            </td>
+                            <td class="px-4 py-3">
+                                <span class="text-xs font-semibold bg-red-100 text-red-700 px-2 py-1 rounded-md">Link Expired</span>
+                            </td>
+                            <td class="px-4 py-3 font-medium">₹1,899</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </main>
+    </div>
+    
+</body>
+</html>
