@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calls</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        gold: '#C9A24B',
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="css/custom.css">
+    <script src="js/nav.js"></script>
+</head>
+<body class="bg-gray-50 text-gray-900">
+
+    <div class="flex h-screen">
+
+        <aside class="w-64 bg-black text-white flex flex-col">
+            <div class="p-6">
+                <span class="text-xl font-bold tracking-wide">Nexus</span>
+            </div>
+            <nav class="flex-1 px-4 space-y-1">
+                <a href="dashboard.html" class="flex items-center gap-3 py-2 px-3 rounded-lg text-gray-400 hover:bg-gray-800 hover:text-white transition">Dashboard</a>
+                <a href="inbox.html" class="flex items-center gap-3 py-2 px-3 rounded-lg text-gray-400 hover:bg-gray-800 hover:text-white transition">Inbox</a>
+                <a href="orders.html" class="flex items-center gap-3 py-2 px-3 rounded-lg text-gray-400 hover:bg-gray-800 hover:text-white transition">Orders</a>
+                <a href="products.html" class="flex items-center gap-3 py-2 px-3 rounded-lg text-gray-400 hover:bg-gray-800 hover:text-white transition">Products</a>
+                <a href="calls.html" class="flex items-center gap-3 py-2 px-3 rounded-lg bg-gray-800 text-white font-medium">Calls</a>
+                <a href="invoices.html" class="flex items-center gap-3 py-2 px-3 rounded-lg text-gray-400 hover:bg-gray-800 hover:text-white transition">Invoices</a>
+                <a href="settings.html" class="flex items-center gap-3 py-2 px-3 rounded-lg text-gray-400 hover:bg-gray-800 hover:text-white transition">Settings</a>
+            </nav>
+
+            <div class="p-4 text-xs text-gray-500 border-t border-gray-800"> Signed in as Kartikey Negi</div>
+        </aside>
+
+        <main class="flex-1 overflow-y-auto p-8">
+            <div class="flex items-center justify-between mb-8">
+                <div>
+                    <h1 class="text-2xl font-bold">Calls</h1>
+                    <p class="text-gray-500 text-sm mt-1">COD confirmations, handled by Nexus</p>
+                </div>
+
+                <div class="flex items-center gap-4">
+                    <button class="relative p-2 rounded-lg hover:bg-gray-100 transition">
+                        🔔
+                        <span class="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full"></span>
+                    </button>
+
+                    <div class="flex items-center gap-2 pl-4 border-1 border-gray-200">
+                        <div class="w-9 h-9 rounded-full bg-gold flex items-center justify-center text-white font-semibold text-sm">KN</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Search bar -->
+             <div class="mb-4">
+                <div class="relative max-w-sm">
+                    <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">🔍</span>
+                    <input
+                    type="text"
+                    id="searchInput"
+                    onkeyup="filterTable()"
+                    placeholder="Search by order, customer name..."
+                    class="w-full pl-9 pr-4 py-2 text-sm border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent">
+                </div>
+             </div>
+
+            <!-- Calls list-->
+             <div class="bg-whote border border-gray-200 rounded-2xl overflow-hidden">
+
+                <table class="w-full text-sm">
+                    <thead class="bg-gray-50 text-gray-500 text-xs uppercase tracking-wide">
+                        <tr>
+                            <th class="text-left px-4 py-3 font-medium">Order</th>
+                            <th class="text-left px-4 py-3 font-medium">Customer</th>
+                            <th class="text-left px-4 py-3 font-medium">Type</th>
+                            <th class="text-left px-4 py-3 font-medium">Outcome</th>
+                            <th class="text-left px-4 py-3 font-medium">Duration</th>
+                            <th class="text-left px-4 py-3 font-medium">Time</th>
+                        </tr>
+                    </thead>
+
+                    <tbody class="divide-y divide-gray-100">
+                        <tr onclick="window.location='call-detail.html'" class="hover:bg-gray-50 transition cursor-pointer">
+                            <td class="px-4 py-3 font-medium">#1244</td>
+                            <td class="px-4 py-3">Anjali Mehta</td>
+                            <td class="px-4 py-3 text-gray-500">COD Confirmation</td>
+                            <td class="px-4 py-3">
+                                <span class="text-xs font-semibold bg-amber-100 text-amber-700 px-2 py-1 rounded-md">Escalated</span>
+                            </td>
+                            <td class="px-4 py-3 text-gray-500">0:38</td>
+                            <td class="px-4 py-3 text-gray-400">Today, 10:14 AM</td>
+                        </tr>
+
+                        <tr class="transition">
+                            <td class="px-4 py-3 font-medium">#1188</td>
+                            <td class="px-4 py-3">Sana Iyer</td>
+                            <td class="px-4 py-3 text-gray-500">Abandoned Cart</td>
+                            <td class="px-4 py-3">
+                                <span class="text-xs font-semibold bg-gray-100 text-gray-700 px-2 py-1 rounded-md">No Answer</span>
+                            </td>
+                            <td class="px-4 py-3 text-gray-500">—</td>
+                            <td class="px-4 py-3 text-gray-400">Yesterday, 2:03 PM</td>
+                        </tr>
+                    </tbody>
+                </table>
+        </main>
+    </div>
+    
+</body>
+</html>

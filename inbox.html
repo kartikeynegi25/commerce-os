@@ -17,6 +17,7 @@
         }
     </script>
     <link rel="stylesheet" href="css/custom.css">
+    <script src="js/nav.js"></script>
 </head>
 <body class="bg-gray-50 text-gray-900">
 
@@ -58,10 +59,23 @@
                 </div>
             </div>
 
+            <!-- Search bar -->
+             <div class="mb-4">
+                <div class="relative max-w-sm">
+                    <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">🔍</span>
+                    <input 
+                    type="text"
+                    id="searchInput"
+                    onkeyup="filterList()"
+                    placeholder="Search by name, channel, order..."
+                    class="w-full pl-9 pr-4 py-2 text-sm border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent">
+                </div>
+             </div>
+
         <!-- Inbox list goes here -->
          <div class="bg-white bordder border-gray-200 rounded-2xl divide-y divide-gray-100">
 
-            <a href="inbox-conversation.html" class="flex items-center gap-4 p-4 hover:bg-gray-50 transition">
+            <a href="inbox-conversation.html" class="inbox-row flex items-center gap-4 p-4 hover:bg-gray-50 transition">
                 <span class="text-xs font-semibold bg-green-100 text-green-700 px-2 py-1 rounded-md w-24 text-center">WhatsApp</span>
                 <div class="flex-1">
                     <p class="text-sm font-medium">Priya</p>
@@ -70,7 +84,7 @@
                 <span class="text-xs text-gray-400">2m ago</span>
             </a>
 
-            <a href="order-detail.html" class="flex items-center gap-4 p-4 hover:bg-gray-50 transition">
+            <a href="order-detail.html" class="inbox-row flex items-center gap-4 p-4 hover:bg-gray-50 transition">
                 <span class="text-xs font-semibold bg-emerald-100 text-emerald-700 px-2 py-1 rounded-md w-24 text-center">Bot Handled</span>
                 <div class="flex-1">
                     <p class="text-sm">Order#1240 confirmed by Nexus. Payment link sent.</p>
@@ -78,7 +92,7 @@
                 <span class="text-xs text-gray-400">1m ago</span>
             </a>
 
-            <a href="inbox-conversation-instagram.html" class="flex items-center gap-4 p-4 hover:bg-gray-50 transition">
+            <a href="inbox-conversation-instagram.html" class="inbox-row flex items-center gap-4 p-4 hover:bg-gray-50 transition">
                 <span class="text-xs font-semibold bg-pink-100 text-pink-700 px-2 py-1 rounded-md w-24 text-center">Instagram</span>
                 <div class="flex-1">
                     <p class="text-sm font-medium">@meher.jewels</p>
@@ -87,7 +101,7 @@
                 <span class="text-xs text-gray-400">10m ago</span>
             </a>
 
-            <a href="inbox-conversation.html" class="flex items-center gap-4 p-4 hover:bg-gray-50 transition">
+            <a href="inbox-conversation.html" class="inbox-row flex items-center gap-4 p-4 hover:bg-gray-50 transition">
                 <span class="text-xs font-semibold bg-amber-100 text-amber-700 px-2 py-1 rounded-md w-24 text-center">Escalated</span>
                 <div class="flex-1">
                     <p class="text-sm">Bot couldn't confirm a custom size request - needs your attention.</p>
@@ -95,7 +109,7 @@
                 <span class="text-xs text-gold font-medium">reply →</span>
             </a>
 
-            <a href="order-detail.html" class="flex items-center gap-4 p-4 hover:bg-gray-50 transition">
+            <a href="order-detail.html" class="inbox-row flex items-center gap-4 p-4 hover:bg-gray-50 transition">
                 <span class="text-xs font-semibold bg-blue-100 text-blue-700 px-2 py-1 rounded-md w-24 text-center">Website</span>
                 <div class="flex-1">
                     <p class="text-sm font-medium">Order #1235</p>

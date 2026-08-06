@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        gold: '#C9A24B',
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="css/custom.css">
+    <script src="js/nav.js"></script>
+</head>
+<body class="bg-gray-50 text-gray-900">
+
+    <div class="flex h-screen">
+        <aside class="w-64 bg-black text-white flex flex-col">
+            <div class="p-6">
+                <span class="text-xl font-bold tracking-wide">Nexus</span>
+            </div>
+            <nav class="flex-1 px-4 space-y-1">
+                <a href="dashboard.html" class="flex items-center gap-3 py-2 px-3 rounded-lg text-gray-400 hover:bg-gray-800 hover:text-white transition">Dashboard</a>
+                <a href="inbox.html" class="flex items-center gap-3 py-2 px-3 rounded-lg text-gray-400 hover:bg-gray-800 hover:text-white transition">Inbox</a>
+                <a href="orders.html" class="flex items-center gap-3 py-2 px-3 rounded-lg text-gray-400 hover:bg-gray-800 hover:text-white transition">Orders</a>
+                <a href="products.html" class="flex items-center gap-3 py-2 px-3 rounded-lg bg-gray-800 text-white font-medium">Products</a>
+                <a href="calls.html" class="flex items-center gap-3 py-2 px-3 rounded-lg text-gray-400 hover:bg-gray-800 hover:text-white transition">Calls</a>
+                <a href="invoices.html" class="flex items-center gap-3 py-2 px-3 rounded-lg text-gray-400 hover:bg-gray-800 hover:text-white transition">Invoices</a>
+                <a href="settings.html" class="flex items-center gap-3 py-2 px-3 rounded-lg text-gray-400 hover:bg-gray-800 hover:text-white transition">Settings</a>
+            </nav>
+
+            <div class="p-4 text-xs text-gray-500 border-t border-gray-800"> Signed in as Kartikey Negi</div>
+        </aside>
+
+        <main class="flex-1 overflow-y-auto p-8">
+
+            <div class="flex items-center justify-between mb-8">
+                <div>
+                    <h1 class="text-2xl font-bold">Products</h1>
+                    <p class="text-gray-500 text-sm mt-1">Your catalog, synced across every channel.</p>
+                </div>
+
+                <div class="flex items-center gap-4">
+                    <button class="relative p-2 rounded-lg hover:bg-gray-100 transition">🔔
+                        <span class="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full"></span>
+                    </button>
+
+                    <div class="flex items-center gap-2 pl-4 border-1 border-gray-200">
+                        <div class="w-9 h-9 rounded-full bg-gold flex items-center justify-center text-white font-semibold text-sm">KN</div>
+                        <span class="text-sm font-medium">Kartikey</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Search bar -->
+             <div class="mb-4">
+                <div class="relative max-w-sm">
+                    <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">🔍</span>
+                    <input
+                    type="text"
+                    id="searchInput"
+                    onkeyup="filterTable()"
+                    placeholder="Search by product name, SKU..."
+                    class="w-full pl-9 pr-4 py-2 text-sm border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent">
+                </div>
+             </div>
+
+            <!--products table-->
+            <div class="bg-white border border-gray-200 rounded-2xl overflow-hidden">
+                <table class="w-full text-sm">
+                    <thead class="bg-gray-50 text-gray-500 text-xs uppercase tracking-wide">
+                        <tr>
+                            <th class="text-left px-4 py-3 font-medium">Product</th>
+                            <th class="text-left px-4 py-3 font-medium">SKU</th>
+                            <th class="text-left px-4 py-3 font-medium">Stock</th>
+                            <th class="text-left px-4 py-3 font-medium">Price</th>
+                            <th class="text-left px-4 py-3 font-medium">Website</th>
+                            <th class="text-left px-4 py-3 font-medium">Instagram</th>
+                            <th class="text-left px-4 py-3 font-medium">WhatsApp</th>
+                        </tr>
+                    </thead>
+
+                    <tbody class="divide-y divide-gray-100">
+                        <tr class="hover:bg-gray-50 transition">
+                        <td class="px-4 py-3 font-medium">Wireless Headphones</td>
+                        <td class="px-4 py-3 text-gray-500">WH-1000</td>
+                        <td class="px-4 py-3">
+                            <span class="text-xs font-semibold bg-amber-100 text-amber-700 px-2 py-1 rounded-md">4 left - low</span>
+                        </td>
+                        <td class="px-4 py-3 font-medium">₹2,999</td>
+                        <td class="px-4 py-3"><span class="text-emerald-600 font-bold">●</span></td>
+                        <td class="px-4 py-3"><span class="text-emerald-600 font-bold">●</span></td>
+                        <td class="px-4 py-3"><span class="text-emerald-600 font-bold">●</span></td>
+                        </tr>
+
+                        <tr class="hover:bg-gray-50 transition">
+                            <td class="px-4 py-3 font-medium">Jhumkas - Silver</td>
+                            <td class="px-4 py-3 text-gray-500">JH-SLV-01</td>
+                            <td class="px-4 py-3">
+                                <span class="text-xs font-semibold bg-emerald-100 text-emerald-700 px-2 py-1 rounded-md">18 in stock</span>
+                            </td>
+                            <td class="px-4 py-3 font-medium">₹1,450</td>
+                            <td class="px-4 py-3"><span class="text-emerald-600 font-bold">●</span></td>
+                            <td class="px-4 py-3"><span class="text-emerald-600 font-bold">●</span></td>
+                            <td class="px-4 py-3"><span class="text-gray-300 font-bold">●</span></td>
+                        </tr>
+
+                        <tr class="hover:bg-gray-50 transition">
+                            <td class="px-4 py-3 font-medium">Perfume Set</td>
+                            <td class="px-4 py-3 text-gray-500">PF-SET-03</td>
+                            <td class="px-4 py-3">
+                                <span class="text-xs font-semibold bg-emerald-100 text-emerald-700 px-2 py-1 rounded-md">32 in stock</span>
+                            </td>
+                            <td class="px-4 py-3 font-medium">₹1,575</td>
+                            <td class="px-4 py-3"><span class="text-emerald-600 font-bold">●</span></td>
+                            <td class="px-4 py-3"><span class="text-gray-300 font-bold">●</span></td>
+                            <td class="px-4 py-3"><span class="text-emerald-600 font-bold">●</span></td>
+                        </tr>
+
+                        <tr class="hover:bg-gray-50 transition">
+                            <td class="px-4 py-3 font-medium">Home Decor Set</td>
+                            <td class="px-4 py-3 text-gray-500">HD-SET-07</td>
+                            <td class="px-4 py-3">
+                                <span class="text-xs font-semibold bg-red-100 text-red-700 px-2 py-1 rounded-md">Out of stock</span>
+                            </td>
+                            <td class="px-4 py-3 font-medium">₹1,899</td>
+                            <td class="px-4 py-3"><span class="text-gray-300 font-bold">●</span></td>
+                            <td class="px-4 py-3"><span class="text-gray-300 font-bold">●</span></td>
+                            <td class="px-4 py-3"><span class="text-gray-300 font-bold">●</span></td>
+                        </tr>
+                        
+                    </tbody>
+                </table>
+            </div>
+
+        </main>
+    </div>
+</body>
+</html>
