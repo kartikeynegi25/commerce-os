@@ -17,3 +17,8 @@ function filterList(){
         row.style.display = text.includes(input) ? '' : 'none';
     });
 }
+
+function toggleMobileMenu(){
+    const sidebar = document.getElementById('sidebar')
+    sidebar.classList.toggle('hidden');
+}

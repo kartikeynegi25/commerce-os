@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invoices</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        gold: '#C9A24B',
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="css/custom.css">
+    <script src="js/nav.js"></script>
+</head>
+<body class="bg-gray-50 text-gray-900">
+
+    <div class="flex h-screen">
+        <aside id="sidebar" class="hidden md:flex w-64 bg-black text-white flex-col fixed md:static inset-0 z-50">
+            <div class="p-6">
+                <span class="text-xl font-bold tracking-wide">Nexus</span>
+            </div>
+            <nav class="flex-1 px-4 space-y-1">
+                <a href="dashboard.html" class="flex items-center gap-3 py-2 px-3 rounded-lg text-gray-400 hover:bg-gray-800 hover:text-white transition">Dashboard</a>
+                <a href="inbox.html" class="flex items-center gap-3 py-2 px-3 rounded-lg text-gray-400 hover:bg-gray-800 hover:text-white transition">Inbox</a>
+                <a href="orders.html" class="flex items-center gap-3 py-2 px-3 rounded-lg text-gray-400 hover:bg-gray-800 hover:text-white transition">Orders</a>
+                <a href="products.html" class="flex items-center gap-3 py-2 px-3 rounded-lg text-gray-400 hover:bg-gray-800 hover:text-white transition">Products</a>
+                <a href="calls.html" class="flex items-center gap-3 py-2 px-3 rounded-lg text-gray-400 hover:bg-gray-800 hover:text-white transition">Calls</a>
+                <a href="invoices.html" class="flex items-center gap-3 py-2 px-3 rounded-lg bg-gray-800 text-white font-medium">Invoices</a>
+                <a href="settings.html" class="flex items-center gap-3 py-2 px-3 rounded-lg text-gray-400 hover:bg-gray-800 hover:text-white transition">Settings</a>
+            </nav>
+
+            <div class="p-4 text-xs text-gray-500 border-t border-gray-800"> Signed in as Kartikey Negi</div>
+        </aside>
+
+        <main class="flex-1 overflow-y-auto p-4 md:p-8">
+ <!-- Mobile top row: menu + icons -->
+            <div class="flex items-center justify-between mb-4 md:hidden">
+                <button onclick="toggleMobileMenu()" class="p-2 bg-black text-white rounded-lg">☰ Menu</button>
+
+                <div class="flex items-center gap-3">
+                    <button class="relative p-2 rounded-lg hover:bg-gray-100 transition">
+                        🔔
+                        <span class="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full"></span>
+                    </button>
+                    <div class="w-9 h-9 rounded-full bg-gold flex items-center justify-center text-white font-semibold text-sm">KN</div>
+                </div>
+            </div>
+
+            <!-- Top bar -->
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
+                <div>
+                    <h1 class="text-2xl font-bold">Invoices</h1>
+                    <p class="text-gray-500 text-sm mt-1">Auto-generated, GST-ready, for every order.</p>
+                </div>
+
+                <div class="hidden md:flex items-center gap-4">
+                    <button class="relative p-2 rounded-lg hover:bg-gray-100 transition">
+                        🔔
+                        <span class="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full"></span>
+                    </button>
+
+                    <div class="flex items-center gap-2 pl-4 border-l border-gray-200">
+                        <div class="w-9 h-9 rounded-full bg-gold flex items-center justify-center text-white font-semibold text-sm">KN</div>
+                        <span class="text-sm font-medium">Kartikey</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Search bar -->
+             <div class="mb-4">
+                <div class="relative max-w-sm">
+                    <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">🔍</span>
+                    <input
+                    type="text"
+                    id="searchInput"
+                    onkeyup="filterTable()"
+                    placeholder="Search by invoice, order, customer..."
+                    class="w-full pl-9 pr-4 py-2 text-sm border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent">
+                </div>
+             </div>
+
+            <!--Invoices table goes here-->
+            <div class="bg-white border border-gray-200 rounded-2xl overflow-hidden">
+
+                <div class="overflow-x-auto">
+                <table class="w-full text-sm">
+                    <thead class="bg-gray-50 text-gray-500 text-xs uppercase tracking-wide">
+                        <tr>
+                            <th class="text-left px-4 py-3 font-medium">Invoice</th>
+                            <th class="text-left px-4 py-3 font-medium">Order</th>
+                            <th class="text-left px-4 py-3 font-medium">Customer</th>
+                            <th class="text-left px-4 py-3 font-medium">Date</th>
+                            <th class="text-left px-4 py-3 font-medium">Amount</th>
+                            <th class="text-left px-4 py-3 font-medium">Status</th>
+                            <th class="text-left px-4 py-3 font-medium"></th>
+                        </tr>
+                    </thead>
+
+                    <tbody class="divide-y divide-gray-100">
+
+                        <tr class="hover:bg-gray-50 transition">
+                            <td class="px-4 py-3 font-medium">INV-1240</td>
+                            <td class="px-4 py-3 text-gray-500">#1240</td>
+                            <td class="px-4 py-3">Priya Sharma</td>
+                            <td class="px-4 py-3 text-gray-500">22 Jul 2026</td>
+                            <td class="px-4 py-3 font-medium">₹ 2,999</td>
+                            <td class="px-4 py-3">
+                                <span class="text-xs font-semibold bg-emerald-100 text-emerald-700 px-2 py-1 rounded-md">Active</span>
+                            </td>
+                            <td class="px-4 py-3">
+                                <a href="order-detail.html" class="text-xs font-medium text-gold hover:underline">View →</a>
+                            </td>
+                        </tr>
+
+                        <tr class="hover:bg-gray-50 transition">
+                            <td class="px-4 py-3 font-medium">INV-1229</td>
+                            <td class="px-4 py-3 text-gray-500">#1229</td>
+                            <td class="px-4 py-3">Rohan Kapoor</td>
+                            <td class="px-4 py-3 text-gray-500">18 Jul 2026</td>
+                            <td class="px-4 py-3 font-medium">₹3,200</td>
+                            <td class="px-4 py-3">
+                                <span class="text-xs font-semibold bg-emerald-100 text-emerald-700 px-2 py-1 rounded-md">Active</span>
+                            </td>
+                            <td class="px-4 py-3">
+                                <a href="order-detail-instagram.html" class="text-xs font-medium text-gold hover:underline">View →</a>
+                            </td>
+                        </tr>
+
+                        <tr class="hover:bg-gray-50 transition">
+                            <td class="px-4 py-3 font-medium">INV-1188</td>
+                            <td class="px-4 py-3 text-gray-500">#1188</td>
+                            <td class="px-4 py-3">Sana Iyer</td>
+                            <td class="px-4 py-3 text-gray-500">15 Jul 2026</td>
+                            <td class="px-4 py-3 font-medium">₹1,899</td>
+                            <td class="px-4 py-3">
+                                <span class="text-xs font-semibold bg-gray-100 text-gray-500 px-2 py-1 rounded-md">Void</span>
+                            </td>
+                            <td class="px-4 py-3 text-gray-300 text-xs">—</td>
+                        </tr>
+                    </tbody>
+                </table>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+</body>
+</html>
