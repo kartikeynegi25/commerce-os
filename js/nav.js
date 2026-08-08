@@ -22,3 +22,9 @@ function toggleMobileMenu(){
     const sidebar = document.getElementById('sidebar')
     sidebar.classList.toggle('hidden');
 }
+
+function toggleEmptyState(){
+    document.getElementById('inboxMessages').classList.toggle('hidden');
+    document.getElementById('inboxEmpty').classList.toggle('hidden');
+    document.getElementById('inboxEmpty').classList.toggle('flex');
+}

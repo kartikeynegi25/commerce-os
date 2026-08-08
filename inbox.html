@@ -30,6 +30,7 @@
             <a href="dashboard.html" class="flex items-center gap-3 py-2 px-3 rounded-lg text-gray-400 hover:bg-gray-800 hover:text-white transition">Dashboard</a>
             <a href="inbox.html" class="flex items-center gap-3 py-2 px-3 rounded-lg bg-gray-800 text-white font-medium">Inbox</a>
             <a href="orders.html" class="flex items-center gap-3 py-2 px-3 rounded-lg text-gray-400 hover:bg-gray-800 hover:text-white transition">Orders</a>
+            <a href="customers.html" class="flex items-center gap-3 py-2 px-3 rounded-lg text-gray-400 hover:bg-gray-800 hover:text-white transition">Customers</a>
             <a href="products.html" class="flex items-center gap-3 py-2 px-3 rounded-lg text-gray-400 hover:bg-gray-800 hover:text-white transition">Products</a>
             <a href="calls.html" class="flex items-center gap-3 py-2 px-3 rounded-lg text-gray-400 hover:bg-gray-800 hover:text-white transition">Calls</a>
             <a href="invoices.html" class="flex items-center gap-3 py-2 px-3 rounded-lg text-gray-400 hover:bg-gray-800 hover:text-white transition">Invoices</a>
@@ -87,7 +88,12 @@
              </div>
 
         <!-- Inbox list goes here -->
+         <button onclick="toggleEmptyState()" class="mb-4 text-xs font-medium text-gold hover:underline">
+            toggle empty state (demo)
+         </button>
          <div class="bg-white bordder border-gray-200 rounded-2xl divide-y divide-gray-100">
+
+            <div id="inboxMessages">
 
             <a href="inbox-conversation.html" class="inbox-row flex items-center gap-4 p-4 hover:bg-gray-50 transition">
                 <span class="text-xs font-semibold bg-green-100 text-green-700 px-2 py-1 rounded-md w-24 text-center">WhatsApp</span>
@@ -131,6 +137,13 @@
                 </div>
                 <span class="text-xs text-gray-400">21m ago</span>
             </a>
+         </div>
+         </div>
+
+         <div id="inboxEmpty" class="hidden flex-col items-center justify-center py-16 px-4 text-center">
+            <div class="w-16 h-16 rounded-full bg-gray-100 flex items-center justify-center text-3xl mb-4">📭</div>
+            <p class="font-semibold text-gray-700">You're all caught up!</p>
+            <p class="text-sm text-gray-500 mt-1">New messages from WhatsApp, Instagram, and your website will show up here.</p>
          </div>
 
         </main>
