@@ -12,6 +12,16 @@ A unified dashboard for small D2C merchants - one inbox for every order, an AI t
 
 Just open the link above - no install needed. Click around: try the sidebar navigation, click into an order or a conversation, use the search bars, and try the "Mark as Packed" button on an order detail page.
 
+## How to explore it
+
+- Click order **#1240** or **#1229** on the Orders page to see full order details, live status updates, and an invoice preview (other rows are static, showing table variety without a full detail page built for each)
+- Click the **WhatsApp** or **Instagram** rows on the Inbox page to see real chatbot conversations, including an escalation moment (other rows are static)
+- Click the **first row** on the Calls page to see a full AI call transcript
+- Try the search bar on Orders, Products, Calls, Invoices, or Customers
+- Try the **"Mark as Packed"** button on order #1240's detail page — it advances the pipeline live
+- Try the **"Toggle empty state"** link on Inbox
+- Resize your browser (or check on your phone) to see the responsive mobile menu
+
 ## The problem
 
 Small D2C merchants selling through WhatsApp, Instagram, and a website end up being the integration layer themselves - checking three apps, tracking payments through UPI screenshots, writing invoices by hand, and losing sales overnight because there's no one awake to reply or losing customers just becasue you are busy. Commerce OS unfies all of it into one dashboard, with an AI (Nexus) that can chat, take orders, and even place confirmation calls - escalating to the owner only when it genuinely needs to.
