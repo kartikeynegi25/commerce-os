@@ -1,4 +1,4 @@
-# NxtRev Commerce OS
+# Commerce OS
 
 A unified dashboard for small D2C merchants - one inbox for every order, an AI that chats, calls, and sells across WhatsApp, Instagram, and web.
 
@@ -6,7 +6,7 @@ A unified dashboard for small D2C merchants - one inbox for every order, an AI t
 
 ## 🔗 Try it live
 
-**[View the live demo →] ** https://kartikeynegi25.github.io/commerce-os
+🌐 **Live Site:** https://kartikeynegi25.github.io/commerce-os
 
 ## Quick start
 
@@ -34,9 +34,9 @@ This is a **frontend prototype** - every page uses static mock data. There is no
 
 Beyond this prototype, I'm exploring this as a real product for D2C merchants - potentially including hands-on onboarding support (website setup, calling/chatbot setup, inventory organization) alongside the self-serve dashboard shown here.
 
-## How it workd
+## How it works
 
-Every page is plain HTML + Tailwind CSS (loaded via CDN, no build step), with vanilla JavaScript handling the interactive pieces - live table search/filtering, a mobile hamburger menu, an order status stepper that updates the pipeline UI on click, and an empty-state toggle. No framework was used, since the goal was a fast, dependency-free prototype a reviewer can open instantly with no setup
+Every page is plain HTML + Tailwind CSS (loaded via CDN, no build step), with vanilla JavaScript handling the interactive pieces - live table search/filtering, a mobile hamburger menu, an order status stepper that updates the pipeline UI on click, and an empty-state toggle. No framework was used, since the goal was a fast, dependency-free prototype.
 
 ## AI Usage Declaration
 
