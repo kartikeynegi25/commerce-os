@@ -2,7 +2,7 @@
 
 A unified dashboard for small D2C merchants - one inbox for every order, an AI that chats, calls, and sells across WhatsApp, Instagram, and web.
 
-![Dashboard Screenshot] ![alt text](image.png)
+![alt text](image.png)
 
 ## 🔗 Try it live
 
