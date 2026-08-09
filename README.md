@@ -6,7 +6,7 @@ A unified dashboard for small D2C merchants - one inbox for every order, an AI t
 
 ## 🔗 Try it live
 
-**[View the live demo →] **
+**[View the live demo →] ** https://kartikeynegi25.github.io/commerce-os
 
 ## Quick start
 
