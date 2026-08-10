@@ -27,3 +27,21 @@ main {
     transform: translateY(-2px);
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
 }
+
+@media print{
+    body * {
+        visibility: hidden;
+    }
+    #invoiceSection, #invoiceSection * {
+        visibility: visible;
+    }
+    #invoiceSection {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+    }
+    button {
+        display: none !important;
+    }
+}

@@ -47,7 +47,7 @@
         </aside>
 
         <main class="flex-1 overflow-y-auto p-4 md:p-8">
-            <!-- Mobile top row: menu + icons -->
+            <!-- Mobile navbar -->
             <div class="flex items-center justify-between mb-4 md:hidden">
                 <button onclick="toggleMobileMenu()" class="p-2 bg-black text-white rounded-lg">☰ Menu</button>
 
@@ -60,7 +60,7 @@
                 </div>
             </div>
 
-            <!-- Top bar -->
+            
             <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
                 <div>
                     <h1 class="text-2xl font-bold">Inbox</h1>
@@ -93,7 +93,7 @@
                 </div>
              </div>
 
-        <!-- Inbox list goes here -->
+        
          <button onclick="toggleEmptyState()" class="mb-4 text-xs font-medium text-gold hover:underline">
             toggle empty state (demo)
          </button>
@@ -130,7 +130,7 @@
             <a class="inbox-row flex items-center gap-4 p-4 hover:bg-gray-50 transition">
                 <span class="text-xs font-semibold bg-amber-100 text-amber-700 px-2 py-1 rounded-md w-24 text-center">Escalated</span>
                 <div class="flex-1">
-                    <p class="text-sm">Bot couldn't confirm a custom size request - needs your attention.</p>
+                    <p class="text-sm">Bot couldn't confirm a custom size request. Needs your attention.</p>
                 </div>
                 <span class="text-xs text-gold font-medium">reply →</span>
             </a>
