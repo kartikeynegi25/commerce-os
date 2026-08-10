@@ -156,3 +156,89 @@ function connectDataImport(){
         showToast('Catalog synced from ' + source);
     }, 1200);
 }
+
+// Default profile state fallback
+const DEFAULT_PROFILE = {
+    fullName: 'Kartikey Negi',
+    email: 'kartikey@negimart.in',
+    phone: '+91 98XXX XXXXX',
+    businessName: 'Negi Mart'
+};
+
+// Retrieve profile from storage
+function getProfile() {
+    const data = localStorage.getItem('userProfile');
+    return data ? { ...DEFAULT_PROFILE, ...JSON.parse(data) } : DEFAULT_PROFILE;
+}
+
+// Save profile to storage and refresh UI
+function saveProfile(updatedData) {
+    localStorage.setItem('userProfile', JSON.stringify(updatedData));
+    syncUserProfileUI();
+}
+
+// Sync UI across all pages using data attributes
+function syncUserProfileUI() {
+    const profile = getProfile();
+    
+    const initials = profile.fullName
+        .trim()
+        .split(/\s+/)
+        .map(part => part[0])
+        .join('')
+        .toUpperCase() || 'KN';
+
+    const businessInitials = profile.businessName
+        .trim()
+        .split(/\s+/)
+        .map(word => word[0])
+        .join('')
+        .toUpperCase()
+        .slice(0, 2) || 'BM';
+
+    const firstName = profile.fullName.split(' ')[0];
+
+    // Update text elements across any page
+    document.querySelectorAll('[data-user-avatar]').forEach(el => el.textContent = initials);
+    document.querySelectorAll('[data-user-firstname]').forEach(el => el.textContent = firstName);
+    document.querySelectorAll('[data-user-fullname]').forEach(el => el.textContent = profile.fullName);
+    document.querySelectorAll('[data-user-business]').forEach(el => el.textContent = profile.businessName);
+    document.querySelectorAll('[data-user-signedin]').forEach(el => el.textContent = `Signed in as ${profile.fullName}`);
+    document.querySelectorAll('[data-user-email]').forEach(el => el.textContent = profile.email);
+    document.querySelectorAll('[data-user-phone]').forEach(el => el.textContent = profile.phone);
+    document.querySelectorAll('[data-business-avatar]').forEach(el => {el.textContent = businessInitials;});
+    // Pre-fill form inputs if settingsForm is present on the page
+    const form = document.getElementById('settingsForm');
+    if (form) {
+        if (form.elements['fullName']) form.elements['fullName'].value = profile.fullName;
+        if (form.elements['email']) form.elements['email'].value = profile.email;
+        if (form.elements['phone']) form.elements['phone'].value = profile.phone;
+        if (form.elements['businessName']) form.elements['businessName'].value = profile.businessName;
+    }
+}
+
+// Initialize on DOM ready
+document.addEventListener('DOMContentLoaded', () => {
+    syncUserProfileUI();
+
+    const settingsForm = document.getElementById('settingsForm');
+    if (settingsForm) {
+        settingsForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const formData = new FormData(settingsForm);
+            
+            const updatedProfile = {
+                fullName: formData.get('fullName'),
+                email: formData.get('email'),
+                phone: formData.get('phone'),
+                businessName: formData.get('businessName')
+            };
+
+            saveProfile(updatedProfile);
+
+            if (typeof showToast === 'function') {
+                showToast('Account settings saved!');
+            }
+        });
+    }
+});
