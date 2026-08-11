@@ -157,7 +157,6 @@ function connectDataImport(){
     }, 1200);
 }
 
-// Default profile state fallback
 const DEFAULT_PROFILE = {
     fullName: 'Kartikey Negi',
     email: 'kartikey@negimart.in',
@@ -165,19 +164,28 @@ const DEFAULT_PROFILE = {
     businessName: 'Negi Mart'
 };
 
-// Retrieve profile from storage
+const storedName = localStorage.getItem('fullName') || 'Kartikey Negi';
+const initials = storedName
+  .split(' ')
+  .map(part => part[0])
+  .join('')
+  .toUpperCase()
+  .slice(0, 2) || 'KN';
+
+document.querySelectorAll('[data-user-avatar]').forEach(el => {
+  el.textContent = initials;
+});
+
 function getProfile() {
     const data = localStorage.getItem('userProfile');
     return data ? { ...DEFAULT_PROFILE, ...JSON.parse(data) } : DEFAULT_PROFILE;
 }
 
-// Save profile to storage and refresh UI
 function saveProfile(updatedData) {
     localStorage.setItem('userProfile', JSON.stringify(updatedData));
     syncUserProfileUI();
 }
 
-// Sync UI across all pages using data attributes
 function syncUserProfileUI() {
     const profile = getProfile();
     
@@ -198,7 +206,6 @@ function syncUserProfileUI() {
 
     const firstName = profile.fullName.split(' ')[0];
 
-    // Update text elements across any page
     document.querySelectorAll('[data-user-avatar]').forEach(el => el.textContent = initials);
     document.querySelectorAll('[data-user-firstname]').forEach(el => el.textContent = firstName);
     document.querySelectorAll('[data-user-fullname]').forEach(el => el.textContent = profile.fullName);
@@ -207,7 +214,7 @@ function syncUserProfileUI() {
     document.querySelectorAll('[data-user-email]').forEach(el => el.textContent = profile.email);
     document.querySelectorAll('[data-user-phone]').forEach(el => el.textContent = profile.phone);
     document.querySelectorAll('[data-business-avatar]').forEach(el => {el.textContent = businessInitials;});
-    // Pre-fill form inputs if settingsForm is present on the page
+
     const form = document.getElementById('settingsForm');
     if (form) {
         if (form.elements['fullName']) form.elements['fullName'].value = profile.fullName;
@@ -217,7 +224,6 @@ function syncUserProfileUI() {
     }
 }
 
-// Initialize on DOM ready
 document.addEventListener('DOMContentLoaded', () => {
     syncUserProfileUI();
 

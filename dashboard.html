@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
+    <title>Dashboard | Commerce OS</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -64,25 +64,37 @@
             </div>
 
            
-            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
-                <div>
-                    <h1 class="text-2xl font-bold">Hello, Kartikey</h1>
-                    <p class="text-gray-500 text-sm mt-1">Here's what's happening today.</p>
-                </div>
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8 pb-4 border-b-2 border-zinc-900">
+    <!-- Left Section: Live Greeting Header -->
+    <div>
+        <div class="flex items-center gap-2 mb-1">
+            <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 border border-zinc-900 animate-pulse"></span>
+            <span class="font-mono-code text-[11px] font-bold uppercase tracking-wider text-zinc-600">Store Status: Active</span>
+        </div>
+        <h1 class="font-heading text-2xl font-extrabold text-zinc-900 tracking-tight">
+            Hello, <span data-user-firstname class="underline decoration-emerald-500 decoration-2">Kartikey</span>
+        </h1>
+        <p class="font-mono-code text-xs text-zinc-600 mt-1">Here's what's happening today.</p>
+    </div>
 
-                <div class="hidden md:flex items-center gap-4">
-                    <button onclick="showToast('No new notifications')" class="relative p-2 rounded-lg hover:bg-gray-100 transition">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
-                          <path stroke-linecap="round" stroke-linejoin="round" d="M15 17h5l-1.4-1.4A2 2 0 0118 14.2V11a6 6 0 10-12 0v3.2a2 2 0 01-.6 1.4L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
-                        </svg>
-                    </button>
+    <!-- Right Section: Desktop Actions & Profile Pill -->
+    <div class="hidden md:flex items-center gap-3">
+        <!-- Notification Button -->
+        <button onclick="showToast('No new notifications')" class="p-2 border-1.5 border-zinc-900 bg-white rounded-sm shadow-[2px_2px_0px_0px_#121212] hover:translate-x-[-1px] hover:translate-y-[-1px] hover:shadow-[3px_3px_0px_0px_#121212] active:translate-x-[1px] active:translate-y-[1px] active:shadow-[1px_1px_0px_0px_#121212] transition-all">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-zinc-900" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15 17h5l-1.4-1.4A2 2 0 0118 14.2V11a6 6 0 10-12 0v3.2a2 2 0 01-.6 1.4L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+            </svg>
+        </button>
 
-                    <a href="profile.html" class="flex items-center gap-2 pl-4 border-l border-gray-200 hover:opacity-80 transition">
-                         <div data-user-avatar class="w-9 h-9 rounded-full bg-gold flex items-center justify-center text-white font-semibold text-sm">KN</div>
-                         <span data-user-firstname class="text-sm font-medium">Kartikey</span>
-                    </a>
-                </div>
+        <!-- Profile Link (Left border clean separator) -->
+        <a href="profile.html" class="flex items-center gap-2.5 pl-4 border-l-2 border-zinc-900 hover:opacity-80 transition">
+            <div data-user-avatar class="w-9 h-9 rounded-full bg-emerald-600 border-1.5 border-zinc-900 flex items-center justify-center text-white font-mono-code font-bold text-sm shadow-[2px_2px_0px_0px_#121212]">
+                KN
             </div>
+            <span data-user-firstname class="font-heading font-bold text-sm text-zinc-900">Kartikey</span>
+        </a>
+    </div>
+</div>
 
             
              
