@@ -30,41 +30,79 @@
 <body class="bg-gray-50 text-gray-900">
 
     <div class="flex h-screen">
-        <aside id="sidebar" class="no-print hidden md:flex w-64 bg-black text-white flex-col fixed md:static inset-0 z-50">
-            <div class="p-6">
-                <span class="text-xl font-bold tracking-wide">Nexus</span>
+        <div id="mobileMenuBackdrop" onclick="toggleMobileMenu()" class="fixed inset-0 bg-zinc-950/70 backdrop-blur-sm z-40 hidden md:hidden transition-opacity"></div>
+
+        <aside id="sidebar" class="fixed top-0 left-0 bottom-0 z-50 w-64 h-screen bg-zinc-950 border-r-2 border-zinc-800 flex flex-col text-zinc-100 transition-transform duration-200 -translate-x-full md:translate-x-0">
+            <div class="p-6 pb-4 border-b-2 border-zinc-800 flex items-center justify-between">
+                <span class="font-heading text-xl font-extrabold tracking-tight text-white flex items-center gap-2">
+                    <span class="w-7 h-7 bg-white text-zinc-950 rounded-sm flex items-center justify-center font-mono-code text-sm font-black shadow-[2px_2px_0px_0px_#3f3f46]">N</span>
+                    Nexus
+                </span>
+                <button onclick="toggleMobileMenu()" class="md:hidden text-zinc-400 hover:text-white p-1 rounded-sm">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
             </div>
-            <nav class="flex-1 px-4 space-y-1">
-                <a href="dashboard.html" class="flex items-center gap-3 py-2 px-3 rounded-lg text-gray-400 hover:bg-gray-800 hover:text-white transition">Dashboard</a>
-                <a href="inbox.html" class="flex items-center gap-3 py-2 px-3 rounded-lg text-gray-400 hover:bg-gray-800 hover:text-white transition">Inbox</a>
-                <a href="orders.html" class="flex items-center gap-3 py-2 px-3 rounded-lg bg-gray-800 text-white font-medium border-l-2 border-gold relative">Orders</a>
-                <a href="customers.html" class="flex items-center gap-3 py-2 px-3 rounded-lg text-gray-400 hover:bg-gray-800 hover:text-white transition">Customers</a>
-                <a href="products.html" class="flex items-center gap-3 py-2 px-3 rounded-lg text-gray-400 hover:bg-gray-800 hover:text-white transition">Products</a>
-                <a href="calls.html" class="flex items-center gap-3 py-2 px-3 rounded-lg text-gray-400 hover:bg-gray-800 hover:text-white transition">Calls</a>
-                <a href="invoices.html" class="flex items-center gap-3 py-2 px-3 rounded-lg text-gray-400 hover:text-white transition">Invoices</a>
-                <a href="settings.html" class="flex items-center gap-3 py-2 px-3 rounded-lg text-gray-400 hover:text-white transition">Settings</a>
+
+            <!-- Navigation Links -->
+            <nav class="flex-1 p-4 space-y-1 font-mono-code text-xs font-bold overflow-y-auto">
+                <a href="dashboard.html" class="flex items-center gap-3 py-2.5 px-3 rounded-sm text-zinc-400 hover:text-white hover:bg-zinc-900 transition-colors">
+                    Dashboard
+                </a>
+                <a href="inbox.html" class="flex items-center gap-3 py-2.5 px-3 rounded-sm text-zinc-400 hover:text-white hover:bg-zinc-900 transition-colors">
+                    Inbox
+                </a>
+                <a href="orders.html" class="flex items-center gap-3 py-2.5 px-3 rounded-sm bg-zinc-900 text-white font-bold border-1.5 border-zinc-700 shadow-[2px_2px_0px_0px_#27272a]">
+                    Orders
+                </a>
+                <a href="customers.html" class="flex items-center gap-3 py-2.5 px-3 rounded-sm text-zinc-400 hover:text-white hover:bg-zinc-900 transition-colors">
+                    Customers
+                </a>
+                <a href="products.html" class="flex items-center gap-3 py-2.5 px-3 rounded-sm text-zinc-400 hover:text-white hover:bg-zinc-900 transition-colors">
+                    Products
+                </a>
+                <a href="calls.html" class="flex items-center gap-3 py-2.5 px-3 rounded-sm text-zinc-400 hover:text-white hover:bg-zinc-900 transition-colors">
+                    Calls
+                </a>
+                <a href="invoices.html" class="flex items-center gap-3 py-2.5 px-3 rounded-sm text-zinc-400 hover:text-white hover:bg-zinc-900 transition-colors">
+                    Invoices
+                </a>
+                <a href="settings.html" class="flex items-center gap-3 py-2.5 px-3 rounded-sm text-zinc-400 hover:text-white hover:bg-zinc-900 transition-colors">
+                    Settings
+                </a>
             </nav>
 
-            <div data-user-signedin onclick="showToast('Signed in as Kartikey Negi')" class="p-4 text-xs text-gray-500 border-t border-gray-800"> Signed in as Kartikey Negi</div>
-        </aside>
-
-        <main class="flex-1 overflow-y-auto p-4 md:p-8">
-            <!-- Mobile navbar -->
-            <div class="no-print flex items-center justify-between mb-4 md:hidden">
-                <button onclick="toggleMobileMenu()" class="p-2 bg-black text-white rounded-lg">☰ Menu</button>
-
-                <div class="flex items-center gap-3">
-                    <button onclick="showToast('No new notifications')" class="relative p-2 rounded-lg hover:bg-gray-100 transition">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
-                          <path stroke-linecap="round" stroke-linejoin="round" d="M15 17h5l-1.4-1.4A2 2 0 0118 14.2V11a6 6 0 10-12 0v3.2a2 2 0 01-.6 1.4L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
-                        </svg>
-                    </button>
-                    <a href="profile.html" data-user-avatar class="w-9 h-9 rounded-full bg-gold flex items-center justify-center text-white font-semibold text-sm">KN</a>
-                </div>
+            <!-- Footer -->
+            <div data-user-signedin onclick="showToast('Signed in as Kartikey Negi')" class="p-4 font-mono-code text-xs font-semibold text-zinc-300 bg-zinc-900/80 border-t-2 border-zinc-800 cursor-pointer hover:bg-zinc-900 transition-colors flex items-center gap-2 mt-auto">
+                <span class="w-2 h-2 rounded-full bg-emerald-500 border border-zinc-900"></span>
+                Signed in as Kartikey Negi
             </div>
+        </aside> 
+        <main class="flex-1 overflow-y-auto md:ml-64 p-4 md:p-8">
+            <!-- Mobile navbar -->
+       <div class="no-print flex items-center justify-between mb-4 md:hidden">
+    <!-- Mobile Menu -->
+    <button onclick="toggleMobileMenu()" class="px-3 py-1.5 border-1.5 border-zinc-900 bg-zinc-900 text-white font-mono-code font-bold text-xs rounded-sm shadow-[2px_2px_0px_0px_#121212] active:translate-x-[1px] active:translate-y-[1px] active:shadow-none transition-all">
+        ☰ MENU
+    </button>
 
-            
-            <div class="flex items-center gap-3 mb-8">
+    <div class="flex items-center gap-2.5">
+        <!-- Notification Button -->
+        <button onclick="showToast('No new notifications')" class="p-2 border-1.5 border-zinc-900 bg-white rounded-sm shadow-[2px_2px_0px_0px_#121212] hover:translate-x-[-1px] hover:translate-y-[-1px] hover:shadow-[3px_3px_0px_0px_#121212] active:translate-x-[1px] active:translate-y-[1px] active:shadow-[1px_1px_0px_0px_#121212] transition-all">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-zinc-900" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15 17h5l-1.4-1.4A2 2 0 0118 14.2V11a6 6 0 10-12 0v3.2a2 2 0 01-.6 1.4L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+            </svg>
+        </button>
+
+        <!-- Profile Avatar -->
+        <a href="profile.html" data-user-avatar class="w-8 h-8 rounded-full bg-emerald-600 border-1.5 border-zinc-900 flex items-center justify-center text-white font-mono-code font-bold text-xs shadow-[2px_2px_0px_0px_#121212]">
+            KN
+        </a>
+    </div>
+</div>
+
+             <div class="flex items-center gap-3 mb-8">
                 <a href="orders.html" class="text-gray-400 hover:text-gray-900 transition text-xl">←</a>
                 <div>
                     <h1 class="text-lg font-bold">Order #1229</h1>
@@ -112,109 +150,126 @@
                 </div>
             </div>
 
-            <!--Items + Payment-->
+            <!-- Items + Payment Grid -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
 
-                <!--Order items-->
-                <div class="bg-white border-gray-200 rounded-2xl p-5">
-                    <h2 class="font-semibold mb-4">Items</h2>
+                <!-- Order Items -->
+                <div class="bg-white border-2 border-zinc-900 rounded-sm p-5 shadow-[3px_3px_0px_0px_#121212] flex flex-col justify-between">
+                    <div>
+                        <h2 class="font-heading font-extrabold text-base text-zinc-900 mb-4 pb-2 border-b-2 border-zinc-900">
+                            Items
+                        </h2>
 
-                    <div class="flex items-center justify-between py-2 border-b border-gray-100">
+                <div class="space-y-3 font-mono-code text-xs">
+                    <!-- Item Row -->
+                    <div class="flex items-center justify-between pb-3 border-b border-zinc-200">
                         <div>
-                            <p class="text-sm font-medium">Perfume Set</p>
-                            <p class="text-xs text-gray-500">Qty: 2</p>
+                            <p class="font-bold text-zinc-900 text-sm">Perfume Set</p>
+                            <p class="text-zinc-500 mt-0.5">Qty: 2</p>
                         </div>
-                        <p class="text-sm font-medium">₹3,151</p>
+                        <p class="font-bold text-zinc-900 text-sm">₹3,151</p>
                     </div>
 
-                    <div class="flex items-center justify-between py-2 border-b border-gray-100">
-                        <p class="text-sm text-gray-500">Shipping</p>
-                        <p class="text-sm font-medium">₹49</p>
+                    <!-- Shipping Row -->
+                    <div class="flex items-center justify-between py-1 text-zinc-600">
+                        <span>Shipping</span>
+                        <span class="font-medium">₹49</span>
                     </div>
-
-                    <div class="flex items-center justify-between pt-3">
-                        <p class="text-sm font-semibold">Total</p>
-                        <p class="text-sm font-semibold">₹3,200</p>
-                    </div>
-                </div>
-
-                <!--Payment-->
-                <div class="bg-white border border-gray-200 rounded-2xl p-5">
-                    <h2 class="font-semibold mb-4">Payment</h2>
-
-                    <div class="flex items-center justify-between py-2 border-b border-gray-100">
-                        <p class="text-sm text-gray-500">Status</p>
-                        <span class="text-xs font-semibold bg-emerald-100 text-emerald-700 px-2 py-1 rounded-md">Paid</span>
-                    </div>
-
-                    <div class="flex items-center justify-between py-2 border-b border-gray-100">
-                        <p class="text-sm text-gray-500">Method</p>
-                        <p class="text-sm font-medium">UPI</p>
-                    </div>
-
-                    <div class="flex items-center justify-between py-2">
-                        <p class="text-sm text-gray-500">Transaction ID</p>
-                        <p class="text-sm font-medium text-gold">TXN8F92A1C</p>
-                    </div>
-
-                    <button onclick="showToast('Payment link resent to Rohan Kapoor')" class="w-full mt-4 bg-black text-white text-sm font-medium py-2 rounded-lg hover:bg-gray-800 transition">Resend Payment Link</button>
                 </div>
             </div>
 
-            <!--Invoice preview-->
-            <div id="invoiceSection" class="bg-white border border-gray-200 rounded-2xl p-6">
-                <div class="flex items-center justify-between mb-4">
-                    <h2 class="font-semibold">Invoice</h2>
-                    <button onclick="window.print()" class=" text-sm font-medium text-gold hover:underline">Download PDF</button>
-                </div>
-                
-                <div class="border border-gray-200 rounded-xl p-5 bg-gray-50">
-
-                    <div class="flex items-center justify-between mb-4">
-                        <div>
-                            <p class="font-bold">Rohan Kapoor</p>
-                            <p class="text-xs text-gray-500">GSTIN: 27XXXXXXX1Z5 · commerceos.com/rohankapoor</p>
-                        </div>
-                        <div class="text-right">
-                            <p class="text-sm font-semibold">INVOICE #INV-1229</p>
-                            <p class="text-xs text-gray-500">18 Jul 2026</p>
-                        </div>
-                    </div>
-
-                    <div class="overflow-x-auto">
-                    <table class="w-full text-sm">
-                        <thead>
-                            <tr class="text-xs text-gray-500 uppercase border-b border-gray-200">
-                                <th class="text-left py-2 font-medium">Item</th>
-                                <th class="text-center py-2 font-medium">Qty</th>
-                                <th class="text-right py-2 font-medium">Price</th>
-                                <th class="text-right py-2 font-medium">Amount</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr class="border-b border-gray-100">
-                                <td class="py-2">Perfume Set</td>
-                                <td class="py-2 text-center">2</td>
-                                <td class="py-2 text-right">₹1,575.50</td>
-                                <td class="py-2 text-right">₹3,151</td>
-                            </tr>
-                            <tr class="border-b border-gray-100">
-                                <td class="py-2">Shipping</td>
-                                <td class="py-2 text-center">-</td>
-                                <td class="py-2 text-right">-</td>
-                                <td class="py-2 text-right">₹49</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    </div>
-
-                    <div class="flex justify-end mt-3">
-                        <p class="text-sm font-bold">Total: ₹3,200 (incl. GST)</p>
-                    </div>
-                </div>
-
+            <!-- Total -->
+            <div class="flex items-center justify-between pt-3 mt-4 border-t-2 border-zinc-900 font-mono-code">
+                <span class="font-bold text-sm text-zinc-900">Total</span>
+                <span class="font-bold text-sm text-zinc-900">₹3,200</span>
             </div>
+        </div>
+
+        <!-- Payment Card -->
+        <div class="bg-white border-2 border-zinc-900 rounded-sm p-5 shadow-[3px_3px_0px_0px_#121212] flex flex-col justify-between">
+            <div>
+                <h2 class="font-heading font-extrabold text-base text-zinc-900 mb-4 pb-2 border-b-2 border-zinc-900">
+                    Payment
+                </h2>
+
+                <dl class="space-y-3 font-mono-code text-xs">
+                    <div class="flex items-center justify-between pb-2 border-b border-zinc-200">
+                        <dt class="text-zinc-500 font-medium">Status</dt>
+                        <dd><span class="text-xs font-bold bg-emerald-100 text-emerald-900 px-2 py-0.5 border border-emerald-900 rounded-xs">Paid</span></dd>
+                    </div>
+
+                    <div class="flex items-center justify-between pb-2 border-b border-zinc-200">
+                        <dt class="text-zinc-500 font-medium">Method</dt>
+                        <dd class="text-xs font-bold text-zinc-900">UPI</dd>
+                    </div>
+
+                    <div class="flex items-center justify-between pt-1">
+                        <dt class="text-zinc-500 font-medium">Transaction ID</dt>
+                        <dd class="text-xs font-bold text-emerald-700 font-mono-code">TXN8F92A1C</dd>
+                    </div>
+                </dl>
+            </div>
+
+            <button onclick="showToast('Payment link resent to Rohan Kapoor')" class="w-full mt-6 py-2.5 bg-zinc-900 text-white font-mono-code text-xs font-bold rounded-sm shadow-[2px_2px_0px_0px_#121212] hover:bg-zinc-800 active:translate-x-[1px] active:translate-y-[1px] active:shadow-none transition-all">
+                Resend Payment Link
+            </button>
+        </div>
+
+    </div>
+
+    <!-- Invoice Preview -->
+    <div id="invoiceSection" class="bg-white border-2 border-zinc-900 rounded-sm p-5 shadow-[3px_3px_0px_0px_#121212]">
+        <div class="flex items-center justify-between mb-4 pb-3 border-b-2 border-zinc-900">
+            <div>
+                <h2 class="font-heading font-extrabold text-base text-zinc-900">Invoice</h2>
+                <p class="font-mono-code text-xs text-zinc-600 mt-0.5">
+                    <span class="font-bold text-zinc-900">Rohan Kapoor</span> • GSTIN: 27XXXXXXX1Z5
+                </p>
+            </div>
+        
+            <div class="flex flex-col items-end gap-1">
+                <button onclick="window.print()" class="no-print text-xs font-mono-code font-bold text-zinc-900 hover:text-emerald-700 underline">
+                    Download PDF
+                </button>
+                <div class="text-right font-mono-code text-xs">
+                    <span class="font-bold text-zinc-900 block">INVOICE #INV-1229</span>
+                    <span class="text-zinc-500">18 Jul 2026</span>
+                </div>
+            </div>
+        </div>
+        <div class="overflow-x-auto">
+            <table class="w-full font-mono-code text-xs text-left">
+                <thead>
+                    <tr class="text-zinc-500 uppercase font-bold border-b-2 border-zinc-900">
+                        <th class="py-2">Item</th>
+                        <th class="py-2 text-center">Qty</th>
+                        <th class="py-2 text-right">Price</th>
+                        <th class="py-2 text-right">Amount</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-zinc-200 text-zinc-900">
+                    <tr>
+                        <td class="py-2.5 font-bold">Perfume Set</td>
+                        <td class="py-2.5 text-center">2</td>
+                        <td class="py-2.5 text-right">₹1,575.50</td>
+                        <td class="py-2.5 text-right font-bold">₹3,151</td>
+                    </tr>
+                    <tr>
+                        <td class="py-2.5 text-zinc-600">Shipping</td>
+                        <td class="py-2.5 text-center text-zinc-400">-</td>
+                        <td class="py-2.5 text-right text-zinc-400">-</td>
+                        <td class="py-2.5 text-right font-bold">₹49</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="flex justify-end pt-3 mt-3 border-t-2 border-zinc-900 font-mono-code">
+            <p class="text-sm font-bold text-zinc-900">Total: ₹3,200 <span class="text-xs text-zinc-500 font-normal">(incl. GST)</span></p>
+        </div>
+    </div>
          
+    </div>
         </main>
     </div>
     

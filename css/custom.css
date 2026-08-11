@@ -52,6 +52,14 @@ main {
   box-shadow: 1px 1px 0px 0px #121212;
 }
 
+.no-border-box,
+.call-status-line {
+  border: none !important;
+  box-shadow: none !important;
+  background-color: transparent !important;
+  padding: 0 !important;
+}
+
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;

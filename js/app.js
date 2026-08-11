@@ -20,7 +20,14 @@ function filterList(){
 
 function toggleMobileMenu(){
     const sidebar = document.getElementById('sidebar')
-    sidebar.classList.toggle('hidden');
+    const backdrop = document.getElementById('mobileMenuBackdrop')
+    
+    if (sidebar){
+        sidebar.classList.toggle('-translate-x-full');
+    }
+    if (backdrop){
+        backdrop.classList.toggle('hidden');
+    }
 }
 
 function showToast(message){
@@ -58,6 +65,7 @@ function toggleIntegration(type){
         botToggle.classList.add('bg-gray-200');
         botToggle.querySelector('span').classList.remove('translate-x-5');
         botSubtext.textContent = 'Connect an AI Calling Agent above to enable outbound COD calls';
+        localStorage.setItem('callingConnected', 'false');
     } else {
         btnEl.textContent = 'Disconnect';
         btnEl.className = 'text-xs font-semibold bg-red-600 text-white px-3 py-1.5 rounded-full hover:bg-red-700 transition';
@@ -68,8 +76,9 @@ function toggleIntegration(type){
         botRow.classList.remove('opacity-50');
         botToggle.disabled = false;
         botToggle.classList.remove('cursor-not-allowed');
-        botToggle.setAttribute('onclick', "this.classList.toggle('bg-gold'); this.classList.toggle('bg-gray-200'); this.querySelector('span').classList.toggle('translate-x-5')");
+        botToggle.setAttribute('onclick', "toggleBotBehaviour(this, 'callingBotOn')");
         botSubtext.textContent = 'Let Nexus place outbound COD confirmation calls automatically';
+        localStorage.setItem('callingConnected', 'true');
     }
 }
 
@@ -83,6 +92,7 @@ function disconnectDataImport(){
     statusEl.textContent = 'CSV, Excel, Google Sheets';
     statusEl.className = 'text-xs text-gray-500';
     showToast('Data Import disconnected');
+    localStorage.setItem('importConnected', 'false');
 }
 
 function toggleWhatsapp(){
@@ -100,6 +110,8 @@ function toggleWhatsapp(){
         botToggle.querySelector('span').classList.remove('translate-x-5');
         botToggle.disabled = true;
         botToggle.classList.add('opacity-50', 'cursor-not-allowed');
+
+        localStorage.setItem('whatsappConnected', 'false');
     } else {
         el.textContent = 'Connected';
         el.className = 'text-xs font-semibold bg-emerald-100 text-emerald-700 px-3 py-1.5 rounded-full cursor-pointer';
@@ -107,6 +119,8 @@ function toggleWhatsapp(){
 
         botToggle.disabled = false;
         botToggle.classList.remove('opacity-50', 'cursor-not-allowed');
+
+        localStorage.setItem('whatsappConnected', 'true');
     }
 }
 
@@ -119,20 +133,36 @@ function toggleInstagram(){
         el.textContent = 'Disconnected';
         el.className = 'text-xs font-semibold bg-red-100 text-red-700 px-3 py-1.5 rounded-full cursor-pointer';
         showToast('Instagram disconnected — bot turned off');
-
         botToggle.classList.remove('bg-gold');
         botToggle.classList.add('bg-gray-200');
         botToggle.querySelector('span').classList.remove('translate-x-5');
         botToggle.disabled = true;
         botToggle.classList.add('opacity-50', 'cursor-not-allowed');
+        localStorage.setItem('instagramConnected', 'false');
     } else {
         el.textContent = 'Connected';
         el.className = 'text-xs font-semibold bg-emerald-100 text-emerald-700 px-3 py-1.5 rounded-full cursor-pointer';
         showToast('Instagram connected');
-
         botToggle.disabled = false;
         botToggle.classList.remove('opacity-50', 'cursor-not-allowed');
+        localStorage.setItem('instagramConnected', 'true');
     }
+}
+
+function toggleQuietHours(el){
+    el.classList.toggle('bg-gold');
+    el.classList.toggle('bg-gray-200');
+    el.querySelector('span').classList.toggle('translate-x-5');
+    const isOn = el.classList.contains('bg-gold');
+    localStorage.setItem('quietHoursOn', isOn ? 'true' : 'false');
+}
+
+function toggleBotBehaviour(el, storageKey){
+    el.classList.toggle('bg-gold');
+    el.classList.toggle('bg-gray-200');
+    el.querySelector('span').classList.toggle('translate-x-5');
+    const isOn = el.classList.contains('bg-gold');
+    localStorage.setItem(storageKey, isOn ? 'true' : 'false');
 }
 
 function connectDataImport(){
@@ -154,6 +184,8 @@ function connectDataImport(){
         statusEl.textContent = 'Synced via ' + source + ' — 214 products, last updated just now';
         statusEl.className = 'text-xs text-emerald-600 font-medium';
         showToast('Catalog synced from ' + source);
+        localStorage.setItem('importConnected', 'true');
+        localStorage.setItem('importSource', source);
     }, 1200);
 }
 
@@ -224,6 +256,41 @@ function syncUserProfileUI() {
     }
 }
 
+function loadSettingsState(){
+    console.log('whatsapp saved as:', localStorage.getItem('whatsappConnected'));
+    console.log('function running');
+    if (localStorage.getItem('whatsappConnected') === 'false') {
+        document.getElementById('whatsappStatus').click();
+    }
+    if (localStorage.getItem('instagramConnected') === 'false') {
+        document.getElementById('instagramStatus').click();
+    }
+    if (localStorage.getItem('callingConnected') === 'true') {
+    document.getElementById('callingBtn').click();
+
+    if (localStorage.getItem('callingBotOn') === 'true') {
+        document.getElementById('callingBotToggle').click();
+    }
+}
+    if (localStorage.getItem('importConnected') === 'true') {
+        const source = localStorage.getItem('importSource') || 'Sheets';
+        document.getElementById('importBtn').textContent = 'Disconnect';
+        document.getElementById('importBtn').onclick = disconnectDataImport;
+        document.getElementById('importBtn').className = 'text-xs font-semibold bg-red-600 text-white px-3 py-1.5 rounded-full hover:bg-red-700 transition';
+        document.getElementById('importStatus').textContent = 'Synced via ' + source + ' — 214 products, last updated just now';
+        document.getElementById('importStatus').className = 'text-xs text-emerald-600 font-medium';
+    }
+    if (localStorage.getItem('quietHoursOn') === 'true') {
+        document.getElementById('quietHoursToggle').click();
+    }
+    if (localStorage.getItem('whatsappBotOn') === 'false') {
+        document.getElementById('whatsappBotToggle').click();
+    }
+    if (localStorage.getItem('instagramBotOn') === 'false') {
+        document.getElementById('instagramBotToggle').click();
+    }
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     syncUserProfileUI();
 
@@ -248,3 +315,4 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+
