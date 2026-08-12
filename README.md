@@ -24,7 +24,7 @@ Commerce OS is a frontend prototype exploring how a small business could manage 
 - **Settings & Profile:** Edit business details, set bot preferences, and manage quiet hours.
 - **Responsive UI:** Desktop sidebar navigation switches to a slide-out drawer on smaller screens.
 
-## 📌 Project Status & Next Steps
+## Project Status & Next Steps
 
 Commerce OS is still a frontend prototype. The current version uses mock data and browser localStorage, so it is not connected to real WhatsApp, Instagram, calling, payment, inventory, or database services.
 The inbox and call conversations are simulations for testing the interface and user flow rather than live communications. I built this first to design and test the full user flow and interface.
@@ -35,7 +35,7 @@ The inbox and call conversations are simulations for testing the interface and u
 3. Hook up real AI agents for auto-replies and phone calls.
 4. Add real inventory tracking.
 
-## 📝 How I Built This & AI Usage
+## How I Built This & AI Usage
 
 I already knew the basics of HTML, CSS, and JavaScript before starting this project. What annoyed me most was typos and indentation, and JavaScript logic — making a small change in one place sometimes had to be repeated in many places. The settings option that makes changes across the whole website, and missing IDs, gave me trouble too.. Since I'm still learning some Web APIs and JS concepts, I used Claude as an AI coding assistant to help explain new concepts when I got stuck and used Gemini to debug tricky issues (like missing IDs, scope bugs, and `localStorage` state glitches).
 
