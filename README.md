@@ -2,7 +2,7 @@
 
 Commerce OS is a frontend prototype exploring how a small business could manage conversations, orders, customers, and calls from one dashboard instead of switching between different tools.
 
-![alt text](<Screenshot 2026-08-11 202053.png>)
+![alt text](<Screenshot 2026-08-17 230802.png>)
 
 **Live site:** https://kartikeynegi25.github.io/commerce-os
 
