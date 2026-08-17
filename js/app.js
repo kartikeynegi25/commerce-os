@@ -1,318 +1,311 @@
-function filterTable(){
-    const input = document.getElementById('searchInput').value.toLowerCase();
-    const rows = document.querySelectorAll('tbody tr');
-
-    rows.forEach(row => {
-        const text = row.textContent.toLowerCase();
-        row.style.display = text.includes(input) ? '' : 'none';
+// quick table search
+function searchRows() {
+    let q = document.getElementById('searchInput').value.toLowerCase();
+    document.querySelectorAll('tbody tr').forEach(r => {
+        let txt = r.textContent.toLowerCase();
+        r.style.display = txt.includes(q) ? '' : 'none';
     });
 }
 
-function filterList(){
-    const input = document.getElementById('searchInput').value.toLowerCase();
-    const rows = document.querySelectorAll('.inbox-row');
-
-    rows.forEach(row => {
-        const text = row.textContent.toLowerCase();
-        row.style.display = text.includes(input) ? '' : 'none';
+// inbox list filter
+function searchInbox() {
+    let q = document.getElementById('searchInput').value.toLowerCase();
+    document.querySelectorAll('.inbox-row').forEach(r => {
+        let txt = r.textContent.toLowerCase();
+        r.style.display = txt.includes(q) ? '' : 'none';
     });
 }
 
-function toggleMobileMenu(){
-    const sidebar = document.getElementById('sidebar')
-    const backdrop = document.getElementById('mobileMenuBackdrop')
-    
-    if (sidebar){
-        sidebar.classList.toggle('-translate-x-full');
-    }
-    if (backdrop){
-        backdrop.classList.toggle('hidden');
-    }
+// mobile sidebar toggle
+function openMenu() {
+    let bar = document.getElementById('sidebar');
+    let shade = document.getElementById('mobileMenuBackdrop');
+    if (bar) bar.classList.toggle('-translate-x-full');
+    if (shade) shade.classList.toggle('hidden');
 }
 
-function showToast(message){
-    const toast = document.createElement('div');
-    toast.className = 'fixed bottom-4 right-4 bg-black text-white text-sm px-4 py-3 rounded-lg shadow-lg z-50';
-    toast.textContent = message;
-    document.body.appendChild(toast);
-
-    setTimeout(() => {
-        toast.remove();
-    }, 2500);
+// custom toast notification pop
+function alertPop(msg) {
+    let pop = document.createElement('div');
+    pop.className = 'fixed bottom-4 right-4 bg-[#1f5238] text-white text-sm font-bold px-4 py-3 rounded-xl shadow-lg z-50';
+    pop.textContent = msg;
+    document.body.appendChild(pop);
+    setTimeout(() => pop.remove(), 2500);
 }
 
-function toggleIntegration(type){
-    const statusEl = document.getElementById('callingStatus');
-    const btnEl = document.getElementById('callingBtn');
-    const isConnected = btnEl.textContent === 'Disconnect';
+// ai calling agent toggle
+function switchCallAgent() {
+    let statusText = document.getElementById('callingStatus');
+    let btn = document.getElementById('callingBtn');
+    let isLive = btn.textContent === 'Disconnect';
 
-    const botRow = document.getElementById('callingBotRow');
-    const botToggle = document.getElementById('callingBotToggle');
-    const botSubtext = document.getElementById('callingBotSubtext');
+    let row = document.getElementById('callingBotRow');
+    let toggle = document.getElementById('callingBotToggle');
+    let sub = document.getElementById('callingBotSubtext');
 
-    if (isConnected) {
-        btnEl.textContent = 'Connect';
-        btnEl.className = 'text-xs font-semibold bg-black text-white px-3 py-1.5 rounded-full hover:bg-gray-800 transition';
-        statusEl.textContent = 'Not connected';
-        statusEl.className = 'text-xs text-gray-500';
-        showToast('AI Calling Agent disconnected');
+    if (isLive) {
+        btn.textContent = 'Connect';
+        btn.className = 'btn-forest text-xs font-bold px-3 py-1.5 rounded-full transition';
+        statusText.textContent = 'Not connected';
+        statusText.className = 'text-xs text-stone-500 font-medium';
+        alertPop('Calling agent disconnected');
 
-        botRow.classList.add('opacity-50');
-        botToggle.disabled = true;
-        botToggle.classList.add('cursor-not-allowed');
-        botToggle.removeAttribute('onclick');
-        botToggle.classList.remove('bg-gold');
-        botToggle.classList.add('bg-gray-200');
-        botToggle.querySelector('span').classList.remove('translate-x-5');
-        botSubtext.textContent = 'Connect an AI Calling Agent above to enable outbound COD calls';
+        row.classList.add('opacity-50');
+        toggle.disabled = true;
+        toggle.classList.add('cursor-not-allowed');
+        toggle.removeAttribute('onclick');
+        toggle.classList.remove('bg-[#164028]');
+        toggle.classList.add('bg-stone-200');
+        toggle.querySelector('span').classList.remove('translate-x-5');
+        sub.textContent = 'Connect an AI Calling Agent above to enable outbound COD calls';
         localStorage.setItem('callingConnected', 'false');
     } else {
-        btnEl.textContent = 'Disconnect';
-        btnEl.className = 'text-xs font-semibold bg-red-600 text-white px-3 py-1.5 rounded-full hover:bg-red-700 transition';
-        statusEl.textContent = 'Connected';
-        statusEl.className = 'text-xs text-emerald-600 font-medium';
-        showToast('AI Calling Agent connected successfully');
+        btn.textContent = 'Disconnect';
+        btn.className = 'text-xs font-bold bg-red-600 text-white px-3 py-1.5 rounded-full hover:bg-red-700 transition';
+        statusText.textContent = 'Connected';
+        statusText.className = 'text-xs text-emerald-800 font-bold';
+        alertPop('Calling agent connected!');
 
-        botRow.classList.remove('opacity-50');
-        botToggle.disabled = false;
-        botToggle.classList.remove('cursor-not-allowed');
-        botToggle.setAttribute('onclick', "toggleBotBehaviour(this, 'callingBotOn')");
-        botSubtext.textContent = 'Let Nexus place outbound COD confirmation calls automatically';
+        row.classList.remove('opacity-50');
+        toggle.disabled = false;
+        toggle.classList.remove('cursor-not-allowed');
+        toggle.setAttribute('onclick', "flipSwitch(this, 'callingBotOn')");
+        sub.textContent = 'Let Nexus place outbound COD confirmation calls automatically';
         localStorage.setItem('callingConnected', 'true');
     }
 }
 
-function disconnectDataImport(){
-    const btnEl = document.getElementById('importBtn');
-    const statusEl = document.getElementById('importStatus');
+// disconnect file sync
+function dropDataSync() {
+    let btn = document.getElementById('importBtn');
+    let statusText = document.getElementById('importStatus');
 
-    btnEl.textContent = 'Connect';
-    btnEl.onclick = connectDataImport;
-    btnEl.className = 'text-xs font-semibold bg-black text-white px-3 py-1.5 rounded-full hover:bg-gray-800 transition';
-    statusEl.textContent = 'CSV, Excel, Google Sheets';
-    statusEl.className = 'text-xs text-gray-500';
-    showToast('Data Import disconnected');
+    btn.textContent = 'Connect';
+    btn.onclick = pickDataSync;
+    btn.className = 'btn-forest text-xs font-bold px-3 py-1.5 rounded-full transition';
+    statusText.textContent = 'CSV, Excel, Google Sheets';
+    statusText.className = 'text-xs text-stone-500 font-medium';
+    alertPop('Data source disconnected');
     localStorage.setItem('importConnected', 'false');
 }
 
-function toggleWhatsapp(){
-    const el = document.getElementById('whatsappStatus');
-    const botToggle = document.getElementById('whatsappBotToggle');
-    const isConnected = el.textContent === 'Connected';
+// connect sheet / csv
+function pickDataSync() {
+    let choice = prompt('Pick source: "CSV", "Excel", or "Sheets"');
+    if (!choice) return;
 
-    if (isConnected) {
-        el.textContent = 'Disconnected';
-        el.className = 'text-xs font-semibold bg-red-100 text-red-700 px-3 py-1.5 rounded-full cursor-pointer';
-        showToast('WhatsApp disconnected — bot turned off');
+    let btn = document.getElementById('importBtn');
+    let statusText = document.getElementById('importStatus');
 
-        botToggle.classList.remove('bg-gold');
-        botToggle.classList.add('bg-gray-200');
-        botToggle.querySelector('span').classList.remove('translate-x-5');
-        botToggle.disabled = true;
-        botToggle.classList.add('opacity-50', 'cursor-not-allowed');
+    btn.textContent = 'Syncing...';
+    btn.disabled = true;
+
+    setTimeout(() => {
+        btn.textContent = 'Disconnect';
+        btn.onclick = dropDataSync;
+        btn.disabled = false;
+        btn.className = 'text-xs font-bold bg-red-600 text-white px-3 py-1.5 rounded-full hover:bg-red-700 transition';
+        statusText.textContent = 'Synced via ' + choice + ' — 214 items ready';
+        statusText.className = 'text-xs text-emerald-800 font-bold';
+        alertPop('Loaded products from ' + choice);
+        localStorage.setItem('importConnected', 'true');
+        localStorage.setItem('importSource', choice);
+    }, 1000);
+}
+
+// whatsapp connection toggle
+function switchWhatsapp() {
+    let tag = document.getElementById('whatsappStatus');
+    let bot = document.getElementById('whatsappBotToggle');
+    let on = tag.textContent === 'Connected';
+
+    if (on) {
+        tag.textContent = 'Disconnected';
+        tag.className = 'text-xs font-bold bg-red-100 text-red-700 px-3 py-1.5 rounded-full cursor-pointer';
+        alertPop('WhatsApp disconnected');
+
+        bot.classList.remove('bg-[#164028]');
+        bot.classList.add('bg-stone-200');
+        bot.querySelector('span').classList.remove('translate-x-5');
+        bot.disabled = true;
+        bot.classList.add('opacity-50', 'cursor-not-allowed');
 
         localStorage.setItem('whatsappConnected', 'false');
     } else {
-        el.textContent = 'Connected';
-        el.className = 'text-xs font-semibold bg-emerald-100 text-emerald-700 px-3 py-1.5 rounded-full cursor-pointer';
-        showToast('WhatsApp connected');
+        tag.textContent = 'Connected';
+        tag.className = 'text-xs font-bold bg-emerald-100 text-emerald-800 px-3 py-1.5 rounded-full cursor-pointer';
+        alertPop('WhatsApp connected!');
 
-        botToggle.disabled = false;
-        botToggle.classList.remove('opacity-50', 'cursor-not-allowed');
-
+        bot.disabled = false;
+        bot.classList.remove('opacity-50', 'cursor-not-allowed');
         localStorage.setItem('whatsappConnected', 'true');
     }
 }
 
-function toggleInstagram(){
-    const el = document.getElementById('instagramStatus');
-    const botToggle = document.getElementById('instagramBotToggle');
-    const isConnected = el.textContent === 'Connected';
+// instagram connection toggle
+function switchInstagram() {
+    let tag = document.getElementById('instagramStatus');
+    let bot = document.getElementById('instagramBotToggle');
+    let on = tag.textContent === 'Connected';
 
-    if (isConnected) {
-        el.textContent = 'Disconnected';
-        el.className = 'text-xs font-semibold bg-red-100 text-red-700 px-3 py-1.5 rounded-full cursor-pointer';
-        showToast('Instagram disconnected — bot turned off');
-        botToggle.classList.remove('bg-gold');
-        botToggle.classList.add('bg-gray-200');
-        botToggle.querySelector('span').classList.remove('translate-x-5');
-        botToggle.disabled = true;
-        botToggle.classList.add('opacity-50', 'cursor-not-allowed');
+    if (on) {
+        tag.textContent = 'Disconnected';
+        tag.className = 'text-xs font-bold bg-red-100 text-red-700 px-3 py-1.5 rounded-full cursor-pointer';
+        alertPop('Instagram disconnected');
+
+        bot.classList.remove('bg-[#164028]');
+        bot.classList.add('bg-stone-200');
+        bot.querySelector('span').classList.remove('translate-x-5');
+        bot.disabled = true;
+        bot.classList.add('opacity-50', 'cursor-not-allowed');
+
         localStorage.setItem('instagramConnected', 'false');
     } else {
-        el.textContent = 'Connected';
-        el.className = 'text-xs font-semibold bg-emerald-100 text-emerald-700 px-3 py-1.5 rounded-full cursor-pointer';
-        showToast('Instagram connected');
-        botToggle.disabled = false;
-        botToggle.classList.remove('opacity-50', 'cursor-not-allowed');
+        tag.textContent = 'Connected';
+        tag.className = 'text-xs font-bold bg-emerald-100 text-emerald-800 px-3 py-1.5 rounded-full cursor-pointer';
+        alertPop('Instagram connected!');
+
+        bot.disabled = false;
+        bot.classList.remove('opacity-50', 'cursor-not-allowed');
         localStorage.setItem('instagramConnected', 'true');
     }
 }
 
-function toggleQuietHours(el){
-    el.classList.toggle('bg-gold');
-    el.classList.toggle('bg-gray-200');
-    el.querySelector('span').classList.toggle('translate-x-5');
-    const isOn = el.classList.contains('bg-gold');
-    localStorage.setItem('quietHoursOn', isOn ? 'true' : 'false');
+// quiet hours toggle switch
+function switchQuietHours(btn) {
+    btn.classList.toggle('bg-[#164028]');
+    btn.classList.toggle('bg-stone-200');
+    btn.querySelector('span').classList.toggle('translate-x-5');
+    let active = btn.classList.contains('bg-[#164028]');
+    localStorage.setItem('quietHoursOn', active ? 'true' : 'false');
 }
 
-function toggleBotBehaviour(el, storageKey){
-    el.classList.toggle('bg-gold');
-    el.classList.toggle('bg-gray-200');
-    el.querySelector('span').classList.toggle('translate-x-5');
-    const isOn = el.classList.contains('bg-gold');
-    localStorage.setItem(storageKey, isOn ? 'true' : 'false');
+// generic toggle helper
+function flipSwitch(btn, key) {
+    btn.classList.toggle('bg-[#164028]');
+    btn.classList.toggle('bg-stone-200');
+    btn.querySelector('span').classList.toggle('translate-x-5');
+    let active = btn.classList.contains('bg-[#164028]');
+    localStorage.setItem(key, active ? 'true' : 'false');
 }
 
-function connectDataImport(){
-    const source = prompt('Connect via: type "CSV", "Excel", or "Sheets"');
-    if (!source) return;
-
-    const btnEl = document.getElementById('importBtn');
-    const statusEl = document.getElementById('importStatus');
-
-    btnEl.textContent = 'Syncing...';
-    btnEl.disabled = true;
-    
-
-    setTimeout(() => {
-        btnEl.textContent = 'Disconnect';
-        btnEl.onclick = disconnectDataImport;
-        btnEl.disabled = false;
-        btnEl.className = 'text-xs font-semibold bg-red-600 text-white px-3 py-1.5 rounded-full hover:bg-red-700 transition';
-        statusEl.textContent = 'Synced via ' + source + ' — 214 products, last updated just now';
-        statusEl.className = 'text-xs text-emerald-600 font-medium';
-        showToast('Catalog synced from ' + source);
-        localStorage.setItem('importConnected', 'true');
-        localStorage.setItem('importSource', source);
-    }, 1200);
-}
-
-const DEFAULT_PROFILE = {
+// user info defaults
+const defaultUser = {
     fullName: 'Kartikey Negi',
     email: 'kartikey@negimart.in',
     phone: '+91 98XXX XXXXX',
     businessName: 'Negi Mart'
 };
 
-const storedName = localStorage.getItem('fullName') || 'Kartikey Negi';
-const initials = storedName
-  .split(' ')
-  .map(part => part[0])
-  .join('')
-  .toUpperCase()
-  .slice(0, 2) || 'KN';
-
-document.querySelectorAll('[data-user-avatar]').forEach(el => {
-  el.textContent = initials;
-});
-
-function getProfile() {
-    const data = localStorage.getItem('userProfile');
-    return data ? { ...DEFAULT_PROFILE, ...JSON.parse(data) } : DEFAULT_PROFILE;
+function fetchUserData() {
+    let raw = localStorage.getItem('userProfile');
+    return raw ? { ...defaultUser, ...JSON.parse(raw) } : defaultUser;
 }
 
-function saveProfile(updatedData) {
-    localStorage.setItem('userProfile', JSON.stringify(updatedData));
-    syncUserProfileUI();
+function saveUserData(obj) {
+    localStorage.setItem('userProfile', JSON.stringify(obj));
+    renderUserUI();
 }
 
-function syncUserProfileUI() {
-    const profile = getProfile();
+function renderUserUI() {
+    let u = fetchUserData();
     
-    const initials = profile.fullName
+    let initials = u.fullName
         .trim()
         .split(/\s+/)
-        .map(part => part[0])
+        .map(w => w[0])
         .join('')
         .toUpperCase() || 'KN';
 
-    const businessInitials = profile.businessName
+    let bizInitials = u.businessName
         .trim()
         .split(/\s+/)
-        .map(word => word[0])
+        .map(w => w[0])
         .join('')
         .toUpperCase()
-        .slice(0, 2) || 'BM';
+        .slice(0, 2) || 'NM';
 
-    const firstName = profile.fullName.split(' ')[0];
+    let fname = u.fullName.split(' ')[0];
 
     document.querySelectorAll('[data-user-avatar]').forEach(el => el.textContent = initials);
-    document.querySelectorAll('[data-user-firstname]').forEach(el => el.textContent = firstName);
-    document.querySelectorAll('[data-user-fullname]').forEach(el => el.textContent = profile.fullName);
-    document.querySelectorAll('[data-user-business]').forEach(el => el.textContent = profile.businessName);
-    document.querySelectorAll('[data-user-signedin]').forEach(el => el.textContent = `Signed in as ${profile.fullName}`);
-    document.querySelectorAll('[data-user-email]').forEach(el => el.textContent = profile.email);
-    document.querySelectorAll('[data-user-phone]').forEach(el => el.textContent = profile.phone);
-    document.querySelectorAll('[data-business-avatar]').forEach(el => {el.textContent = businessInitials;});
+    document.querySelectorAll('[data-user-firstname]').forEach(el => el.textContent = fname);
+    document.querySelectorAll('[data-user-fullname]').forEach(el => el.textContent = u.fullName);
+    document.querySelectorAll('[data-user-business]').forEach(el => el.textContent = u.businessName);
+    document.querySelectorAll('[data-user-signedin]').forEach(el => el.textContent = `Signed in as ${u.fullName}`);
+    document.querySelectorAll('[data-user-email]').forEach(el => el.textContent = u.email);
+    document.querySelectorAll('[data-user-phone]').forEach(el => el.textContent = u.phone);
+    document.querySelectorAll('[data-business-avatar]').forEach(el => el.textContent = bizInitials);
 
-    const form = document.getElementById('settingsForm');
+    let form = document.getElementById('settingsForm');
     if (form) {
-        if (form.elements['fullName']) form.elements['fullName'].value = profile.fullName;
-        if (form.elements['email']) form.elements['email'].value = profile.email;
-        if (form.elements['phone']) form.elements['phone'].value = profile.phone;
-        if (form.elements['businessName']) form.elements['businessName'].value = profile.businessName;
+        if (form.elements['fullName']) form.elements['fullName'].value = u.fullName;
+        if (form.elements['email']) form.elements['email'].value = u.email;
+        if (form.elements['phone']) form.elements['phone'].value = u.phone;
+        if (form.elements['businessName']) form.elements['businessName'].value = u.businessName;
     }
 }
 
-function loadSettingsState(){
-    console.log('whatsapp saved as:', localStorage.getItem('whatsappConnected'));
-    console.log('function running');
+function initSettings() {
     if (localStorage.getItem('whatsappConnected') === 'false') {
-        document.getElementById('whatsappStatus').click();
+        document.getElementById('whatsappStatus')?.click();
     }
     if (localStorage.getItem('instagramConnected') === 'false') {
-        document.getElementById('instagramStatus').click();
+        document.getElementById('instagramStatus')?.click();
     }
     if (localStorage.getItem('callingConnected') === 'true') {
-    document.getElementById('callingBtn').click();
-
-    if (localStorage.getItem('callingBotOn') === 'true') {
-        document.getElementById('callingBotToggle').click();
+        document.getElementById('callingBtn')?.click();
+        if (localStorage.getItem('callingBotOn') === 'true') {
+            document.getElementById('callingBotToggle')?.click();
+        }
     }
-}
     if (localStorage.getItem('importConnected') === 'true') {
-        const source = localStorage.getItem('importSource') || 'Sheets';
-        document.getElementById('importBtn').textContent = 'Disconnect';
-        document.getElementById('importBtn').onclick = disconnectDataImport;
-        document.getElementById('importBtn').className = 'text-xs font-semibold bg-red-600 text-white px-3 py-1.5 rounded-full hover:bg-red-700 transition';
-        document.getElementById('importStatus').textContent = 'Synced via ' + source + ' — 214 products, last updated just now';
-        document.getElementById('importStatus').className = 'text-xs text-emerald-600 font-medium';
+        let src = localStorage.getItem('importSource') || 'Sheets';
+        let btn = document.getElementById('importBtn');
+        let statusText = document.getElementById('importStatus');
+        if (btn && statusText) {
+            btn.textContent = 'Disconnect';
+            btn.onclick = dropDataSync;
+            btn.className = 'text-xs font-bold bg-red-600 text-white px-3 py-1.5 rounded-full hover:bg-red-700 transition';
+            statusText.textContent = 'Synced via ' + src + ' — 214 items ready';
+            statusText.className = 'text-xs text-emerald-800 font-bold';
+        }
     }
     if (localStorage.getItem('quietHoursOn') === 'true') {
-        document.getElementById('quietHoursToggle').click();
+        document.getElementById('quietHoursToggle')?.click();
     }
     if (localStorage.getItem('whatsappBotOn') === 'false') {
-        document.getElementById('whatsappBotToggle').click();
+        document.getElementById('whatsappBotToggle')?.click();
     }
     if (localStorage.getItem('instagramBotOn') === 'false') {
-        document.getElementById('instagramBotToggle').click();
+        document.getElementById('instagramBotToggle')?.click();
     }
 }
 
+// page setup
 document.addEventListener('DOMContentLoaded', () => {
-    syncUserProfileUI();
+    let here = window.location.pathname.split('/').pop() || 'dashboard.html';
+    document.querySelectorAll('#sidebar nav a').forEach(link => {
+        if (link.getAttribute('href') === here) {
+            link.classList.add('active');
+        } else {
+            link.classList.remove('active');
+        }
+    });
 
-    const settingsForm = document.getElementById('settingsForm');
+    renderUserUI();
+
+    let settingsForm = document.getElementById('settingsForm');
     if (settingsForm) {
-        settingsForm.addEventListener('submit', (e) => {
+        settingsForm.addEventListener('submit', e => {
             e.preventDefault();
-            const formData = new FormData(settingsForm);
-            
-            const updatedProfile = {
-                fullName: formData.get('fullName'),
-                email: formData.get('email'),
-                phone: formData.get('phone'),
-                businessName: formData.get('businessName')
-            };
-
-            saveProfile(updatedProfile);
-
-            if (typeof showToast === 'function') {
-                showToast('Account settings saved!');
-            }
+            let fd = new FormData(settingsForm);
+            saveUserData({
+                fullName: fd.get('fullName'),
+                email: fd.get('email'),
+                phone: fd.get('phone'),
+                businessName: fd.get('businessName')
+            });
+            alertPop('Profile updated!');
         });
     }
 });
-

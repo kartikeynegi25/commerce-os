@@ -1,51 +1,61 @@
-function advanceOrderStatus(){
+let currentStep = Number(localStorage.getItem('orderStep')) || 2;
+
+function advanceOrderStatus() {
     if (currentStep >= 5) return;
     currentStep++;
     localStorage.setItem('orderStep', currentStep.toString());
 
-    const circle = document.getElementById('step-' + currentStep);
-    circle.classList.remove('bg-gray-200', 'text-gray-500');
-    circle.classList.add('bg-black', 'text-white');
-    circle.textContent = '✓';
+    let dot = document.getElementById('step-' + currentStep);
+    if (dot) {
+        dot.classList.remove('bg-stone-200', 'bg-gray-200', 'text-stone-500', 'text-gray-500');
+        dot.classList.add('bg-[#164028]', 'text-white');
+        dot.textContent = '✓';
+    }
 
-    const line = document.getElementById('line-' + (currentStep -1));
-    line.classList.remove('bg-gray-200');
-    line.classList.add('bg-black');
-
-    updateButtonText();
-
-}
-
-function applyStatusVisuals(){
-    for (let i= 3; i<=currentStep; i++){
-        const circle = document.getElementById('step-' + i);
-        circle.classList.remove('bg-gray-200', 'text-gray-500');
-        circle.classList.add('bg-black', 'text-white');
-        circle.textContent = '✓';
-
-        const line = document.getElementById('line-' + (i-1));
-        line.classList.remove('bg-gray-200');
-        line.classList.add('bg-black');
+    let line = document.getElementById('line-' + (currentStep - 1));
+    if (line) {
+        line.classList.remove('bg-stone-300', 'bg-gray-200');
+        line.classList.add('bg-[#164028]');
     }
 
     updateButtonText();
 }
 
-function resetOrderStatus(){
+function applyStatusVisuals() {
+    for (let i = 3; i <= currentStep; i++) {
+        let dot = document.getElementById('step-' + i);
+        if (dot) {
+            dot.classList.remove('bg-stone-200', 'bg-gray-200', 'text-stone-500', 'text-gray-500');
+            dot.classList.add('bg-[#164028]', 'text-white');
+            dot.textContent = '✓';
+        }
+
+        let line = document.getElementById('line-' + (i - 1));
+        if (line) {
+            line.classList.remove('bg-stone-300', 'bg-gray-200');
+            line.classList.add('bg-[#164028]');
+        }
+    }
+
+    updateButtonText();
+}
+
+function resetOrderStatus() {
     localStorage.removeItem('orderStep');
     currentStep = 2;
     location.reload();
 }
 
-function updateButtonText(){
-     const labels = ['New', 'Confirmed', 'Packed', 'Shipped', 'Delivered'];
-     const btn = document.getElementById('advanceBtn');
+function updateButtonText() {
+    const steps = ['New', 'Confirmed', 'Packed', 'Shipped', 'Delivered'];
+    const btn = document.getElementById('advanceBtn');
+    if (!btn) return;
 
-     if (currentStep >=5){
+    if (currentStep >= 5) {
         btn.textContent = 'Order Delivered ✓';
         btn.disabled = true;
         btn.classList.add('opacity-50', 'cursor-not-allowed');
-     } else {
-        btn.textContent = 'Mark as ' + labels[currentStep];
-     }
+    } else {
+        btn.textContent = 'Mark as ' + steps[currentStep];
+    }
 }

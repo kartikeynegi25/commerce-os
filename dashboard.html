@@ -4,193 +4,145 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard | Commerce OS</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        gold: '#C9A24B',
-                    },
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                    }
-                }
-            }
-        }
-    </script>
     <link rel="stylesheet" href="css/custom.css">
     <script src="js/app.js"></script>
 </head>
-<body class = "bg-gray-50 text-gray-900">
+<body class="text-stone-900">
 
-    <div class = "flex h-screen">
-        
-     <div id="mobileMenuBackdrop" onclick="toggleMobileMenu()" class="fixed inset-0 bg-zinc-950/70 backdrop-blur-sm z-40 hidden md:hidden transition-opacity"></div>
+    <div class="flex h-screen">
+        <div id="mobileMenuBackdrop" onclick="openMenu()" class="fixed inset-0 bg-[#0f2b1c]/40 backdrop-blur-xs z-40 hidden md:hidden transition-opacity"></div>
 
-        <aside id="sidebar" class="fixed top-0 left-0 bottom-0 z-50 w-64 h-screen bg-zinc-950 border-r-2 border-zinc-800 flex flex-col text-zinc-100 transition-transform duration-200 -translate-x-full md:translate-x-0">
-            <div class="p-6 pb-4 border-b-2 border-zinc-800 flex items-center justify-between">
-                <span class="font-heading text-xl font-extrabold tracking-tight text-white flex items-center gap-2">
-                    <span class="w-7 h-7 bg-white text-zinc-950 rounded-sm flex items-center justify-center font-mono-code text-sm font-black shadow-[2px_2px_0px_0px_#3f3f46]">N</span>
+        <aside id="sidebar" class="fixed top-0 left-0 bottom-0 z-50 w-64 h-screen flex flex-col text-stone-100 transition-transform duration-200 -translate-x-full md:translate-x-0">
+            <div class="sidebar-header p-5 pb-4 flex items-center justify-between">
+                <span class="font-heading text-2xl font-extrabold tracking-tight text-[#0f2b1c]">
                     Nexus
                 </span>
-                <button onclick="toggleMobileMenu()" class="md:hidden text-zinc-400 hover:text-white p-1 rounded-sm">
+                <button onclick="openMenu()" class="md:hidden text-emerald-200 hover:text-white p-1">
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
                     </svg>
                 </button>
             </div>
 
-            <!-- Navigation Links -->
-            <nav class="flex-1 p-4 space-y-1 font-mono-code text-xs font-bold overflow-y-auto">
-                <a href="dashboard.html" class="flex items-center gap-3 py-2.5 px-3 rounded-sm bg-zinc-900 text-white font-bold border-1.5 border-zinc-700 shadow-[2px_2px_0px_0px_#27272a]">
-                    Dashboard
-                </a>
-                <a href="inbox.html" class="flex items-center gap-3 py-2.5 px-3 rounded-sm text-zinc-400 hover:text-white hover:bg-zinc-900 transition-colors">
-                    Inbox
-                </a>
-                <a href="orders.html" class="flex items-center gap-3 py-2.5 px-3 rounded-sm text-zinc-400 hover:text-white hover:bg-zinc-900 transition-colors">
-                    Orders
-                </a>
-                <a href="customers.html" class="flex items-center gap-3 py-2.5 px-3 rounded-sm text-zinc-400 hover:text-white hover:bg-zinc-900 transition-colors">
-                    Customers
-                </a>
-                <a href="products.html" class="flex items-center gap-3 py-2.5 px-3 rounded-sm text-zinc-400 hover:text-white hover:bg-zinc-900 transition-colors">
-                    Products
-                </a>
-                <a href="calls.html" class="flex items-center gap-3 py-2.5 px-3 rounded-sm text-zinc-400 hover:text-white hover:bg-zinc-900 transition-colors">
-                    Calls
-                </a>
-                <a href="invoices.html" class="flex items-center gap-3 py-2.5 px-3 rounded-sm text-zinc-400 hover:text-white hover:bg-zinc-900 transition-colors">
-                    Invoices
-                </a>
-                <a href="settings.html" class="flex items-center gap-3 py-2.5 px-3 rounded-sm text-zinc-400 hover:text-white hover:bg-zinc-900 transition-colors">
-                    Settings
-                </a>
+            <nav class="flex-1 p-4 space-y-1.5 overflow-y-auto">
+                <a href="dashboard.html" class="sidebar-link active">Dashboard</a>
+                <a href="inbox.html" class="sidebar-link">Inbox</a>
+                <a href="orders.html" class="sidebar-link">Orders</a>
+                <a href="customers.html" class="sidebar-link">Customers</a>
+                <a href="products.html" class="sidebar-link">Products</a>
+                <a href="calls.html" class="sidebar-link">Calls</a>
+                <a href="invoices.html" class="sidebar-link">Invoices</a>
+                <a href="settings.html" class="sidebar-link">Settings</a>
             </nav>
 
-            <!-- Footer -->
-            <div data-user-signedin onclick="showToast('Signed in as Kartikey Negi')" class="p-4 font-mono-code text-xs font-semibold text-zinc-300 bg-zinc-900/80 border-t-2 border-zinc-800 cursor-pointer hover:bg-zinc-900 transition-colors flex items-center gap-2 mt-auto">
-                <span class="w-2 h-2 rounded-full bg-emerald-500 border border-zinc-900"></span>
-                Signed in as Kartikey Negi
+            <div data-user-signedin onclick="alertPop('Signed in as Kartikey Negi')" class="sidebar-footer p-4 text-xs font-bold cursor-pointer flex items-center justify-between mt-auto">
+                <div class="flex items-center gap-2">
+                    <span class="w-2.5 h-2.5 rounded-full bg-lime-400 shadow-[0_0_6px_#A3E635]"></span>
+                    <span>Kartikey (Owner)</span>
+                </div>
+                <span class="text-xs">🌱</span>
             </div>
         </aside>
 
         <main class="flex-1 overflow-y-auto md:ml-64 p-4 md:p-8">
+            <div class="flex flex-col gap-4 mb-8 pb-4 border-b border-stone-300">
+                <div class="flex items-center justify-between gap-3">
+                    <button onclick="openMenu()" class="md:hidden px-3 py-1.5 btn-forest text-xs rounded-md">
+                        ☰ MENU
+                    </button>
 
-        <div class="flex flex-col gap-4 mb-8 pb-4 border-b-2 border-zinc-900">
-    
-        <div class="flex items-center justify-between gap-3">
-        
-        <!-- Mobile Menu  -->
-        <button onclick="toggleMobileMenu()" class="md:hidden px-3 py-1.5 border-1.5 border-zinc-900 bg-zinc-900 text-white font-mono-code font-bold text-xs rounded-sm shadow-[2px_2px_0px_0px_#121212] active:translate-x-[1px] active:translate-y-[1px] active:shadow-none transition-all">
-            ☰ MENU
-        </button>
+                    <div class="flex items-center gap-2.5 ml-auto">
+                        <button onclick="alertPop('No new notifications')" class="p-2 border border-stone-300 bg-white rounded-md hover:bg-stone-50 transition">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 md:w-5 md:h-5 text-stone-800" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M15 17h5l-1.4-1.4A2 2 0 0118 14.2V11a6 6 0 10-12 0v3.2a2 2 0 01-.6 1.4L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+                            </svg>
+                        </button>
 
-        <div class="flex items-center gap-2.5 ml-auto">
-            
-            <button onclick="showToast('No new notifications')" class="p-2 border-1.5 border-zinc-900 bg-white rounded-sm shadow-[2px_2px_0px_0px_#121212] hover:translate-x-[-1px] hover:translate-y-[-1px] hover:shadow-[3px_3px_0px_0px_#121212] active:translate-x-[1px] active:translate-y-[1px] active:shadow-[1px_1px_0px_0px_#121212] transition-all">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 md:w-5 md:h-5 text-zinc-900" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M15 17h5l-1.4-1.4A2 2 0 0118 14.2V11a6 6 0 10-12 0v3.2a2 2 0 01-.6 1.4L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
-                </svg>
-            </button>
-
-            <a href="profile.html" class="flex items-center gap-2 pl-2.5 border-l-2 border-zinc-900 hover:opacity-80 transition">
-                <div data-user-avatar class="w-8 h-8 md:w-9 md:h-9 rounded-full bg-emerald-600 border-1.5 border-zinc-900 flex items-center justify-center text-white font-mono-code font-bold text-xs md:text-sm shadow-[2px_2px_0px_0px_#121212]">
-                    KN
-                </div>
-                <span data-user-firstname class="hidden sm:inline font-heading font-bold text-sm text-zinc-900">Kartikey</span>
-            </a>
-        </div>
-    </div>
-
-    <div>
-        <h1 class="font-heading text-2xl font-extrabold text-zinc-900 tracking-tight">
-            Hello, <span data-user-firstname class="underline decoration-emerald-500 decoration-2">Kartikey</span>
-        </h1>
-        <p class="font-mono-code text-xs text-zinc-600 mt-1">Here's what's happening today.</p>
-    </div>
-
-</div>
-
-            
-             
-              <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-
-                <div class="bg-black text-white rounded-2xl p-5 hover-lift">
-                    <p class="text-3xl font-bold">5</p>
-                    <p class="text-gray-400 text-sm mt-1">Orders Today</p>
+                        <a href="profile.html" class="flex items-center gap-2 pl-2.5 border-l border-stone-300 hover:opacity-80 transition">
+                            <div data-user-avatar class="w-8 h-8 md:w-9 md:h-9 rounded-full bg-[#164028] text-white flex items-center justify-center font-bold text-xs md:text-sm">
+                                KN
+                            </div>
+                            <span data-user-firstname class="hidden sm:inline font-heading font-bold text-sm text-stone-900">Kartikey</span>
+                        </a>
+                    </div>
                 </div>
 
-                <div class="bg-black text-white rounded-2xl p-5 hover-lift">
-                    <p class="text-3xl font-bold">₹11,047</p>
-                    <p class="text-gray-400 text-sm mt-1">Revenue Today</p>
-              </div>
-
-              <div class="bg-black text-white rounded-2xl p-5 hover-lift">
-                <p class="text-3xl font-bold">2</p>
-                <p class="text-gray-400 text-sm mt-1">Closed by Bot</p>
-              </div>
-
-              <div class="bg-black text-white rounded-2xl p-5 hover-lift">
-                <p class="text-3xl font-bold">3</p>
-                <p class="text-gray-400 text-sm mt-1">Payment Pending</p>
-              </div>
+                <div>
+                    <h1 class="font-heading text-2xl font-extrabold tracking-tight">
+                        Hey, <span data-user-firstname class="underline decoration-emerald-500 decoration-2">Kartikey</span>
+                    </h1>
+                    <p class="text-xs text-stone-600 mt-1">Here is how the store is doing today.</p>
+                </div>
             </div>
-            <!-- Priorities + Nexus Suggestions -->
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+                <div class="market-card p-5">
+                    <p class="font-heading text-3xl font-extrabold text-[#164028]">5</p>
+                    <p class="text-stone-500 text-sm mt-1 font-semibold">Orders Today</p>
+                </div>
+
+                <div class="market-card p-5">
+                    <p class="font-heading text-3xl font-extrabold text-[#164028]">₹11,047</p>
+                    <p class="text-stone-500 text-sm mt-1 font-semibold">Sales Today</p>
+                </div>
+
+                <div class="market-card p-5">
+                    <p class="font-heading text-3xl font-extrabold text-[#164028]">2</p>
+                    <p class="text-stone-500 text-sm mt-1 font-semibold">Closed by Bot</p>
+                </div>
+
+                <div class="market-card p-5">
+                    <p class="font-heading text-3xl font-extrabold text-[#164028]">3</p>
+                    <p class="text-stone-500 text-sm mt-1 font-semibold">Unpaid Orders</p>
+                </div>
+            </div>
+
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="market-card p-5">
+                    <h2 class="font-heading font-bold text-base mb-4 text-[#164028]">Needs Attention</h2>
 
-                <!--Priorities-->
-                <div class="bg-white border border-gray-200 rounded-2xl p-5">
-                <h2 class="font-semibold mb-4">Priorities</h2>
+                    <div class="space-y-3">
+                        <div class="flex items-center gap-3">
+                            <span class="text-xs font-semibold bg-green-100 text-green-700 px-2 py-1 rounded-md">WA</span>
+                            <p class="text-sm">Bot escalated: customer asking for discount</p>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <span class="text-xs font-semibold bg-red-100 text-red-700 px-2 py-1 rounded-md">₹</span>
+                            <p class="text-sm">Order #1188 — payment link expired</p>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <span class="text-xs font-semibold bg-red-100 text-red-700 px-2 py-1 rounded-md">!</span>
+                            <p class="text-sm">Order #1187 stuck in confirmed for 26h</p>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <span class="text-xs font-semibold bg-green-100 text-green-700 px-2 py-1 rounded-md">WEB</span>
+                            <p class="text-sm">2 website orders waiting to be packed</p>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <span class="text-xs font-semibold bg-stone-100 text-stone-700 px-2 py-1 rounded-md">↻</span>
+                            <p class="text-sm">1 return request needs a look</p>
+                        </div>
+                    </div>
+                </div>
 
-                <div class="space-y-3">
-                    <div class="flex items-center gap-3">
-                        <span class="text-xs font-semibold bg-green-100 text-green-700 px-2 py-1 rounded-md">WA</span>
-                        <p class="text-sm">Bot escalated: customer asking for a discount</p>
-                    </div>
-                    <div class="flex items-center gap-3">
-                        <span class="text-xs font-semibold bg-red-100 text-red-700 px-2 py-1 rounded-md">₹</span>
-                        <p class="text-sm">Order #1188 - payment link expired</p>
-                    </div>
-                    <div class="flex items-center gap-3">
-                        <span class="text-xs font-semibold bg-red-100 text-red-700 px-2 py-1 rounded-md">!</span>
-                        <p class="text-sm">Order #1187 stuck in Confirmed 26h</p>
-                    </div>
-                    <div class="flex items-center gap-3">
-                        <span class="text-xs font-semibold bg-green-100 text-green-700 px-2 py-1 rounded-md">WEB</span>
-                        <p class="text-sm">2 new website orders unpacked</p>
-                    </div>
-                    <div class="flex items-center gap-3">
-                        <span class="text-xs font-semibold bg-gray-100 text-green-700 px-2 py-1 rounded-md">↻</span>
-                        <p class="text-sm">1 return requested, needs review</p>
+                <div class="market-card p-5">
+                    <h2 class="font-heading font-bold text-base mb-4 text-[#164028]">Nexus Tips</h2>
+                    
+                    <div class="space-y-3">
+                        <div class="bg-amber-50/80 border border-amber-200 rounded-lg p-3">
+                            <p class="text-sm">Restock <span class="font-semibold">Wireless Headphones</span> — usually sells out by Friday</p>
+                        </div>
+                        <div class="bg-amber-50/80 border border-amber-200 rounded-lg p-3">
+                            <p class="text-sm">Your product CSV has 4 items set to ₹0, fix those before the bot sells them</p>
+                        </div>
+                        <a href="invoices.html" class="block bg-amber-50/80 border border-amber-200 rounded-lg p-3 hover:bg-amber-100/90 transition">
+                            <p class="text-sm">2 invoices created this week — <span class="text-emerald-800 font-bold hover:underline">open invoice list</span></p>
+                        </a>
                     </div>
                 </div>
             </div>
-
-            <!-- Nexus Suggestions -->
-            <div class="bg-white border border-gray-200 rounded-2xl p-5">
-                <h2 class="font-semibold mb-4">Nexus Suggestions</h2>
-                
-                <div class="space-y-3">
-                    <div class="bg-amber-50 border border-amber-100 rounded-lg p-3 hover-lift">
-                        <p class="text-sm">Restock <span class="font-semibold">Wireless Headphones.</span> It sells out every Friday</p>
-                    </div>
-                    <div class="bg-amber-50 border border-amber-100 rounded-lg p-3 hover-lift">
-                        <p class="text-sm">Your CSV catalog has 4 items priced ₹0 - fix before bot sells them</p>
-                    </div>
-                    <a href="invoices.html" class="block bg-amber-50 border border-amber-100 rounded-lg p-3 hover-lift hover:bg-amber-100 transition">
-                       <p class="text-sm">2 invoices generated this week - <span class="text-gold font-medium hover:underline">view report</span></p>
-                    </a>
-            </div>
-            </div>
-            </div>
-
         </main>
     </div>
-    
 </body>
 </html>

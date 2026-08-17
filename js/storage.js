@@ -1,2 +1,1 @@
-let savedStep = localStorage.getItem('orderStep');
-let currentStep = savedStep ? Number(savedStep) : 2;
+let currentStep = parseInt(localStorage.getItem('orderStep')) || 2;

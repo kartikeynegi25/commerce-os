@@ -4,222 +4,223 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Orders | Commerce OS</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        gold: '#C9A24B',
-                    },
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                    }
-                }
-            }
-        }
-    </script>
     <link rel="stylesheet" href="css/custom.css">
     <script src="js/app.js"></script>
 </head>
-<body class="bg-gray-50 text-gray-900">
+<body class="text-stone-900">
 
-    <div class = "flex h-screen">
-        <div id="mobileMenuBackdrop" onclick="toggleMobileMenu()" class="fixed inset-0 bg-zinc-950/70 backdrop-blur-sm z-40 hidden md:hidden transition-opacity"></div>
+    <div class="flex h-screen">
+        <div id="mobileMenuBackdrop" onclick="openMenu()" class="fixed inset-0 bg-[#0f2b1c]/40 backdrop-blur-xs z-40 hidden md:hidden transition-opacity"></div>
 
-        <aside id="sidebar" class="fixed top-0 left-0 bottom-0 z-50 w-64 h-screen bg-zinc-950 border-r-2 border-zinc-800 flex flex-col text-zinc-100 transition-transform duration-200 -translate-x-full md:translate-x-0">
-            <div class="p-6 pb-4 border-b-2 border-zinc-800 flex items-center justify-between">
-                <span class="font-heading text-xl font-extrabold tracking-tight text-white flex items-center gap-2">
-                    <span class="w-7 h-7 bg-white text-zinc-950 rounded-sm flex items-center justify-center font-mono-code text-sm font-black shadow-[2px_2px_0px_0px_#3f3f46]">N</span>
+        <aside id="sidebar" class="fixed top-0 left-0 bottom-0 z-50 w-64 h-screen flex flex-col text-stone-100 transition-transform duration-200 -translate-x-full md:translate-x-0">
+            <div class="sidebar-header p-5 pb-4 flex items-center justify-between">
+                <span class="font-heading text-2xl font-extrabold tracking-tight text-[#0f2b1c]">
                     Nexus
                 </span>
-                <button onclick="toggleMobileMenu()" class="md:hidden text-zinc-400 hover:text-white p-1 rounded-sm">
+                <button onclick="openMenu()" class="md:hidden text-emerald-200 hover:text-white p-1">
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
                     </svg>
                 </button>
             </div>
 
-            <!-- Navigation Links -->
-            <nav class="flex-1 p-4 space-y-1 font-mono-code text-xs font-bold overflow-y-auto">
-                <a href="dashboard.html" class="flex items-center gap-3 py-2.5 px-3 rounded-sm text-zinc-400 hover:text-white hover:bg-zinc-900 transition-colors">
-                    Dashboard
-                </a>
-                <a href="inbox.html" class="flex items-center gap-3 py-2.5 px-3 rounded-sm text-zinc-400 hover:text-white hover:bg-zinc-900 transition-colors">
-                    Inbox
-                </a>
-                <a href="orders.html" class="flex items-center gap-3 py-2.5 px-3 rounded-sm bg-zinc-900 text-white font-bold border-1.5 border-zinc-700 shadow-[2px_2px_0px_0px_#27272a]">
-                    Orders
-                </a>
-                <a href="customers.html" class="flex items-center gap-3 py-2.5 px-3 rounded-sm text-zinc-400 hover:text-white hover:bg-zinc-900 transition-colors">
-                    Customers
-                </a>
-                <a href="products.html" class="flex items-center gap-3 py-2.5 px-3 rounded-sm text-zinc-400 hover:text-white hover:bg-zinc-900 transition-colors">
-                    Products
-                </a>
-                <a href="calls.html" class="flex items-center gap-3 py-2.5 px-3 rounded-sm text-zinc-400 hover:text-white hover:bg-zinc-900 transition-colors">
-                    Calls
-                </a>
-                <a href="invoices.html" class="flex items-center gap-3 py-2.5 px-3 rounded-sm text-zinc-400 hover:text-white hover:bg-zinc-900 transition-colors">
-                    Invoices
-                </a>
-                <a href="settings.html" class="flex items-center gap-3 py-2.5 px-3 rounded-sm text-zinc-400 hover:text-white hover:bg-zinc-900 transition-colors">
-                    Settings
-                </a>
+            <nav class="flex-1 p-4 space-y-1.5 overflow-y-auto">
+                <a href="dashboard.html" class="sidebar-link">Dashboard</a>
+                <a href="inbox.html" class="sidebar-link">Inbox</a>
+                <a href="orders.html" class="sidebar-link active">Orders</a>
+                <a href="customers.html" class="sidebar-link">Customers</a>
+                <a href="products.html" class="sidebar-link">Products</a>
+                <a href="calls.html" class="sidebar-link">Calls</a>
+                <a href="invoices.html" class="sidebar-link">Invoices</a>
+                <a href="settings.html" class="sidebar-link">Settings</a>
             </nav>
 
-            <!-- Footer -->
-            <div data-user-signedin onclick="showToast('Signed in as Kartikey Negi')" class="p-4 font-mono-code text-xs font-semibold text-zinc-300 bg-zinc-900/80 border-t-2 border-zinc-800 cursor-pointer hover:bg-zinc-900 transition-colors flex items-center gap-2 mt-auto">
-                <span class="w-2 h-2 rounded-full bg-emerald-500 border border-zinc-900"></span>
-                Signed in as Kartikey Negi
+            <div data-user-signedin onclick="alertPop('Signed in as Kartikey Negi')" class="sidebar-footer p-4 text-xs font-bold cursor-pointer flex items-center justify-between mt-auto">
+                <div class="flex items-center gap-2">
+                    <span class="w-2.5 h-2.5 rounded-full bg-lime-400 shadow-[0_0_6px_#A3E635]"></span>
+                    <span>Kartikey (Owner)</span>
+                </div>
+                <span class="text-xs">🌱</span>
             </div>
         </aside> 
 
         <main class="flex-1 overflow-y-auto md:ml-64 p-4 md:p-8">
-        <div class="flex flex-col gap-4 mb-8 pb-4 border-b-2 border-zinc-900">
-    
-        <div class="flex items-center justify-between gap-3">
-        
-        <!-- Mobile Menu -->
-        <button onclick="toggleMobileMenu()" class="md:hidden px-3 py-1.5 border-1.5 border-zinc-900 bg-zinc-900 text-white font-mono-code font-bold text-xs rounded-sm shadow-[2px_2px_0px_0px_#121212] active:translate-x-[1px] active:translate-y-[1px] active:shadow-none transition-all">
-            ☰ MENU
-        </button>
+            <div class="flex flex-col gap-4 mb-6 pb-4 border-b border-stone-300">
+                <div class="flex items-center justify-between gap-3">
+                    <button onclick="openMenu()" class="md:hidden px-3 py-1.5 btn-forest text-xs rounded-md">
+                        ☰ MENU
+                    </button>
 
-        <div class="flex items-center gap-2.5 ml-auto">
-            
-            <button onclick="showToast('No new notifications')" class="p-2 border-1.5 border-zinc-900 bg-white rounded-sm shadow-[2px_2px_0px_0px_#121212] hover:translate-x-[-1px] hover:translate-y-[-1px] hover:shadow-[3px_3px_0px_0px_#121212] active:translate-x-[1px] active:translate-y-[1px] active:shadow-[1px_1px_0px_0px_#121212] transition-all">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 md:w-5 md:h-5 text-zinc-900" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M15 17h5l-1.4-1.4A2 2 0 0118 14.2V11a6 6 0 10-12 0v3.2a2 2 0 01-.6 1.4L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
-                </svg>
-            </button>
+                    <div class="flex items-center gap-2.5 ml-auto">
+                        <button onclick="alertPop('No new notifications')" class="p-2 border border-stone-300 bg-white rounded-md hover:bg-stone-50 transition">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 md:w-5 md:h-5 text-stone-800" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M15 17h5l-1.4-1.4A2 2 0 0118 14.2V11a6 6 0 10-12 0v3.2a2 2 0 01-.6 1.4L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+                            </svg>
+                        </button>
 
-            <a href="profile.html" class="flex items-center gap-2.5 pl-2.5 border-l-2 border-zinc-900 hover:opacity-80 transition">
-                <div data-user-avatar class="w-8 h-8 md:w-9 md:h-9 rounded-full bg-emerald-600 border-1.5 border-zinc-900 flex items-center justify-center text-white font-mono-code font-bold text-xs md:text-sm shadow-[2px_2px_0px_0px_#121212]">
-                    KN
+                        <a href="profile.html" class="flex items-center gap-2.5 pl-2.5 border-l border-stone-300 hover:opacity-80 transition">
+                            <div data-user-avatar class="w-8 h-8 md:w-9 md:h-9 rounded-full bg-[#164028] text-white flex items-center justify-center font-bold text-xs md:text-sm">
+                                KN
+                            </div>
+                            <span data-user-firstname class="hidden sm:inline font-heading font-bold text-sm text-stone-900">Kartikey</span>
+                        </a>
+                    </div>
                 </div>
-                <span data-user-firstname class="hidden sm:inline font-heading font-bold text-sm text-zinc-900">Kartikey</span>
-            </a>
-        </div>
-    </div>
 
-    <div>
-        <h1 class="font-heading text-2xl font-extrabold text-zinc-900 tracking-tight">
-            Orders
-        </h1>
-        <p class="font-mono-code text-xs text-zinc-600 mt-1">
-            Every order, one pipeline.
-        </p>
-    </div>
+                <div>
+                    <h1 class="font-heading text-2xl font-extrabold tracking-tight">
+                        Orders
+                    </h1>
+                    <p class="text-xs text-stone-600 mt-0.5">
+                        Track live orders across WhatsApp, Instagram, and web.
+                    </p>
+                </div>
+            </div>
 
-</div>
-
-            <!-- search bar -->
-             <div class="mb-4">
-                <div class="relative max-w-sm">
-                    <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+            <div class="mb-4 flex flex-col sm:flex-row gap-3 items-stretch sm:items-center justify-between">
+                <div class="relative max-w-sm flex-1">
+                    <span class="absolute left-3.5 top-1/2 -translate-y-1/2 text-stone-400 text-sm">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                         </svg>
                     </span>
                     <input
-                    type="text"
-                    id="searchInput"
-                    onkeyup="filterTable()"
-                    placeholder="Search by name, order ID..."
-                    class="w-full pl-9 pr-4 py-2 text-sm border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-gold focus:border-transparent">
+                        type="text"
+                        id="searchInput"
+                        onkeyup="searchRows()"
+                        placeholder="Search by name, order ID..."
+                        class="w-full pl-9 pr-4 py-2 text-sm">
                 </div>
-             </div>
 
-            <!--Orders-->
-            <div class="bg-white border border-gray-200 rounded-2xl overflow-hidden">
-                <div class="overflow-x-auto">
-                <table class="w-full text-sm">
-                    <thead class="bg-gray-50 text-gray-500 text-xs uppercase tracking-wide">
-                        <tr>
-                            <th class="text-left px-4 py-3 font-medium">Order</th>
-                            <th class="text-left px-4 py-3 font-medium">Customer</th>
-                            <th class="text-left px-4 py-3 font-medium">Items</th>
-                            <th class="text-left px-4 py-3 font-medium">Status</th>
-                            <th class="text-left px-4 py-3 font-medium">Payment</th>
-                            <th class="text-left px-4 py-3 font-medium">Total</th>
-                        </tr>
-                    </thead>
-
-                    <tbody class="divide-y divide-gray-100">
-                        <tr onclick="window.location='order-detail.html'" class="hover:bg-gray-50 transition cursor-pointer">
-                            <td class="px-4 py-3 font-medium">#1240</td>
-                            <td class="px-4 py-3">Priya Sharma</td>
-                            <td class="px-4 py-3 text-gray-500">Wireless Headphones x1</td>
-                            <td class="px-4 py-3">
-                                <span class="text-xs font-semibold bg-blue-100 text-blue-700 px-2 py-1 rounded-md">Confirmed</span>
-                            </td>
-                            <td class="px-4 py-3">
-                                <span class="text-xs font-semibold bg-amber-100 text-amber-700 px-2 py-1 rounded-md">Pending</span>
-                            </td>
-                            <td class="px-4 py-3 font-medium">₹2,999</td>
-                        </tr>
-
-                        <tr  class="hover:bg-gray-50 transition cursor-pointer">
-                            <td class="px-4 py-3 font-medium">#1236</td>
-                            <td class="px-4 py-3">meher.jewels</td>
-                            <td class="px-4 py-3 text-gray-500">Jhumkas x1</td>
-                            <td class="px-4 py-3">
-                                <span class="text-xs font-semibold bg-purple-100 text-purple-700 px-2 py-1 rounded-md">Packed</span>
-                            </td>
-                            <td class="px-4 py-3">
-                                <span class="text-xs font-semibold bg-emerald-100 text-green-700 px-2 py-1 rounded-md">Paid</span>
-                            </td>
-                            <td class="px-4 py-3 font-medium">₹1,499</td>
-                        </tr>
-
-                        <tr  class="hover:bg-gray-50 transition cursor-pointer">
-                            <td class="px-4 py-3 font-medium">#1244</td>
-                            <td class="px-4 py-3">Anjali Mehta</td>
-                            <td class="px-4 py-3 text-gray-500">Jhumkas x1</td>
-                            <td class="px-4 py-3">
-                                <span class="text-xs font-semibold bg-indigo-100 text-indigo-700 px-2 py-1 rounded-md">Shipped</span>
-                            </td>
-                            <td class="px-4 py-3">
-                                <span class="text-xs font-semibold bg-gray-100 text-gray-700 px-2 py-1 rounded-md">COD</span>
-                            </td>
-                            <td class="px-4 py-3 font-medium">₹1,450</td>
-                        </tr>
-
-                        <tr onclick="window.location='order-detail-instagram.html'" class="hover:bg-gray-50 transition cursor-pointer">
-                            <td class="px-4 py-3 font-medium">#1229</td>
-                            <td class="px-4 py-3">Rohan Kapoor</td>
-                            <td class="px-4 py-3 text-gray-500">Perfume Set x2</td>
-                            <td class="px-4 py-3">
-                                <span class="text-xs font-semibold bg-green-100 text-green-700 px-2 py-1 rounded-md">Delivered</span>
-                            </td>
-                            <td class="px-4 py-3">
-                                <span class="text-xs font-semibold bg-emerald-100 text-emerald-700 px-2 py-1 rounded-md">Paid</span>
-                            </td>
-                            <td class="px-4 py-3 font-medium">₹3,200</td>
-                        </tr>
-
-                        <tr  class="hover:bg-gray-50 transition cursor-pointer">
-                            <td class="px-4 py-3 font-medium">#1188</td>
-                            <td class="px-4 py-3">Sana Iyer</td>
-                            <td class="px-4 py-3 text-gray-500">Home Decor Set x1</td>
-                            <td class="px-4 py-3">
-                                <span class="text-xs font-semibold bg-red-100 text-red-700 px-2 py-1 rounded-md">New</span>
-                            </td>
-                            <td class="px-4 py-3">
-                                <span class="text-xs font-semibold bg-red-100 text-red-700 px-2 py-1 rounded-md">Link Expired</span>
-                            </td>
-                            <td class="px-4 py-3 font-medium">₹1,899</td>
-                        </tr>
-                    </tbody>
-                </table>
-                </div>
+                <button onclick="addFakeOrder()" class="btn-forest text-xs font-bold px-4 py-2.5 rounded-xl flex items-center justify-center gap-2 transition">
+                    <span>⚡ Add Test Order</span>
+                </button>
             </div>
 
+            <div class="market-card overflow-hidden">
+                <div class="overflow-x-auto">
+                    <table class="w-full text-xs">
+                        <thead>
+                            <tr>
+                                <th class="text-left px-5 py-3.5">Order</th>
+                                <th class="text-left px-5 py-3.5">Customer</th>
+                                <th class="text-left px-5 py-3.5">Items</th>
+                                <th class="text-left px-5 py-3.5">Status</th>
+                                <th class="text-left px-5 py-3.5">Payment</th>
+                                <th class="text-right px-5 py-3.5">Total</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="ordersTableBody" class="divide-y divide-stone-100 text-stone-800">
+                            <tr onclick="window.location='order-detail.html'" class="hover:bg-amber-50/40 transition cursor-pointer">
+                                <td class="px-5 py-3.5 font-bold text-emerald-800">#1240</td>
+                                <td class="px-5 py-3.5 font-semibold">Priya Sharma</td>
+                                <td class="px-5 py-3.5 text-stone-600">Wireless Headphones x1</td>
+                                <td class="px-5 py-3.5">
+                                    <span class="text-[11px] font-bold bg-emerald-100 text-emerald-800 border border-emerald-300 px-2.5 py-0.5 rounded-full">Confirmed</span>
+                                </td>
+                                <td class="px-5 py-3.5">
+                                    <span class="text-[11px] font-bold bg-amber-100 text-amber-800 border border-amber-300 px-2.5 py-0.5 rounded-full">Pending</span>
+                                </td>
+                                <td class="px-5 py-3.5 font-bold text-right text-stone-900">₹2,999</td>
+                            </tr>
+
+                            <tr class="hover:bg-amber-50/40 transition cursor-pointer">
+                                <td class="px-5 py-3.5 font-bold text-emerald-800">#1236</td>
+                                <td class="px-5 py-3.5 font-semibold">meher.jewels</td>
+                                <td class="px-5 py-3.5 text-stone-600">Jhumkas x1</td>
+                                <td class="px-5 py-3.5">
+                                    <span class="text-[11px] font-bold bg-purple-100 text-purple-800 border border-purple-300 px-2.5 py-0.5 rounded-full">Packed</span>
+                                </td>
+                                <td class="px-5 py-3.5">
+                                    <span class="text-[11px] font-bold bg-lime-100 text-lime-900 border border-lime-300 px-2.5 py-0.5 rounded-full">Paid</span>
+                                </td>
+                                <td class="px-5 py-3.5 font-bold text-right text-stone-900">₹1,499</td>
+                            </tr>
+
+                            <tr class="hover:bg-amber-50/40 transition cursor-pointer">
+                                <td class="px-5 py-3.5 font-bold text-emerald-800">#1244</td>
+                                <td class="px-5 py-3.5 font-semibold">Anjali Mehta</td>
+                                <td class="px-5 py-3.5 text-stone-600">Silk Scarf x1</td>
+                                <td class="px-5 py-3.5">
+                                    <span class="text-[11px] font-bold bg-blue-100 text-blue-800 border border-blue-300 px-2.5 py-0.5 rounded-full">Shipped</span>
+                                </td>
+                                <td class="px-5 py-3.5">
+                                    <span class="text-[11px] font-bold bg-stone-100 text-stone-700 border border-stone-300 px-2.5 py-0.5 rounded-full">COD</span>
+                                </td>
+                                <td class="px-5 py-3.5 font-bold text-right text-stone-900">₹1,450</td>
+                            </tr>
+
+                            <tr onclick="window.location='order-detail-instagram.html'" class="hover:bg-amber-50/40 transition cursor-pointer">
+                                <td class="px-5 py-3.5 font-bold text-emerald-800">#1229</td>
+                                <td class="px-5 py-3.5 font-semibold">Rohan Kapoor</td>
+                                <td class="px-5 py-3.5 text-stone-600">Perfume Set x2</td>
+                                <td class="px-5 py-3.5">
+                                    <span class="text-[11px] font-bold bg-emerald-100 text-emerald-800 border border-emerald-300 px-2.5 py-0.5 rounded-full">Delivered</span>
+                                </td>
+                                <td class="px-5 py-3.5">
+                                    <span class="text-[11px] font-bold bg-lime-100 text-lime-900 border border-lime-300 px-2.5 py-0.5 rounded-full">Paid</span>
+                                </td>
+                                <td class="px-5 py-3.5 font-bold text-right text-stone-900">₹3,200</td>
+                            </tr>
+
+                            <tr class="hover:bg-amber-50/40 transition cursor-pointer">
+                                <td class="px-5 py-3.5 font-bold text-emerald-800">#1188</td>
+                                <td class="px-5 py-3.5 font-semibold">Sana Iyer</td>
+                                <td class="px-5 py-3.5 text-stone-600">Home Decor Set x1</td>
+                                <td class="px-5 py-3.5">
+                                    <span class="text-[11px] font-bold bg-rose-100 text-rose-800 border border-rose-300 px-2.5 py-0.5 rounded-full">New</span>
+                                </td>
+                                <td class="px-5 py-3.5">
+                                    <span class="text-[11px] font-bold bg-rose-100 text-rose-800 border border-rose-300 px-2.5 py-0.5 rounded-full">Expired</span>
+                                </td>
+                                <td class="px-5 py-3.5 font-bold text-right text-stone-900">₹1,899</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </main>
     </div>
-    
+
+    <script>
+        const samplePeople = ["Kabir Das", "Aanya Verma", "Dev Malhotra", "Zara Chen", "Vikram Rathore", "Tanya Sen", "Arjun Nair"];
+        const sampleItems = ["Organic Green Tea Pack x2", "Handmade Scented Candle x1", "Bamboo Desk Mat x1", "Ceramic Coffee Mug x2", "Linen Apron x1"];
+        const samplePays = ["Paid", "Pending", "COD"];
+
+        function addFakeOrder() {
+            let list = document.getElementById("ordersTableBody");
+            let id = "#" + (Math.floor(Math.random() * 800) + 1300);
+            let name = samplePeople[Math.floor(Math.random() * samplePeople.length)];
+            let item = sampleItems[Math.floor(Math.random() * sampleItems.length)];
+            let pay = samplePays[Math.floor(Math.random() * samplePays.length)];
+            let price = "₹" + (Math.floor(Math.random() * 25 + 8) * 100 + 99);
+
+            let payStyle = "bg-amber-100 text-amber-800 border-amber-300";
+            if (pay === "Paid") payStyle = "bg-lime-100 text-lime-900 border-lime-300";
+            if (pay === "COD") payStyle = "bg-stone-100 text-stone-700 border-stone-300";
+
+            let row = document.createElement("tr");
+            row.className = "hover:bg-amber-50/60 transition cursor-pointer bg-amber-50/50 border-l-4 border-l-amber-400";
+            row.onclick = () => alertPop("Simulated order " + id + " from " + name);
+
+            row.innerHTML = `
+                <td class="px-5 py-3.5 font-bold text-emerald-800">${id} <span class="text-[9px] bg-amber-200 text-amber-900 border border-amber-400 font-bold px-1.5 py-0.5 rounded-full ml-1">NEW</span></td>
+                <td class="px-5 py-3.5 font-semibold text-stone-900">${name}</td>
+                <td class="px-5 py-3.5 text-stone-600">${item}</td>
+                <td class="px-5 py-3.5">
+                    <span class="text-[11px] font-bold bg-emerald-100 text-emerald-800 border border-emerald-300 px-2.5 py-0.5 rounded-full">New</span>
+                </td>
+                <td class="px-5 py-3.5">
+                    <span class="text-[11px] font-bold ${payStyle} border px-2.5 py-0.5 rounded-full">${pay}</span>
+                </td>
+                <td class="px-5 py-3.5 font-bold text-right text-stone-900">${price}</td>
+            `;
+
+            list.insertBefore(row, list.firstChild);
+            alertPop("New order " + id + " created!");
+        }
+    </script>
 </body>
 </html>

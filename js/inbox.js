@@ -1,48 +1,51 @@
+function toggleEmptyState() {
+    let list = document.getElementById('inboxMessages');
+    let empty = document.getElementById('inboxEmpty');
 
-
-function toggleEmptyState(){
-    document.getElementById('inboxMessages').classList.toggle('hidden');
-    document.getElementById('inboxEmpty').classList.toggle('hidden');
-    document.getElementById('inboxEmpty').classList.toggle('flex');
+    if (list && empty) {
+        list.classList.toggle('hidden');
+        empty.classList.toggle('hidden');
+        empty.classList.toggle('flex');
+    }
 }
 
-let savedStep = localStorage.getItem('orderStep');
-let currentStep = savedStep ? Number(savedStep) : 2;
+function sendReply() {
+    let box = document.getElementById('replyInput');
+    if (!box) return;
 
+    let text = box.value.trim();
+    if (!text) return;
 
+    addBoxToChat(text);
+    saveReplyToStorage(text);
 
-function sendReply(){
-    const input = document.getElementById('replyInput');
-    const message = input.value.trim();
-    if (message === '') return;
-
-    addBoxToChat(message);
-    saveReplyToStorage(message);
-
-    input.value = '';
+    box.value = '';
 }
 
-function addBoxToChat(message){
-    const boxWrap = document.createElement('div');
-    boxWrap.className = 'flex justify-end';
-    boxWrap.innerHTML = `
-        <div class="bg-gray-100 border-gray-200 rounded-2xl rounded-tr-sm px-4 py-3 max-w-md">
-             <p class="text-sm">${message}</p>
-             <p class="text-xs text-gray-400 mt-1">You · just now</p>
+function addBoxToChat(text) {
+    let feed = document.getElementById('chatBox');
+    if (!feed) return;
+
+    let bubbleWrap = document.createElement('div');
+    bubbleWrap.className = 'flex justify-end';
+    bubbleWrap.innerHTML = `
+        <div class="market-card rounded-tr-sm px-4 py-3 max-w-md bg-stone-100/80">
+            <p class="text-sm text-stone-900">${text}</p>
+            <p class="text-xs text-stone-400 mt-1">You · just now</p>
         </div>
     `;
-    document.getElementById('chatBox').appendChild(boxWrap);
-}
-            
-function saveReplyToStorage(message){
-    const key = 'chatReplies_' + window.location.pathname;
-    const existing = JSON.parse(localStorage.getItem(key)) || [];
-    existing.push(message);
-    localStorage.setItem(key, JSON.stringify(existing));
+    feed.appendChild(bubbleWrap);
 }
 
-function loadSavedReplies(){
-    const key = 'chatReplies_' + window.location.pathname;
-    const existing = JSON.parse(localStorage.getItem(key)) || [];
-    existing.forEach(message => addBoxToChat(message));
+function saveReplyToStorage(text) {
+    let pathKey = 'chatReplies_' + window.location.pathname;
+    let history = JSON.parse(localStorage.getItem(pathKey)) || [];
+    history.push(text);
+    localStorage.setItem(pathKey, JSON.stringify(history));
+}
+
+function loadSavedReplies() {
+    let pathKey = 'chatReplies_' + window.location.pathname;
+    let history = JSON.parse(localStorage.getItem(pathKey)) || [];
+    history.forEach(msg => addBoxToChat(msg));
 }
