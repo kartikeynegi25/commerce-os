@@ -11,6 +11,7 @@ Commerce OS is a frontend prototype exploring how a small business could manage 
 - **Orders:** Go to the Orders page and click order **#1240** or **#1229**. Open the order details to see the breakdown, preview/download the invoice, and try changing the order status with **Mark as Packed**.
 - **Inbox & Chatbot:** Click the WhatsApp or Instagram rows on the Inbox page to test out the chat interface and try sending a reply.
 - **Inbox Empty State:** Click **"Toggle empty state"** in the inbox to see how it looks with no messages.
+- **Fun Elemets:** Added quick reply section in inbox and a test order button in orders page just for testing and acts as a fun element to interact with.
 - **AI Calls:** Click the top row in the Calls section to view a sample call transcript.
 - **Search:** Try typing in the search bar across Orders, Products, Calls, Invoices, or Customers.
 - **Settings & Profile:** Change your info in Settings or click your profile avatar—it saves to `localStorage` and updates across the site.
