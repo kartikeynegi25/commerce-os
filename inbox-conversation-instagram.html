@@ -10,22 +10,21 @@
     <script src="js/inbox.js"></script>
 </head>
 <body class="text-stone-900">
-    <div class="flex h-screen">
-        <div id="mobileMenuBackdrop" onclick="openMenu()" class="fixed inset-0 bg-[#0f2b1c]/40 backdrop-blur-xs z-40 hidden md:hidden transition-opacity"></div>
 
-        <aside id="sidebar" class="fixed top-0 left-0 bottom-0 z-50 w-64 h-screen flex flex-col text-stone-100 transition-transform duration-200 -translate-x-full md:translate-x-0">
-            <div class="sidebar-header p-5 pb-4 flex items-center justify-between">
-                <span class="font-heading text-2xl font-extrabold tracking-tight text-[#0f2b1c]">
+    <div class="flex h-screen">
+        <div id="mobileMenuBackdrop" onclick="openMenu()" class="fixed inset-0 bg-black/40 z-40 hidden md:hidden"></div>
+
+        <aside id="sidebar" class="fixed top-0 left-0 bottom-0 z-50 w-64 h-screen flex flex-col text-white transition-transform duration-200 -translate-x-full md:translate-x-0">
+            <div class="sidebar-header p-5 flex items-center justify-between">
+                <span class="font-heading text-2xl font-extrabold text-[#0f2b1c]">
                     Nexus
                 </span>
-                <button onclick="openMenu()" class="md:hidden text-emerald-200 hover:text-white p-1">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-                    </svg>
+                <button onclick="openMenu()" class="md:hidden text-emerald-200 hover:text-white text-xl font-bold">
+                    ✕
                 </button>
             </div>
 
-            <nav class="flex-1 p-4 space-y-1.5 overflow-y-auto">
+            <nav class="flex-1 p-4 space-y-1 overflow-y-auto">
                 <a href="dashboard.html" class="sidebar-link">Dashboard</a>
                 <a href="inbox.html" class="sidebar-link active">Inbox</a>
                 <a href="orders.html" class="sidebar-link">Orders</a>
@@ -38,63 +37,64 @@
 
             <div data-user-signedin onclick="alertPop('Signed in as Kartikey Negi')" class="sidebar-footer p-4 text-xs font-bold cursor-pointer flex items-center justify-between mt-auto">
                 <div class="flex items-center gap-2">
-                    <span class="w-2.5 h-2.5 rounded-full bg-lime-400 shadow-[0_0_6px_#A3E635]"></span>
+                    <span class="w-2.5 h-2.5 rounded-full bg-lime-400"></span>
                     <span>Kartikey (Owner)</span>
                 </div>
-                <span class="text-xs">🌱</span>
+                <span>🌱</span>
             </div>
         </aside>
 
-        <main class="flex-1 overflow-y-auto md:ml-64 p-4 md:p-8">
-            <div class="flex items-center justify-between mb-4 md:hidden">
-                <button onclick="openMenu()" class="px-3 py-1.5 btn-forest text-xs rounded-md">
-                    ☰ MENU
+        <main class="flex-1 overflow-y-auto md:ml-64 p-4 md:p-8 flex flex-col">
+            <div class="flex items-center justify-between mb-6 pb-3 border-b border-stone-200">
+                <div class="flex items-center gap-3">
+                    <a href="inbox.html" class="text-stone-400 hover:text-stone-900 transition text-2xl font-bold">←</a>
+                    <div>
+                        <h1 class="font-heading text-lg font-bold text-[#164028]">@meher.jewels</h1>
+                        <p class="text-xs text-stone-500">Instagram DM · Connected via Meta API</p>
+                    </div>
+                </div>
+
+                <button onclick="openMenu()" class="md:hidden px-3 py-1.5 btn-forest text-xs rounded-md">
+                    ☰ Menu
                 </button>
-
-                <div class="flex items-center gap-2.5">
-                    <button onclick="alertPop('No new notifications')" class="p-2 border border-stone-300 bg-white rounded-md hover:bg-stone-50 transition">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-stone-800" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M15 17h5l-1.4-1.4A2 2 0 0118 14.2V11a6 6 0 10-12 0v3.2a2 2 0 01-.6 1.4L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
-                        </svg>
-                    </button>
-
-                    <a href="profile.html" data-user-avatar class="w-8 h-8 rounded-full bg-[#164028] text-white flex items-center justify-center font-bold text-xs">
-                        KN
-                    </a>
-                </div>
-            </div>
-            
-            <div class="flex items-center gap-3 mb-8">
-                <a href="inbox.html" class="text-stone-400 hover:text-stone-900 transition text-xl">←</a>
-                <div>
-                    <h1 class="font-heading text-lg font-bold text-[#164028]">@meher.jewels</h1>
-                    <p class="text-xs text-stone-500">Instagram · DM</p>
-                </div>
             </div>
 
-            <div id="chatBox" class="max-w-full md:max-w-2xl space-y-4">
+            <div id="chatBox" class="max-w-2xl w-full space-y-3.5 flex-1">
                 <div class="flex justify-start">
                     <div class="market-card rounded-tl-sm px-4 py-3 max-w-md">
-                        <p class="text-sm">Ordered the jhumkas, when will it ship?</p>
+                        <p class="text-sm text-stone-900">Hey! Ordered the silver jhumkas yesterday, when will it ship?</p>
+                        <p class="text-xs text-stone-400 mt-1">@meher.jewels · 11:15 AM</p>
                     </div>
                 </div>
 
                 <div class="flex justify-end">
-                    <div class="bg-emerald-50/90 border border-emerald-200 rounded-2xl rounded-tr-sm px-4 py-3 max-w-md">
-                        <p class="text-sm text-stone-900">Your order is packed and shipping today - you'll get a tracking link as soon as it's out!</p>
-                        <p class="text-xs text-emerald-700 font-bold mt-1">Nexus · auto-reply</p>
+                    <div class="bg-emerald-50 border border-emerald-200 rounded-xl rounded-tr-sm px-4 py-3 max-w-md">
+                        <p class="text-sm text-stone-900">Your order is packed and shipping today! You'll get a tracking link SMS as soon as Delhivery picks it up.</p>
+                        <p class="text-xs text-emerald-800 font-bold mt-1.5">⚡ Nexus · automated reply</p>
                     </div>
                 </div>
             </div>
 
-            <div class="max-w-full md:max-w-2xl mt-4 flex gap-2">
-                <input
+            <div class="max-w-2xl w-full mt-4 flex items-center gap-2 overflow-x-auto pb-1">
+                <button onclick="document.getElementById('replyInput').value = 'Here is your tracking link: track.delhivery.com/p/882194'; sendReply();" class="text-xs font-semibold bg-stone-100 border border-stone-300 hover:bg-stone-200 text-stone-700 px-3 py-1.5 rounded-full whitespace-nowrap transition">
+                    🚚 Send Tracking Link
+                </button>
+                <button onclick="document.getElementById('replyInput').value = 'It will reach you within 2-3 business days!'; sendReply();" class="text-xs font-semibold bg-stone-100 border border-stone-300 hover:bg-stone-200 text-stone-700 px-3 py-1.5 rounded-full whitespace-nowrap transition">
+                    ⏱️ Delivery Time (2-3 Days)
+                </button>
+                <button onclick="document.getElementById('replyInput').value = 'Thanks for shopping with us! Let us know if you need anything else.';" class="text-xs font-semibold bg-stone-100 border border-stone-300 hover:bg-stone-200 text-stone-700 px-3 py-1.5 rounded-full whitespace-nowrap transition">
+                    ❤️ Thank Customer
+                </button>
+            </div>
+
+            <div class="max-w-2xl w-full mt-2 flex gap-2">
+                <input 
                     type="text"
                     id="replyInput"
                     onkeydown="if(event.key === 'Enter') sendReply()"
-                    placeholder="Type a reply..."
-                    class="flex-1 px-4 py-2 text-sm">
-                <button onclick="sendReply()" class="btn-forest text-sm font-bold px-4 py-2 rounded-lg transition">
+                    placeholder="Type an Instagram reply..."
+                    class="flex-1 px-4 py-2.5 text-sm">
+                <button onclick="sendReply()" class="btn-forest text-sm font-bold px-5 py-2.5 rounded-lg transition">
                     Send
                 </button>
             </div>

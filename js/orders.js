@@ -1,61 +1,51 @@
 let currentStep = Number(localStorage.getItem('orderStep')) || 2;
+const stepNames = ['New', 'Confirmed', 'Packed', 'Shipped', 'Delivered'];
 
 function advanceOrderStatus() {
     if (currentStep >= 5) return;
     currentStep++;
     localStorage.setItem('orderStep', currentStep.toString());
-
-    let dot = document.getElementById('step-' + currentStep);
-    if (dot) {
-        dot.classList.remove('bg-stone-200', 'bg-gray-200', 'text-stone-500', 'text-gray-500');
-        dot.classList.add('bg-[#164028]', 'text-white');
-        dot.textContent = '✓';
-    }
-
-    let line = document.getElementById('line-' + (currentStep - 1));
-    if (line) {
-        line.classList.remove('bg-stone-300', 'bg-gray-200');
-        line.classList.add('bg-[#164028]');
-    }
-
-    updateButtonText();
+    renderPipeline();
 }
 
-function applyStatusVisuals() {
-    for (let i = 3; i <= currentStep; i++) {
+function renderPipeline() {
+    for (let i = 1; i <= 5; i++) {
         let dot = document.getElementById('step-' + i);
+        let line = document.getElementById('line-' + (i - 1));
+
         if (dot) {
-            dot.classList.remove('bg-stone-200', 'bg-gray-200', 'text-stone-500', 'text-gray-500');
-            dot.classList.add('bg-[#164028]', 'text-white');
-            dot.textContent = '✓';
+            if (i <= currentStep) {
+                dot.className = 'w-8 h-8 rounded-full bg-[#164028] text-white flex items-center justify-center text-xs font-bold';
+                dot.textContent = '✓';
+            } else {
+                dot.className = 'w-8 h-8 rounded-full bg-stone-200 text-stone-500 flex items-center justify-center text-xs font-bold';
+                dot.textContent = i;
+            }
         }
 
-        let line = document.getElementById('line-' + (i - 1));
         if (line) {
-            line.classList.remove('bg-stone-300', 'bg-gray-200');
-            line.classList.add('bg-[#164028]');
+            line.className = `flex-1 h-0.5 ${i <= currentStep ? 'bg-[#164028]' : 'bg-stone-300'}`;
         }
     }
 
-    updateButtonText();
+    let btn = document.getElementById('advanceBtn');
+    if (btn) {
+        if (currentStep >= 5) {
+            btn.textContent = 'Order Delivered ✓';
+            btn.disabled = true;
+            btn.classList.add('opacity-50', 'cursor-not-allowed');
+        } else {
+            btn.textContent = 'Mark as ' + stepNames[currentStep];
+            btn.disabled = false;
+            btn.classList.remove('opacity-50', 'cursor-not-allowed');
+        }
+    }
 }
 
 function resetOrderStatus() {
     localStorage.removeItem('orderStep');
     currentStep = 2;
-    location.reload();
+    renderPipeline();
 }
 
-function updateButtonText() {
-    const steps = ['New', 'Confirmed', 'Packed', 'Shipped', 'Delivered'];
-    const btn = document.getElementById('advanceBtn');
-    if (!btn) return;
-
-    if (currentStep >= 5) {
-        btn.textContent = 'Order Delivered ✓';
-        btn.disabled = true;
-        btn.classList.add('opacity-50', 'cursor-not-allowed');
-    } else {
-        btn.textContent = 'Mark as ' + steps[currentStep];
-    }
-}
+document.addEventListener('DOMContentLoaded', renderPipeline);

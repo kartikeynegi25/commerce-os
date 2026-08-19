@@ -11,21 +11,19 @@
 <body class="text-stone-900">
 
     <div class="flex h-screen">
-        <div id="mobileMenuBackdrop" onclick="openMenu()" class="fixed inset-0 bg-[#0f2b1c]/40 backdrop-blur-xs z-40 hidden md:hidden transition-opacity"></div>
+        <div id="mobileMenuBackdrop" onclick="openMenu()" class="fixed inset-0 bg-black/40 z-40 hidden md:hidden"></div>
 
-        <aside id="sidebar" class="fixed top-0 left-0 bottom-0 z-50 w-64 h-screen flex flex-col text-stone-100 transition-transform duration-200 -translate-x-full md:translate-x-0">
-            <div class="sidebar-header p-5 pb-4 flex items-center justify-between">
-                <span class="font-heading text-2xl font-extrabold tracking-tight text-[#0f2b1c]">
+        <aside id="sidebar" class="fixed top-0 left-0 bottom-0 z-50 w-64 h-screen flex flex-col text-white transition-transform duration-200 -translate-x-full md:translate-x-0">
+            <div class="sidebar-header p-5 flex items-center justify-between">
+                <span class="font-heading text-2xl font-extrabold text-[#0f2b1c]">
                     Nexus
                 </span>
-                <button onclick="openMenu()" class="md:hidden text-emerald-200 hover:text-white p-1">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-                    </svg>
+                <button onclick="openMenu()" class="md:hidden text-emerald-200 hover:text-white text-xl font-bold">
+                    ✕
                 </button>
             </div>
 
-            <nav class="flex-1 p-4 space-y-1.5 overflow-y-auto">
+            <nav class="flex-1 p-4 space-y-1 overflow-y-auto">
                 <a href="dashboard.html" class="sidebar-link">Dashboard</a>
                 <a href="inbox.html" class="sidebar-link">Inbox</a>
                 <a href="orders.html" class="sidebar-link">Orders</a>
@@ -38,59 +36,50 @@
 
             <div data-user-signedin onclick="alertPop('Signed in as Kartikey Negi')" class="sidebar-footer p-4 text-xs font-bold cursor-pointer flex items-center justify-between mt-auto">
                 <div class="flex items-center gap-2">
-                    <span class="w-2.5 h-2.5 rounded-full bg-lime-400 shadow-[0_0_6px_#A3E635]"></span>
+                    <span class="w-2.5 h-2.5 rounded-full bg-lime-400"></span>
                     <span>Kartikey (Owner)</span>
                 </div>
-                <span class="text-xs">🌱</span>
+                <span>🌱</span>
             </div>
-        </aside> 
+        </aside>
 
         <main class="flex-1 overflow-y-auto md:ml-64 p-4 md:p-8">
-            <div class="flex flex-col gap-4 mb-8 pb-4 border-b border-stone-300">
+            <div class="flex flex-col gap-4 mb-6 pb-4 border-b border-stone-300">
                 <div class="flex items-center justify-between gap-3">
                     <button onclick="openMenu()" class="md:hidden px-3 py-1.5 btn-forest text-xs rounded-md">
-                        ☰ MENU
+                        ☰ Menu
                     </button>
 
-                    <div class="flex items-center gap-2.5 ml-auto">
-                        <button onclick="alertPop('No new notifications')" class="p-2 border border-stone-300 bg-white rounded-md hover:bg-stone-50 transition">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 md:w-5 md:h-5 text-stone-800" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <div class="flex items-center gap-3 ml-auto">
+                        <button onclick="alertPop('No new notifications')" class="p-2 border border-stone-300 bg-white rounded-md hover:bg-stone-100 transition">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-stone-700" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M15 17h5l-1.4-1.4A2 2 0 0118 14.2V11a6 6 0 10-12 0v3.2a2 2 0 01-.6 1.4L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
                             </svg>
                         </button>
 
-                        <a href="profile.html" class="flex items-center gap-2.5 pl-2.5 border-l border-stone-300 hover:opacity-80 transition">
-                            <div data-user-avatar class="w-8 h-8 md:w-9 md:h-9 rounded-full bg-[#164028] text-white flex items-center justify-center font-bold text-xs md:text-sm">
+                        <a href="profile.html" class="flex items-center gap-2 pl-2 border-l border-stone-300 hover:opacity-80">
+                            <div data-user-avatar class="w-8 h-8 rounded-full bg-[#164028] text-white flex items-center justify-center font-bold text-xs">
                                 KN
                             </div>
-                            <span data-user-firstname class="hidden sm:inline font-heading font-bold text-sm text-stone-900">Kartikey</span>
+                            <span data-user-firstname class="hidden sm:inline font-bold text-sm text-stone-900">Kartikey</span>
                         </a>
                     </div>
                 </div>
 
                 <div>
-                    <h1 class="font-heading text-2xl font-extrabold tracking-tight">
-                        Invoices
-                    </h1>
-                    <p class="text-xs text-stone-600 mt-1">
-                        GST bills & receipts ready to download.
-                    </p>
+                    <h1 class="font-heading text-2xl font-bold">Invoices</h1>
+                    <p class="text-xs text-stone-500 mt-0.5">GST bills, tax receipts, and order invoices</p>
                 </div>
             </div>
 
             <div class="mb-4">
                 <div class="relative max-w-sm">
-                    <span class="absolute left-3 top-1/2 -translate-y-1/2 text-stone-400 text-sm">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35M17 11a6 6 0 11-12 0 6 6 0 0112 0z" />
-                        </svg>
-                    </span>
                     <input
                         type="text"
                         id="searchInput"
                         onkeyup="searchRows()"
-                        placeholder="Search by invoice, order, customer..."
-                        class="w-full pl-9 pr-4 py-2 text-sm">
+                        placeholder="Search invoice number, order, customer..."
+                        class="w-full px-3 py-2 text-sm">
                 </div>
             </div>
 
@@ -99,55 +88,57 @@
                     <table class="w-full text-sm">
                         <thead>
                             <tr>
-                                <th class="text-left px-4 py-3 font-medium">Invoice</th>
-                                <th class="text-left px-4 py-3 font-medium">Order</th>
-                                <th class="text-left px-4 py-3 font-medium">Customer</th>
-                                <th class="text-left px-4 py-3 font-medium">Date</th>
-                                <th class="text-left px-4 py-3 font-medium">Amount</th>
-                                <th class="text-left px-4 py-3 font-medium">Status</th>
-                                <th class="text-left px-4 py-3 font-medium"></th>
+                                <th class="text-left px-4 py-3 font-bold">Invoice #</th>
+                                <th class="text-left px-4 py-3 font-bold">Order</th>
+                                <th class="text-left px-4 py-3 font-bold">Customer</th>
+                                <th class="text-left px-4 py-3 font-bold">Date</th>
+                                <th class="text-left px-4 py-3 font-bold">Total</th>
+                                <th class="text-left px-4 py-3 font-bold">Status</th>
+                                <th class="text-left px-4 py-3 font-bold">Action</th>
                             </tr>
                         </thead>
 
                         <tbody class="divide-y divide-stone-100">
-                            <tr class="hover:bg-stone-50 transition">
-                                <td class="px-4 py-3 font-medium">INV-1240</td>
-                                <td class="px-4 py-3 text-stone-500">#1240</td>
-                                <td class="px-4 py-3">Priya Sharma</td>
-                                <td class="px-4 py-3 text-stone-500">22 Jul 2026</td>
-                                <td class="px-4 py-3 font-medium">₹ 2,999</td>
+                            <tr class="hover:bg-stone-50 transition cursor-pointer">
+                                <td class="px-4 py-3 font-bold text-[#164028]">INV-1240</td>
+                                <td class="px-4 py-3 text-stone-500 font-medium">#1240</td>
+                                <td class="px-4 py-3 font-semibold">Priya Sharma</td>
+                                <td class="px-4 py-3 text-stone-500 text-xs">22 Jul 2026</td>
+                                <td class="px-4 py-3 font-bold">₹2,999</td>
                                 <td class="px-4 py-3">
-                                    <span class="text-xs font-semibold bg-emerald-100 text-emerald-700 px-2 py-1 rounded-md">Active</span>
+                                    <span class="text-xs font-bold bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded">Paid</span>
                                 </td>
                                 <td class="px-4 py-3">
-                                    <a href="order-detail.html" class="text-xs font-bold text-emerald-800 hover:underline">View →</a>
-                                </td>
-                            </tr>
-
-                            <tr class="hover:bg-stone-50 transition">
-                                <td class="px-4 py-3 font-medium">INV-1229</td>
-                                <td class="px-4 py-3 text-stone-500">#1229</td>
-                                <td class="px-4 py-3">Rohan Kapoor</td>
-                                <td class="px-4 py-3 text-stone-500">18 Jul 2026</td>
-                                <td class="px-4 py-3 font-medium">₹3,200</td>
-                                <td class="px-4 py-3">
-                                    <span class="text-xs font-semibold bg-emerald-100 text-emerald-700 px-2 py-1 rounded-md">Active</span>
-                                </td>
-                                <td class="px-4 py-3">
-                                    <a href="order-detail-instagram.html" class="text-xs font-bold text-emerald-800 hover:underline">View →</a>
+                                    <a href="order-detail.html" class="text-xs font-bold text-emerald-800 hover:underline">View Invoice →</a>
                                 </td>
                             </tr>
 
-                            <tr class="hover:bg-stone-50 transition">
-                                <td class="px-4 py-3 font-medium">INV-1188</td>
-                                <td class="px-4 py-3 text-stone-500">#1188</td>
-                                <td class="px-4 py-3">Sana Iyer</td>
-                                <td class="px-4 py-3 text-stone-500">15 Jul 2026</td>
-                                <td class="px-4 py-3 font-medium">₹1,899</td>
+                            <tr class="hover:bg-stone-50 transition cursor-pointer">
+                                <td class="px-4 py-3 font-bold text-[#164028]">INV-1229</td>
+                                <td class="px-4 py-3 text-stone-500 font-medium">#1229</td>
+                                <td class="px-4 py-3 font-semibold">Rohan Kapoor</td>
+                                <td class="px-4 py-3 text-stone-500 text-xs">18 Jul 2026</td>
+                                <td class="px-4 py-3 font-bold">₹3,200</td>
                                 <td class="px-4 py-3">
-                                    <span class="text-xs font-semibold bg-stone-100 text-stone-500 px-2 py-1 rounded-md">Void</span>
+                                    <span class="text-xs font-bold bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded">Paid</span>
                                 </td>
-                                <td class="px-4 py-3 text-stone-300 text-xs">-</td>
+                                <td class="px-4 py-3">
+                                    <a href="order-detail-instagram.html" class="text-xs font-bold text-emerald-800 hover:underline">View Invoice →</a>
+                                </td>
+                            </tr>
+
+                            <tr class="hover:bg-stone-50 transition cursor-pointer">
+                                <td class="px-4 py-3 font-bold text-stone-400">INV-1188</td>
+                                <td class="px-4 py-3 text-stone-400 font-medium">#1188</td>
+                                <td class="px-4 py-3 font-medium text-stone-500">Sana Iyer</td>
+                                <td class="px-4 py-3 text-stone-400 text-xs">15 Jul 2026</td>
+                                <td class="px-4 py-3 font-semibold text-stone-400">₹1,899</td>
+                                <td class="px-4 py-3">
+                                    <span class="text-xs font-bold bg-stone-200 text-stone-600 px-2 py-0.5 rounded">Cancelled</span>
+                                </td>
+                                <td class="px-4 py-3 text-stone-400 text-xs font-medium">
+                                    Void
+                                </td>
                             </tr>
                         </tbody>
                     </table>

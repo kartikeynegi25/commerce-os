@@ -11,21 +11,19 @@
 <body class="text-stone-900">
 
     <div class="flex h-screen">
-        <div id="mobileMenuBackdrop" onclick="openMenu()" class="fixed inset-0 bg-[#0f2b1c]/40 backdrop-blur-xs z-40 hidden md:hidden transition-opacity"></div>
+        <div id="mobileMenuBackdrop" onclick="openMenu()" class="fixed inset-0 bg-black/40 z-40 hidden md:hidden"></div>
 
-        <aside id="sidebar" class="fixed top-0 left-0 bottom-0 z-50 w-64 h-screen flex flex-col text-stone-100 transition-transform duration-200 -translate-x-full md:translate-x-0">
-            <div class="sidebar-header p-5 pb-4 flex items-center justify-between">
-                <span class="font-heading text-2xl font-extrabold tracking-tight text-[#0f2b1c]">
+        <aside id="sidebar" class="fixed top-0 left-0 bottom-0 z-50 w-64 h-screen flex flex-col text-white transition-transform duration-200 -translate-x-full md:translate-x-0">
+            <div class="sidebar-header p-5 flex items-center justify-between">
+                <span class="font-heading text-2xl font-extrabold text-[#0f2b1c]">
                     Nexus
                 </span>
-                <button onclick="openMenu()" class="md:hidden text-emerald-200 hover:text-white p-1">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-                    </svg>
+                <button onclick="openMenu()" class="md:hidden text-emerald-200 hover:text-white text-xl font-bold">
+                    ✕
                 </button>
             </div>
 
-            <nav class="flex-1 p-4 space-y-1.5 overflow-y-auto">
+            <nav class="flex-1 p-4 space-y-1 overflow-y-auto">
                 <a href="dashboard.html" class="sidebar-link active">Dashboard</a>
                 <a href="inbox.html" class="sidebar-link">Inbox</a>
                 <a href="orders.html" class="sidebar-link">Orders</a>
@@ -38,106 +36,115 @@
 
             <div data-user-signedin onclick="alertPop('Signed in as Kartikey Negi')" class="sidebar-footer p-4 text-xs font-bold cursor-pointer flex items-center justify-between mt-auto">
                 <div class="flex items-center gap-2">
-                    <span class="w-2.5 h-2.5 rounded-full bg-lime-400 shadow-[0_0_6px_#A3E635]"></span>
+                    <span class="w-2.5 h-2.5 rounded-full bg-lime-400"></span>
                     <span>Kartikey (Owner)</span>
                 </div>
-                <span class="text-xs">🌱</span>
+                <span>🌱</span>
             </div>
         </aside>
 
         <main class="flex-1 overflow-y-auto md:ml-64 p-4 md:p-8">
-            <div class="flex flex-col gap-4 mb-8 pb-4 border-b border-stone-300">
+            <div class="flex flex-col gap-4 mb-6 pb-4 border-b border-stone-300">
                 <div class="flex items-center justify-between gap-3">
                     <button onclick="openMenu()" class="md:hidden px-3 py-1.5 btn-forest text-xs rounded-md">
-                        ☰ MENU
+                        ☰ Menu
                     </button>
 
-                    <div class="flex items-center gap-2.5 ml-auto">
-                        <button onclick="alertPop('No new notifications')" class="p-2 border border-stone-300 bg-white rounded-md hover:bg-stone-50 transition">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 md:w-5 md:h-5 text-stone-800" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <div class="flex items-center gap-3 ml-auto">
+                        <button onclick="alertPop('No new notifications')" class="p-2 border border-stone-300 bg-white rounded-md hover:bg-stone-100 transition">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-stone-700" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M15 17h5l-1.4-1.4A2 2 0 0118 14.2V11a6 6 0 10-12 0v3.2a2 2 0 01-.6 1.4L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
                             </svg>
                         </button>
 
-                        <a href="profile.html" class="flex items-center gap-2 pl-2.5 border-l border-stone-300 hover:opacity-80 transition">
-                            <div data-user-avatar class="w-8 h-8 md:w-9 md:h-9 rounded-full bg-[#164028] text-white flex items-center justify-center font-bold text-xs md:text-sm">
+                        <a href="profile.html" class="flex items-center gap-2 pl-2 border-l border-stone-300 hover:opacity-80">
+                            <div data-user-avatar class="w-8 h-8 rounded-full bg-[#164028] text-white flex items-center justify-center font-bold text-xs">
                                 KN
                             </div>
-                            <span data-user-firstname class="hidden sm:inline font-heading font-bold text-sm text-stone-900">Kartikey</span>
+                            <span data-user-firstname class="hidden sm:inline font-bold text-sm text-stone-900">Kartikey</span>
                         </a>
                     </div>
                 </div>
 
                 <div>
-                    <h1 class="font-heading text-2xl font-extrabold tracking-tight">
-                        Hey, <span data-user-firstname class="underline decoration-emerald-500 decoration-2">Kartikey</span>
+                    <h1 class="font-heading text-2xl font-bold">
+                        Hey, <span data-user-firstname class="text-[#164028]">Kartikey</span> 👋
                     </h1>
-                    <p class="text-xs text-stone-600 mt-1">Here is how the store is doing today.</p>
+                    <p class="text-xs text-stone-500 mt-0.5">Quick summary of today's store activity</p>
                 </div>
             </div>
 
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-                <div class="market-card p-5">
-                    <p class="font-heading text-3xl font-extrabold text-[#164028]">5</p>
-                    <p class="text-stone-500 text-sm mt-1 font-semibold">Orders Today</p>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+                <div class="market-card p-4">
+                    <p class="font-heading text-2xl md:text-3xl font-extrabold text-[#164028]">5</p>
+                    <p class="text-stone-500 text-xs md:text-sm mt-1 font-semibold">Orders Today</p>
                 </div>
 
-                <div class="market-card p-5">
-                    <p class="font-heading text-3xl font-extrabold text-[#164028]">₹11,047</p>
-                    <p class="text-stone-500 text-sm mt-1 font-semibold">Sales Today</p>
+                <div class="market-card p-4">
+                    <p class="font-heading text-2xl md:text-3xl font-extrabold text-[#164028]">₹11,047</p>
+                    <p class="text-stone-500 text-xs md:text-sm mt-1 font-semibold">Sales Today</p>
                 </div>
 
-                <div class="market-card p-5">
-                    <p class="font-heading text-3xl font-extrabold text-[#164028]">2</p>
-                    <p class="text-stone-500 text-sm mt-1 font-semibold">Closed by Bot</p>
+                <div class="market-card p-4">
+                    <p class="font-heading text-2xl md:text-3xl font-extrabold text-[#164028]">2</p>
+                    <p class="text-stone-500 text-xs md:text-sm mt-1 font-semibold">Closed by Bot</p>
                 </div>
 
-                <div class="market-card p-5">
-                    <p class="font-heading text-3xl font-extrabold text-[#164028]">3</p>
-                    <p class="text-stone-500 text-sm mt-1 font-semibold">Unpaid Orders</p>
+                <div class="market-card p-4">
+                    <p class="font-heading text-2xl md:text-3xl font-extrabold text-[#164028]">3</p>
+                    <p class="text-stone-500 text-xs md:text-sm mt-1 font-semibold">Unpaid Orders</p>
                 </div>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div class="market-card p-5">
-                    <h2 class="font-heading font-bold text-base mb-4 text-[#164028]">Needs Attention</h2>
+                    <h2 class="font-heading font-bold text-base mb-3 text-[#164028]">Needs Attention</h2>
 
-                    <div class="space-y-3">
-                        <div class="flex items-center gap-3">
-                            <span class="text-xs font-semibold bg-green-100 text-green-700 px-2 py-1 rounded-md">WA</span>
-                            <p class="text-sm">Bot escalated: customer asking for discount</p>
+                    <div class="space-y-2.5 text-sm">
+                        <div class="flex items-center gap-2.5 p-2 rounded hover:bg-stone-50 transition">
+                            <span class="text-xs font-bold bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded">WA</span>
+                            <span>Customer asking for discount on WhatsApp</span>
                         </div>
-                        <div class="flex items-center gap-3">
-                            <span class="text-xs font-semibold bg-red-100 text-red-700 px-2 py-1 rounded-md">₹</span>
-                            <p class="text-sm">Order #1188 — payment link expired</p>
+
+                        <div class="flex items-center gap-2.5 p-2 rounded hover:bg-stone-50 transition">
+                            <span class="text-xs font-bold bg-rose-100 text-rose-700 px-2 py-0.5 rounded">₹</span>
+                            <span>Order #1188 — payment link expired</span>
                         </div>
-                        <div class="flex items-center gap-3">
-                            <span class="text-xs font-semibold bg-red-100 text-red-700 px-2 py-1 rounded-md">!</span>
-                            <p class="text-sm">Order #1187 stuck in confirmed for 26h</p>
+
+                        <div class="flex items-center gap-2.5 p-2 rounded hover:bg-stone-50 transition">
+                            <span class="text-xs font-bold bg-amber-100 text-amber-800 px-2 py-0.5 rounded">!</span>
+                            <span>Order #1187 stuck in confirmed for 26h</span>
                         </div>
-                        <div class="flex items-center gap-3">
-                            <span class="text-xs font-semibold bg-green-100 text-green-700 px-2 py-1 rounded-md">WEB</span>
-                            <p class="text-sm">2 website orders waiting to be packed</p>
+
+                        <div class="flex items-center gap-2.5 p-2 rounded hover:bg-stone-50 transition">
+                            <span class="text-xs font-bold bg-blue-100 text-blue-700 px-2 py-0.5 rounded">Web</span>
+                            <span>2 store orders waiting to be packed</span>
                         </div>
-                        <div class="flex items-center gap-3">
-                            <span class="text-xs font-semibold bg-stone-100 text-stone-700 px-2 py-1 rounded-md">↻</span>
-                            <p class="text-sm">1 return request needs a look</p>
+
+                        <div class="flex items-center gap-2.5 p-2 rounded hover:bg-stone-50 transition">
+                            <span class="text-xs font-bold bg-stone-200 text-stone-700 px-2 py-0.5 rounded">↻</span>
+                            <span>1 return request needs a look</span>
                         </div>
                     </div>
                 </div>
 
                 <div class="market-card p-5">
-                    <h2 class="font-heading font-bold text-base mb-4 text-[#164028]">Nexus Tips</h2>
+                    <h2 class="font-heading font-bold text-base mb-3 text-[#164028]">Tips & Reminders</h2>
                     
-                    <div class="space-y-3">
-                        <div class="bg-amber-50/80 border border-amber-200 rounded-lg p-3">
-                            <p class="text-sm">Restock <span class="font-semibold">Wireless Headphones</span> — usually sells out by Friday</p>
+                    <div class="space-y-3 text-sm">
+                        <div class="bg-amber-50 border border-amber-200 rounded-lg p-3">
+                            <p class="font-bold text-stone-900 mb-0.5">📦 Restock reminder</p>
+                            <p class="text-stone-700 text-xs">Wireless Headphones usually sell out by Friday.</p>
                         </div>
-                        <div class="bg-amber-50/80 border border-amber-200 rounded-lg p-3">
-                            <p class="text-sm">Your product CSV has 4 items set to ₹0, fix those before the bot sells them</p>
+
+                        <div class="bg-amber-50 border border-amber-200 rounded-lg p-3">
+                            <p class="font-bold text-stone-900 mb-0.5">⚠️ Fix item prices</p>
+                            <p class="text-stone-700 text-xs">Product CSV has 4 items set to ₹0. Fix those before the bot sells them.</p>
                         </div>
-                        <a href="invoices.html" class="block bg-amber-50/80 border border-amber-200 rounded-lg p-3 hover:bg-amber-100/90 transition">
-                            <p class="text-sm">2 invoices created this week — <span class="text-emerald-800 font-bold hover:underline">open invoice list</span></p>
+
+                        <a href="invoices.html" class="block bg-stone-50 border border-stone-200 rounded-lg p-3 hover:bg-stone-100 transition">
+                            <p class="font-bold text-stone-900 mb-0.5">🧾 Weekly Invoices</p>
+                            <p class="text-stone-600 text-xs">2 invoices created this week — <span class="text-emerald-800 font-bold underline">view invoices</span></p>
                         </a>
                     </div>
                 </div>

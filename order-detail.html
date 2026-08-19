@@ -3,31 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Order Details | Commerce OS</title>
+    <title>Order #1240 Details | Commerce OS</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="css/custom.css">
     <script src="js/app.js"></script>
-    <script src="js/storage.js"></script>
     <script src="js/orders.js"></script>
 </head>
 <body class="text-stone-900">
 
     <div class="flex h-screen">
-        <div id="mobileMenuBackdrop" onclick="openMenu()" class="fixed inset-0 bg-[#0f2b1c]/40 backdrop-blur-xs z-40 hidden md:hidden transition-opacity"></div>
+        <div id="mobileMenuBackdrop" onclick="openMenu()" class="fixed inset-0 bg-black/40 z-40 hidden md:hidden"></div>
 
-        <aside id="sidebar" class="fixed top-0 left-0 bottom-0 z-50 w-64 h-screen flex flex-col text-stone-100 transition-transform duration-200 -translate-x-full md:translate-x-0">
-            <div class="sidebar-header p-5 pb-4 flex items-center justify-between">
-                <span class="font-heading text-2xl font-extrabold tracking-tight text-[#0f2b1c]">
+        <aside id="sidebar" class="fixed top-0 left-0 bottom-0 z-50 w-64 h-screen flex flex-col text-white transition-transform duration-200 -translate-x-full md:translate-x-0">
+            <div class="sidebar-header p-5 flex items-center justify-between">
+                <span class="font-heading text-2xl font-extrabold text-[#0f2b1c]">
                     Nexus
                 </span>
-                <button onclick="openMenu()" class="md:hidden text-emerald-200 hover:text-white p-1">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-                    </svg>
+                <button onclick="openMenu()" class="md:hidden text-emerald-200 hover:text-white text-xl font-bold">
+                    ✕
                 </button>
             </div>
 
-            <nav class="flex-1 p-4 space-y-1.5 overflow-y-auto">
+            <nav class="flex-1 p-4 space-y-1 overflow-y-auto">
                 <a href="dashboard.html" class="sidebar-link">Dashboard</a>
                 <a href="inbox.html" class="sidebar-link">Inbox</a>
                 <a href="orders.html" class="sidebar-link active">Orders</a>
@@ -40,83 +37,74 @@
 
             <div data-user-signedin onclick="alertPop('Signed in as Kartikey Negi')" class="sidebar-footer p-4 text-xs font-bold cursor-pointer flex items-center justify-between mt-auto">
                 <div class="flex items-center gap-2">
-                    <span class="w-2.5 h-2.5 rounded-full bg-lime-400 shadow-[0_0_6px_#A3E635]"></span>
+                    <span class="w-2.5 h-2.5 rounded-full bg-lime-400"></span>
                     <span>Kartikey (Owner)</span>
                 </div>
-                <span class="text-xs">🌱</span>
+                <span>🌱</span>
             </div>
         </aside> 
 
         <main class="flex-1 overflow-y-auto md:ml-64 p-4 md:p-8">
-            <div class="no-print flex items-center justify-between mb-4 md:hidden">
-                <button onclick="openMenu()" class="px-3 py-1.5 btn-forest text-xs rounded-md">
-                    ☰ MENU
-                </button>
+            <div class="flex items-center justify-between mb-6 pb-3 border-b border-stone-200">
+                <div class="flex items-center gap-3">
+                    <a href="orders.html" class="text-stone-400 hover:text-stone-900 transition text-2xl font-bold">←</a>
+                    <div>
+                        <h1 class="font-heading text-lg font-bold text-[#164028]">Order #1240</h1>
+                        <p class="text-xs text-stone-500">Placed on 29 Jul 2026 · Priya Sharma (WhatsApp)</p>
+                    </div>
+                </div>
 
-                <div class="flex items-center gap-2.5">
-                    <button onclick="alertPop('No new notifications')" class="p-2 border border-stone-300 bg-white rounded-md hover:bg-stone-50 transition">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-stone-800" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <div class="flex items-center gap-2">
+                    <button onclick="alertPop('No new notifications')" class="p-2 border border-stone-300 bg-white rounded-md hover:bg-stone-100 transition">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-stone-700" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M15 17h5l-1.4-1.4A2 2 0 0118 14.2V11a6 6 0 10-12 0v3.2a2 2 0 01-.6 1.4L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
                         </svg>
                     </button>
-
-                    <a href="profile.html" data-user-avatar class="w-8 h-8 rounded-full bg-[#164028] text-white flex items-center justify-center font-bold text-xs">
-                        KN
-                    </a>
-                </div>
-            </div>
-            
-            <div class="flex items-center gap-3 mb-8">
-                <a href="orders.html" class="text-stone-400 hover:text-stone-900 transition text-xl">←</a>
-                <div>
-                    <h1 class="font-heading text-lg font-bold text-[#164028]">Order #1240</h1>
-                    <p class="text-xs text-stone-500">Placed on 29 Jul 2026 · Priya Sharma</p>
+                    <button onclick="openMenu()" class="md:hidden px-3 py-1.5 btn-forest text-xs rounded-md">
+                        ☰ Menu
+                    </button>
                 </div>
             </div>
 
-            <div class="market-card p-6 mb-6 overflow-x-auto">
-                <div class="flex items-center justify-between min-w-[500px]">
+            <div class="market-card p-5 mb-6 overflow-x-auto">
+                <div class="flex items-center justify-between min-w-[520px]">
                     <div class="flex flex-col items-center flex-1">
                         <div id="step-1" class="w-8 h-8 rounded-full bg-[#164028] text-white flex items-center justify-center text-xs font-bold">✓</div>
-                        <p class="text-xs font-semibold mt-2">New</p>
+                        <p class="text-xs font-bold mt-1.5 text-stone-800">New</p>
                     </div>
-
                     <div id="line-1" class="flex-1 h-0.5 bg-[#164028]"></div>
 
                     <div class="flex flex-col items-center flex-1">
                         <div id="step-2" class="w-8 h-8 rounded-full bg-[#164028] text-white flex items-center justify-center text-xs font-bold">✓</div>
-                        <p class="text-xs font-semibold mt-2">Confirmed</p>
+                        <p class="text-xs font-bold mt-1.5 text-stone-800">Confirmed</p>
                     </div>
-
                     <div id="line-2" class="flex-1 h-0.5 bg-stone-300"></div>
 
                     <div class="flex flex-col items-center flex-1">
                         <div id="step-3" class="w-8 h-8 rounded-full bg-stone-200 text-stone-500 flex items-center justify-center text-xs font-bold">3</div>
-                        <p class="text-xs text-stone-500 mt-2">Packed</p>
+                        <p class="text-xs font-semibold mt-1.5 text-stone-500">Packed</p>
                     </div>
-
                     <div id="line-3" class="flex-1 h-0.5 bg-stone-300"></div>
 
                     <div class="flex flex-col items-center flex-1">
                         <div id="step-4" class="w-8 h-8 rounded-full bg-stone-200 text-stone-500 flex items-center justify-center text-xs font-bold">4</div>
-                        <p class="text-xs text-stone-500 mt-2">Shipped</p>
+                        <p class="text-xs font-semibold mt-1.5 text-stone-500">Shipped</p>
                     </div>
-
                     <div id="line-4" class="flex-1 h-0.5 bg-stone-300"></div>
 
                     <div class="flex flex-col items-center flex-1">
                         <div id="step-5" class="w-8 h-8 rounded-full bg-stone-200 text-stone-500 flex items-center justify-center text-xs font-bold">5</div>
-                        <p class="text-xs text-stone-500 mt-2">Delivered</p>
+                        <p class="text-xs font-semibold mt-1.5 text-stone-500">Delivered</p>
                     </div>
                 </div>
             </div>
 
-            <div class="mb-6 flex items-center">
-                <button id="advanceBtn" onclick="advanceOrderStatus()" class="btn-forest text-sm font-bold px-4 py-2 rounded-lg transition">
+            <div class="mb-6 flex items-center gap-3">
+                <button id="advanceBtn" onclick="advanceOrderStatus()" class="btn-forest text-xs font-bold px-4 py-2 transition">
                     Mark as Packed
                 </button>
 
-                <button onclick="resetOrderStatus()" class="ml-3 text-stone-500 text-xs hover:text-stone-800 underline font-semibold">
+                <button onclick="resetOrderStatus()" class="text-stone-500 text-xs hover:text-stone-800 underline font-semibold">
                     Reset Status
                 </button>
             </div>
@@ -124,76 +112,77 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                 <div class="market-card p-5 flex flex-col justify-between">
                     <div>
-                        <h2 class="font-heading font-bold text-base text-[#164028] mb-4 pb-2 border-b border-stone-200">Items</h2>
+                        <h2 class="font-heading font-bold text-base text-[#164028] mb-3 pb-2 border-b border-stone-200">
+                            Ordered Items
+                        </h2>
 
-                        <div class="divide-y divide-stone-100 border-b border-stone-200 mb-4 text-xs">
-                            <div class="py-3 flex items-center justify-between">
+                        <div class="space-y-3 text-xs">
+                            <div class="flex items-center justify-between pb-2 border-b border-stone-100">
                                 <div>
                                     <p class="font-bold text-stone-900 text-sm">Wireless Headphones</p>
-                                    <p class="text-stone-500 mt-0.5 font-medium">Qty: 1</p>
+                                    <p class="text-stone-500 mt-0.5">Quantity: 1</p>
                                 </div>
                                 <span class="font-bold text-stone-900 text-sm">₹2,999</span>
                             </div>
-                        </div>
 
-                        <div class="space-y-1.5 text-xs">
-                            <div class="flex justify-between text-stone-600 font-medium">
-                                <span>Shipping</span>
+                            <div class="flex items-center justify-between py-1 text-stone-600">
+                                <span>Standard Courier Shipping</span>
                                 <span class="font-bold">₹49</span>
                             </div>
-                            <div class="flex justify-between font-bold text-sm text-stone-900 pt-2 border-t border-stone-200">
-                                <span>Total</span>
-                                <span>₹3,048</span>
-                            </div>
                         </div>
+                    </div>
+
+                    <div class="flex items-center justify-between pt-3 mt-4 border-t border-stone-200">
+                        <span class="font-bold text-sm text-stone-900">Total Amount</span>
+                        <span class="font-bold text-sm text-stone-900">₹3,048</span>
                     </div>
                 </div>
 
                 <div class="market-card p-5 flex flex-col justify-between">
                     <div>
-                        <h2 class="font-heading font-bold text-base text-[#164028] mb-4 pb-2 border-b border-stone-200">
-                            Payment
+                        <h2 class="font-heading font-bold text-base text-[#164028] mb-3 pb-2 border-b border-stone-200">
+                            Payment Details
                         </h2>
 
-                        <dl class="space-y-3 text-xs">
+                        <div class="space-y-2.5 text-xs">
                             <div class="flex items-center justify-between pb-2 border-b border-stone-100">
-                                <dt class="text-stone-500 font-medium">Status</dt>
-                                <dd><span class="text-xs font-bold bg-amber-100 text-amber-800 px-2 py-0.5 rounded-md">Pending</span></dd>
+                                <span class="text-stone-500">Payment Status</span>
+                                <span class="text-xs font-bold bg-amber-100 text-amber-800 px-2 py-0.5 rounded">Pending (Unpaid)</span>
                             </div>
 
                             <div class="flex items-center justify-between pb-2 border-b border-stone-100">
-                                <dt class="text-stone-500 font-medium">Method</dt>
-                                <dd class="text-xs font-bold text-stone-900">UPI / Card</dd>
+                                <span class="text-stone-500">Selected Method</span>
+                                <span class="font-bold text-stone-900">UPI / QR Code</span>
                             </div>
 
                             <div class="flex items-center justify-between pt-1">
-                                <dt class="text-stone-500 font-medium">Payment Link</dt>
-                                <dd class="text-xs font-bold text-emerald-800 underline truncate max-w-[180px]">https://commerceos.com/pay/9F2A</dd>
+                                <span class="text-stone-500">Checkout Link</span>
+                                <span class="font-bold text-emerald-800 font-mono underline text-xs">commerce.os/pay/9F2A</span>
                             </div>
-                        </dl>
+                        </div>
                     </div>
 
-                    <button onclick="alertPop('Sent payment link to Priya!')" class="w-full mt-6 btn-forest text-xs font-bold py-2.5 rounded-md transition">
+                    <button onclick="alertPop('Payment link sent to Priya!')" class="w-full mt-4 btn-forest text-xs font-bold py-2.5 rounded transition">
                         Resend Payment Link
                     </button>
                 </div>
             </div>
 
-            <div id="invoiceSection" class="market-card p-5 mt-6">
+            <div id="invoiceSection" class="market-card p-5">
                 <div class="flex items-center justify-between mb-4 pb-3 border-b border-stone-200">
                     <div>
-                        <h2 class="font-heading font-bold text-base text-[#164028]">Invoice</h2>
+                        <h2 class="font-heading font-bold text-base text-[#164028]">Invoice / Tax Receipt</h2>
                         <p class="text-xs text-stone-600 mt-0.5">
-                            <span class="font-bold text-stone-900">Priya Sharma</span> • GSTIN: 27XXXXXXX1Z5
+                            Customer: <span class="font-bold text-stone-900">Priya Sharma</span> · GSTIN: 27XXXXXXX1Z5
                         </p>
                     </div>
-        
+                
                     <div class="flex flex-col items-end gap-1">
                         <button onclick="window.print()" class="no-print text-xs font-bold text-emerald-800 hover:underline">
-                            Download PDF
+                            Print / Download PDF
                         </button>
                         <div class="text-right text-xs">
-                            <span class="font-bold text-stone-900 block">INVOICE #INV-1240</span>
+                            <span class="font-bold text-stone-900 block">INV-1240</span>
                             <span class="text-stone-500">29 Jul 2026</span>
                         </div>
                     </div>
@@ -203,23 +192,23 @@
                     <table class="w-full text-xs text-left">
                         <thead>
                             <tr>
-                                <th class="py-2">Item</th>
-                                <th class="py-2 text-center">Qty</th>
-                                <th class="py-2 text-right">Price</th>
-                                <th class="py-2 text-right">Amount</th>
+                                <th class="py-2 font-bold">Item Description</th>
+                                <th class="py-2 text-center font-bold">Qty</th>
+                                <th class="py-2 text-right font-bold">Price</th>
+                                <th class="py-2 text-right font-bold">Total</th>
                             </tr>
                         </thead>
                         <tbody class="divide-y divide-stone-100 text-stone-900">
                             <tr>
-                                <td class="py-2.5 font-bold">Wireless Headphones</td>
+                                <td class="py-2.5 font-semibold">Wireless Headphones</td>
                                 <td class="py-2.5 text-center">1</td>
                                 <td class="py-2.5 text-right">₹2,999</td>
                                 <td class="py-2.5 text-right font-bold">₹2,999</td>
                             </tr>
                             <tr>
-                                <td class="py-2.5 text-stone-600">Shipping</td>
-                                <td class="py-2.5 text-center text-stone-400">-</td>
-                                <td class="py-2.5 text-right text-stone-400">-</td>
+                                <td class="py-2.5 text-stone-600">Standard Delivery</td>
+                                <td class="py-2.5 text-center text-stone-400">1</td>
+                                <td class="py-2.5 text-right">₹49</td>
                                 <td class="py-2.5 text-right font-bold">₹49</td>
                             </tr>
                         </tbody>
@@ -227,14 +216,10 @@
                 </div>
 
                 <div class="flex justify-end pt-3 mt-3 border-t border-stone-200">
-                    <p class="text-sm font-bold text-stone-900">Total: ₹3,048 <span class="text-xs text-stone-500 font-normal">(incl. GST)</span></p>
+                    <p class="text-sm font-bold text-stone-900">Total Amount: ₹3,048 <span class="text-xs text-stone-500 font-normal">(inclusive of GST)</span></p>
                 </div>
             </div>
         </main>
     </div>
-
-    <script>
-        applyStatusVisuals();
-    </script>
 </body>
 </html>

@@ -9,43 +9,40 @@ function toggleEmptyState() {
     }
 }
 
-function sendReply() {
-    let box = document.getElementById('replyInput');
-    if (!box) return;
-
-    let text = box.value.trim();
-    if (!text) return;
-
-    addBoxToChat(text);
-    saveReplyToStorage(text);
-
-    box.value = '';
-}
-
-function addBoxToChat(text) {
+function addChatBubble(text) {
     let feed = document.getElementById('chatBox');
     if (!feed) return;
 
-    let bubbleWrap = document.createElement('div');
-    bubbleWrap.className = 'flex justify-end';
-    bubbleWrap.innerHTML = `
+    let bubble = document.createElement('div');
+    bubble.className = 'flex justify-end';
+    bubble.innerHTML = `
         <div class="market-card rounded-tr-sm px-4 py-3 max-w-md bg-stone-100/80">
             <p class="text-sm text-stone-900">${text}</p>
             <p class="text-xs text-stone-400 mt-1">You · just now</p>
         </div>
     `;
-    feed.appendChild(bubbleWrap);
+    feed.appendChild(bubble);
 }
 
-function saveReplyToStorage(text) {
-    let pathKey = 'chatReplies_' + window.location.pathname;
-    let history = JSON.parse(localStorage.getItem(pathKey)) || [];
+function sendReply() {
+    let input = document.getElementById('replyInput');
+    if (!input) return;
+
+    let text = input.value.trim();
+    if (!text) return;
+
+    addChatBubble(text);
+
+    let key = 'chatReplies_' + window.location.pathname;
+    let history = JSON.parse(localStorage.getItem(key)) || [];
     history.push(text);
-    localStorage.setItem(pathKey, JSON.stringify(history));
+    localStorage.setItem(key, JSON.stringify(history));
+
+    input.value = '';
 }
 
 function loadSavedReplies() {
-    let pathKey = 'chatReplies_' + window.location.pathname;
-    let history = JSON.parse(localStorage.getItem(pathKey)) || [];
-    history.forEach(msg => addBoxToChat(msg));
+    let key = 'chatReplies_' + window.location.pathname;
+    let history = JSON.parse(localStorage.getItem(key)) || [];
+    history.forEach(msg => addChatBubble(msg));
 }
