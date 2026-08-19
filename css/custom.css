@@ -4,6 +4,7 @@
     box-sizing: border-box;
 }
 
+/* basic setup */
 body {
     font-family: 'Nunito', sans-serif;
     color: #262320;
@@ -13,6 +14,7 @@ body {
     background: linear-gradient(180deg, #d4edff 0%, #fef5da 25%, #f8f5ee 55%, #c2ebff 100%) fixed;
 }
 
+/* fancy font for titles */
 h1, h2, h3, .font-heading {
     font-family: 'Fraunces', serif;
     font-weight: 700;
@@ -22,6 +24,7 @@ h1, h2, h3, .font-heading {
 
 aside#sidebar {
     background-color: #24533c;
+    /* found this cool svg pattern online */
     background-image: 
         url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='80' viewBox='0 0 240 80' opacity='0.22'%3E%3Cpolygon points='30,12 15,40 22,40 10,68 50,68 38,40 45,40' fill='%23BBF7D0'/%3E%3Cpolygon points='95,5 75,35 85,35 70,68 120,68 105,35 115,35' fill='%23FEF08A'/%3E%3Cpolygon points='160,18 145,42 152,42 140,68 180,68 168,42 175,42' fill='%23BBF7D0'/%3E%3Cpolygon points='215,8 200,36 208,36 195,68 235,68 222,36 230,36' fill='%2386EFAC'/%3E%3Cpath d='M0,80 L240,80 L240,68 Q180,64 120,68 Q60,64 0,68 Z' fill='%234ADE80'/%3E%3C/svg%3E"),
         linear-gradient(180deg, #2d6349 0%, #1b4530 100%);
@@ -32,9 +35,7 @@ aside#sidebar {
     box-shadow: 4px 0 20px rgba(27, 69, 48, 0.15);
 }
 
-.sidebar-header {
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-}
+.sidebar-header { border-bottom: 1px solid rgba(255, 255, 255, 0.2); }
 
 .sidebar-link {
     display: flex;
@@ -49,9 +50,10 @@ aside#sidebar {
     transition: transform 0.15s ease, background 0.15s ease;
 }
 
+/* hover effect for menu */
 .sidebar-link:hover {
     background: rgba(255, 255, 255, 0.15);
-    transform: translateX(3px);
+    transform: translateX(3px); /* slide right a little */
 }
 
 .sidebar-link.active {
@@ -67,6 +69,7 @@ aside#sidebar {
     color: #fff;
 }
 
+/* making a spinning sun in the top right lol */
 body::before {
     content: "";
     position: fixed;
@@ -87,6 +90,7 @@ body::before {
     to { transform: rotate(360deg); }
 }
 
+/* move sun out of the way on phones */
 @media (max-width: 768px) {
     body::before {
         top: 16px;
@@ -96,6 +100,7 @@ body::before {
     }
 }
 
+/* water waves animation at the bottom */
 body::after {
     content: "";
     position: fixed;
@@ -184,6 +189,7 @@ input:focus, select:focus, textarea:focus {
     box-shadow: 0 0 0 2px rgba(22, 163, 74, 0.15);
 }
 
+/* custom scrollbar cus default is ugly */
 ::-webkit-scrollbar {
     width: 6px;
     height: 6px;
@@ -202,7 +208,7 @@ input:focus, select:focus, textarea:focus {
     background: #16a34a;
 }
 
-/* For printing invoice */
+/* for printing invoices */
 @media print {
     body * { visibility: hidden; }
     #invoiceSection, #invoiceSection * { visibility: visible; }

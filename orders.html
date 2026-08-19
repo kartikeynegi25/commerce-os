@@ -19,7 +19,7 @@
                     Nexus
                 </span>
                 <button onclick="openMenu()" class="md:hidden text-emerald-200 hover:text-white text-xl font-bold">
-                    ✕
+                    X
                 </button>
             </div>
 
@@ -34,20 +34,18 @@
                 <a href="settings.html" class="sidebar-link">Settings</a>
             </nav>
 
-            <div data-user-signedin onclick="alertPop('Signed in as Kartikey Negi')" class="sidebar-footer p-4 text-xs font-bold cursor-pointer flex items-center justify-between mt-auto">
-                <div class="flex items-center gap-2">
-                    <span class="w-2.5 h-2.5 rounded-full bg-lime-400"></span>
-                    <span>Kartikey (Owner)</span>
-                </div>
-                <span>🌱</span>
+            <div data-user-signedin onclick="alertPop('Signed in as Kartikey Negi')" class="sidebar-footer p-4 text-xs font-bold cursor-pointer flex items-center gap-2 mt-auto">
+                <span class="w-2.5 h-2.5 rounded-full bg-lime-400"></span>
+                <span>Kartikey (Owner)</span>
             </div>
         </aside> 
 
         <main class="flex-1 overflow-y-auto md:ml-64 p-4 md:p-8">
+            
             <div class="flex flex-col gap-4 mb-6 pb-4 border-b border-stone-300">
                 <div class="flex items-center justify-between gap-3">
                     <button onclick="openMenu()" class="md:hidden px-3 py-1.5 btn-forest text-xs rounded-md">
-                        ☰ Menu
+                        Menu
                     </button>
 
                     <div class="flex items-center gap-3 ml-auto">
@@ -72,6 +70,7 @@
                 </div>
             </div>
 
+            <!-- search box and add button -->
             <div class="mb-4 flex flex-col sm:flex-row gap-3 items-stretch sm:items-center justify-between">
                 <div class="relative max-w-sm flex-1">
                     <input
@@ -79,11 +78,11 @@
                         id="searchInput"
                         onkeyup="searchRows()"
                         placeholder="Search order ID, item, or customer..."
-                        class="w-full px-3 py-2 text-sm">
+                        class="w-full px-3 py-2 text-sm border border-stone-300 rounded-md">
                 </div>
 
-                <button onclick="addFakeOrder()" class="btn-forest text-xs font-bold px-4 py-2 rounded-lg flex items-center justify-center gap-1.5 transition">
-                    <span>⚡ Add Test Order</span>
+                <button onclick="addFakeOrder()" class="btn-forest text-xs font-bold px-4 py-2 rounded-lg transition">
+                    + Add Test Order
                 </button>
             </div>
 
@@ -102,6 +101,7 @@
                         </thead>
 
                         <tbody id="ordersTableBody" class="divide-y divide-stone-100">
+                            
                             <tr onclick="window.location='order-detail.html'" class="hover:bg-stone-50 transition cursor-pointer">
                                 <td class="px-4 py-3 font-bold text-[#164028]">#1240</td>
                                 <td class="px-4 py-3 font-semibold">Priya Sharma</td>
@@ -174,41 +174,48 @@
     </div>
 
     <script>
-        const samplePeople = ["Kabir Das", "Aanya Verma", "Dev Malhotra", "Zara Chen", "Vikram Rathore", "Tanya Sen", "Arjun Nair"];
-        const sampleItems = ["Organic Green Tea Pack x2", "Handmade Scented Candle x1", "Bamboo Desk Mat x1", "Ceramic Coffee Mug x2", "Linen Apron x1"];
-        const samplePays = ["Paid", "Pending", "COD"];
+        let fakeNames = ["Kabir Das", "Aanya Verma", "Dev Malhotra", "Zara Chen", "Vikram Rathore", "Tanya Sen", "Arjun Nair"];
+        let fakeProducts = ["Organic Green Tea Pack x2", "Handmade Scented Candle x1", "Bamboo Desk Mat x1", "Ceramic Coffee Mug x2", "Linen Apron x1"];
+        let payTypes = ["Paid", "Pending", "COD"];
 
         function addFakeOrder() {
-            let list = document.getElementById("ordersTableBody");
-            let id = "#" + (Math.floor(Math.random() * 800) + 1300);
-            let name = samplePeople[Math.floor(Math.random() * samplePeople.length)];
-            let item = sampleItems[Math.floor(Math.random() * sampleItems.length)];
-            let pay = samplePays[Math.floor(Math.random() * samplePays.length)];
-            let price = "₹" + (Math.floor(Math.random() * 25 + 8) * 100 + 99);
+            let tableList = document.getElementById("ordersTableBody");
+            
+            let randomId = "#" + (Math.floor(Math.random() * 800) + 1300);
+            let customerName = fakeNames[Math.floor(Math.random() * fakeNames.length)];
+            let productName = fakeProducts[Math.floor(Math.random() * fakeProducts.length)];
+            let paymentStatus = payTypes[Math.floor(Math.random() * payTypes.length)];
+            let orderPrice = "₹" + (Math.floor(Math.random() * 25 + 8) * 100 + 99);
 
-            let payStyle = "bg-amber-100 text-amber-800";
-            if (pay === "Paid") payStyle = "bg-emerald-100 text-emerald-800";
-            if (pay === "COD") payStyle = "bg-stone-200 text-stone-700";
+            let colorStyle = "bg-amber-100 text-amber-800";
+            if (paymentStatus === "Paid") {
+                colorStyle = "bg-emerald-100 text-emerald-800";
+            }
+            if (paymentStatus === "COD") {
+                colorStyle = "bg-stone-200 text-stone-700";
+            }
 
-            let row = document.createElement("tr");
-            row.className = "hover:bg-emerald-50/60 transition cursor-pointer bg-emerald-50/40 border-l-4 border-l-emerald-600";
-            row.onclick = () => alertPop("Simulated order " + id + " from " + name);
+            let newRow = document.createElement("tr");
+            newRow.className = "hover:bg-emerald-50/60 transition cursor-pointer bg-emerald-50/40 border-l-4 border-l-emerald-600";
+            
+            newRow.onclick = function() {
+                alertPop("Simulated order " + randomId + " from " + customerName);
+            };
 
-            row.innerHTML = `
-                <td class="px-4 py-3 font-bold text-[#164028]">${id} <span class="text-[10px] bg-emerald-200 text-emerald-900 font-bold px-1.5 py-0.5 rounded ml-1">NEW</span></td>
-                <td class="px-4 py-3 font-semibold text-stone-900">${name}</td>
-                <td class="px-4 py-3 text-stone-600">${item}</td>
-                <td class="px-4 py-3">
-                    <span class="text-xs font-bold bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded">New</span>
-                </td>
-                <td class="px-4 py-3">
-                    <span class="text-xs font-bold ${payStyle} px-2 py-0.5 rounded">${pay}</span>
-                </td>
-                <td class="px-4 py-3 font-bold text-right text-stone-900">${price}</td>
-            `;
+            newRow.innerHTML = "" +
+                '<td class="px-4 py-3 font-bold text-[#164028]">' + randomId + ' <span class="text-[10px] bg-emerald-200 text-emerald-900 font-bold px-1.5 py-0.5 rounded ml-1">NEW</span></td>' +
+                '<td class="px-4 py-3 font-semibold text-stone-900">' + customerName + '</td>' +
+                '<td class="px-4 py-3 text-stone-600">' + productName + '</td>' +
+                '<td class="px-4 py-3">' +
+                    '<span class="text-xs font-bold bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded">New</span>' +
+                '</td>' +
+                '<td class="px-4 py-3">' +
+                    '<span class="text-xs font-bold ' + colorStyle + ' px-2 py-0.5 rounded">' + paymentStatus + '</span>' +
+                '</td>' +
+                '<td class="px-4 py-3 font-bold text-right text-stone-900">' + orderPrice + '</td>';
 
-            list.insertBefore(row, list.firstChild);
-            alertPop("New order " + id + " created!");
+            tableList.insertBefore(newRow, tableList.firstChild);
+            alertPop("New order " + randomId + " created!");
         }
     </script>
 </body>

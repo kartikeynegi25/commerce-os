@@ -20,7 +20,7 @@
                     Nexus
                 </span>
                 <button onclick="openMenu()" class="md:hidden text-emerald-200 hover:text-white text-xl font-bold">
-                    ✕
+                    X
                 </button>
             </div>
 
@@ -35,22 +35,22 @@
                 <a href="settings.html" class="sidebar-link">Settings</a>
             </nav>
 
-            <div data-user-signedin onclick="alertPop('Signed in as Kartikey Negi')" class="sidebar-footer p-4 text-xs font-bold cursor-pointer flex items-center justify-between mt-auto">
-                <div class="flex items-center gap-2">
-                    <span class="w-2.5 h-2.5 rounded-full bg-lime-400"></span>
-                    <span>Kartikey (Owner)</span>
-                </div>
-                <span>🌱</span>
+            <div data-user-signedin onclick="alertPop('Signed in as Kartikey Negi')" class="sidebar-footer p-4 text-xs font-bold cursor-pointer flex items-center gap-2 mt-auto">
+                <span class="w-2.5 h-2.5 rounded-full bg-lime-400"></span>
+                <span>Kartikey (Owner)</span>
             </div>
         </aside> 
 
         <main class="flex-1 overflow-y-auto md:ml-64 p-4 md:p-8">
+            
             <div class="flex items-center justify-between mb-6 pb-3 border-b border-stone-200">
                 <div class="flex items-center gap-3">
-                    <a href="orders.html" class="text-stone-400 hover:text-stone-900 transition text-2xl font-bold">←</a>
+                    <a href="orders.html" class="text-stone-400 hover:text-stone-900 font-bold text-sm bg-white border border-stone-200 px-3 py-1.5 rounded-md">
+                        &lt; Back
+                    </a>
                     <div>
                         <h1 class="font-heading text-lg font-bold text-[#164028]">Order #1229</h1>
-                        <p class="text-xs text-stone-500">Rohan Kapoor · 18 Jul 2026 via Instagram DM</p>
+                        <p class="text-xs text-stone-500">Rohan Kapoor / 18 Jul 2026 via Instagram DM</p>
                     </div>
                 </div>
 
@@ -61,7 +61,7 @@
                         </svg>
                     </button>
                     <button onclick="openMenu()" class="md:hidden px-3 py-1.5 btn-forest text-xs rounded-md">
-                        ☰ Menu
+                        Menu
                     </button>
                 </div>
             </div>
@@ -98,8 +98,14 @@
                     </div>
                 </div>
             </div>
+        <div class="flex justify-end mb-6">
+            <button id="advanceBtn" onclick="advanceOrderStatus()" class="btn-forest text-sm font-bold px-6 py-2.5 rounded-lg transition shadow-sm">
+                Update Status
+            </button>
+        </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                
                 <div class="market-card p-5 flex flex-col justify-between">
                     <div>
                         <h2 class="font-heading font-bold text-base text-[#164028] mb-3 pb-2 border-b border-stone-200">
@@ -163,7 +169,7 @@
                     <div>
                         <h2 class="font-heading font-bold text-base text-[#164028]">Invoice / Tax Receipt</h2>
                         <p class="text-xs text-stone-600 mt-0.5">
-                            Customer: <span class="font-bold text-stone-900">Rohan Kapoor</span> · GSTIN: 27XXXXXXX1Z5
+                            Customer: <span class="font-bold text-stone-900">Rohan Kapoor</span> / GSTIN: 27XXXXXXX1Z5
                         </p>
                     </div>
                 

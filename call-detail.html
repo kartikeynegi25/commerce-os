@@ -18,8 +18,8 @@
                 <span class="font-heading text-2xl font-extrabold text-[#0f2b1c]">
                     Nexus
                 </span>
-                <button onclick="openMenu()" class="md:hidden text-emerald-200 hover:text-white text-xl font-bold">
-                    ✕
+                <button onclick="openMenu()" class="md:hidden text-emerald-200 hover:text-white font-bold">
+                    X
                 </button>
             </div>
 
@@ -34,20 +34,17 @@
                 <a href="settings.html" class="sidebar-link">Settings</a>
             </nav>
 
-            <div data-user-signedin onclick="alertPop('Signed in as Kartikey Negi')" class="sidebar-footer p-4 text-xs font-bold cursor-pointer flex items-center justify-between mt-auto">
-                <div class="flex items-center gap-2">
-                    <span class="w-2.5 h-2.5 rounded-full bg-lime-400"></span>
-                    <span>Kartikey (Owner)</span>
-                </div>
-                <span>🌱</span>
+            <div data-user-signedin onclick="alertPop('Signed in as Kartikey Negi')" class="sidebar-footer p-4 text-xs font-bold cursor-pointer flex items-center gap-2 mt-auto">
+                <span class="w-2 h-2 rounded-full bg-lime-400"></span>
+                <span>Kartikey (Owner)</span>
             </div>
         </aside>
 
         <main class="flex-1 overflow-y-auto md:ml-64 p-4 md:p-8">
             <div class="flex flex-col gap-4 mb-6 pb-4 border-b border-stone-300">
                 <div class="flex items-center justify-between gap-3">
-                    <button onclick="openMenu()" class="md:hidden px-3 py-1.5 btn-forest text-xs rounded-md">
-                        ☰ Menu
+                    <button onclick="openMenu()" class="md:hidden px-3 py-2 btn-forest text-xs rounded-md">
+                        Menu
                     </button>
 
                     <div class="flex items-center gap-3 ml-auto">
@@ -68,63 +65,68 @@
 
                 <div>
                     <h1 class="font-heading text-2xl font-bold">Call Details</h1>
-                    <p class="text-xs text-stone-500 mt-0.5">Recording logs and AI bot conversation transcript</p>
+                    <p class="text-xs text-stone-500 mt-1">Recording logs and AI bot conversation transcript</p>
                 </div>
             </div>
 
             <div class="flex items-center gap-3 mb-6">
-                <a href="calls.html" class="text-stone-400 hover:text-stone-900 transition text-2xl font-bold">←</a>
+                <a href="calls.html" class="text-stone-400 hover:text-stone-900 font-bold text-sm bg-stone-100 px-3 py-1 rounded-md">
+                    &lt; Back
+                </a>
                 <div>
-                    <h2 class="text-base md:text-lg font-bold">Order #1244 — COD Verification</h2>
-                    <p class="text-xs text-stone-500">Anjali Mehta · Today at 10:14 AM · 38s call duration</p>
+                    <h2 class="text-base font-bold">Order #1244 - COD Verification</h2>
+                    <p class="text-xs text-stone-500">Anjali Mehta / Today at 10:14 AM / 38s duration</p>
                 </div>
             </div>
 
-            <div class="market-card p-5 md:p-6 max-w-2xl">
+            <div class="market-card p-5 max-w-2xl">
                 <div class="flex items-center gap-2 mb-5 pb-3 border-b border-stone-100 text-xs font-bold text-stone-600">
-                    <span class="w-2.5 h-2.5 rounded-full bg-amber-500"></span>
-                    <span class="text-stone-900">Outbound Call</span>
-                    <span>·</span>
+                    <span class="w-2 h-2 rounded-full bg-amber-500"></span>
+                    <span>Outbound Call</span>
+                    <span>|</span>
                     <span>Order #1244 COD check</span>
                 </div>
 
                 <div class="space-y-4 text-sm">
+                    <!-- bot msg 1 -->
                     <div>
-                        <p class="text-xs font-bold text-[#164028] mb-0.5">Nexus (Bot)</p>
-                        <p class="bg-stone-50 p-2.5 rounded-lg border border-stone-100 text-stone-800">
-                            Hi, this is an automated confirmation call for your order: 1 pair of Silver Jhumkas, Cash on Delivery for ₹1,450. Is that correct?
+                        <p class="text-xs font-bold text-[#164028] mb-1">Nexus (Bot)</p>
+                        <p class="bg-stone-50 p-3 rounded-lg border border-stone-200 text-stone-800">
+                            Hi, this is an automated confirmation call for your order: 1 pair of Silver Jhumkas, Cash on Delivery for Rs. 1,450. Is that correct?
                         </p>
                     </div>
 
+                    <!-- user msg 1 -->
                     <div>
-                        <p class="text-xs font-bold text-stone-500 mb-0.5">Customer (Anjali)</p>
-                        <p class="bg-emerald-50/60 p-2.5 rounded-lg border border-emerald-100 text-stone-800">
+                        <p class="text-xs font-bold text-stone-500 mb-1">Customer (Anjali)</p>
+                        <p class="bg-emerald-50 p-3 rounded-lg border border-emerald-100 text-stone-800">
                             Yes, that's right.
                         </p>
                     </div>
 
+                    <!-- bot msg 2 -->
                     <div>
-                        <p class="text-xs font-bold text-stone-500 mb-0.5">Nexus (Bot)</p>
-                        <p class="bg-stone-50 p-2.5 rounded-lg border border-stone-100 text-stone-800">
+                        <p class="text-xs font-bold text-[#164028] mb-1">Nexus (Bot)</p>
+                        <p class="bg-stone-50 p-3 rounded-lg border border-stone-200 text-stone-800">
                             Awesome! And just confirming your delivery address is in Bageshwar, right?
                         </p>
                     </div>
 
+                    <!-- user msg 2 -->
                     <div>
-                        <p class="text-xs font-bold text-stone-500 mb-0.5">Customer (Anjali)</p>
-                        <p class="bg-emerald-50/60 p-2.5 rounded-lg border border-emerald-100 text-stone-800">
+                        <p class="text-xs font-bold text-stone-500 mb-1">Customer (Anjali)</p>
+                        <p class="bg-emerald-50 p-3 rounded-lg border border-emerald-100 text-stone-800">
                             Actually, can you also add a second pair with a different color to the same parcel?
                         </p>
                     </div>
 
-                    <div class="bg-amber-50 border border-amber-200 rounded-lg p-3.5 mt-2">
+                    <div class="bg-amber-50 border border-amber-200 rounded-lg p-4 mt-4">
                         <p class="text-xs font-bold text-amber-900 mb-1">Nexus (Bot)</p>
-                        <p class="text-stone-800 text-xs md:text-sm">
+                        <p class="text-stone-800 text-sm">
                             I'll have our team reach out to you directly because item additions aren't handled on this automated call.
                         </p>
-                        <div class="mt-2.5 pt-2 border-t border-amber-200 text-xs font-bold text-amber-800 flex items-center gap-1.5">
-                            <span>⚠</span>
-                            <span>Escalated to team: Customer requested order modification</span>
+                        <div class="mt-3 pt-2 border-t border-amber-200 text-xs font-bold text-amber-800">
+                            [!] Escalated to team: Customer requested order modification
                         </div>
                     </div>
                 </div>

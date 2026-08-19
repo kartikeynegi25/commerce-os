@@ -19,7 +19,7 @@
                     Nexus
                 </span>
                 <button onclick="openMenu()" class="md:hidden text-emerald-200 hover:text-white text-xl font-bold">
-                    ✕
+                    X
                 </button>
             </div>
 
@@ -39,15 +39,15 @@
                     <span class="w-2.5 h-2.5 rounded-full bg-lime-400"></span>
                     <span>Kartikey (Owner)</span>
                 </div>
-                <span>🌱</span>
             </div>
         </aside>
 
         <main class="flex-1 overflow-y-auto md:ml-64 p-4 md:p-8">
+            <!-- top header bar -->
             <div class="flex flex-col gap-4 mb-6 pb-4 border-b border-stone-300">
                 <div class="flex items-center justify-between gap-3">
                     <button onclick="openMenu()" class="md:hidden px-3 py-1.5 btn-forest text-xs rounded-md">
-                        ☰ Menu
+                        Menu
                     </button>
 
                     <div class="flex items-center gap-3 ml-auto">
@@ -72,6 +72,7 @@
                 </div>
             </div>
 
+            <!-- search bar -->
             <div class="mb-4">
                 <div class="relative max-w-sm">
                     <input
@@ -79,7 +80,7 @@
                         id="searchInput"
                         onkeyup="searchRows()"
                         placeholder="Search calls or customer..."
-                        class="w-full px-3 py-2 text-sm">
+                        class="w-full px-3 py-2 text-sm border border-stone-300 rounded-md">
                 </div>
             </div>
 
@@ -98,25 +99,25 @@
                         </thead>
 
                         <tbody class="divide-y divide-stone-100">
-                            <tr onclick="window.location='call-detail.html'" class="hover:bg-amber-50/50 transition cursor-pointer">
-                                <td class="px-4 py-3 font-bold">#1244</td>
-                                <td class="px-4 py-3 font-semibold">Anjali Mehta</td>
+                            <tr onclick="window.location='call-detail.html'" class="hover:bg-yellow-50 transition cursor-pointer">
+                                <td class="px-4 py-3 font-bold text-[#164028]">#1244</td>
+                                <td class="px-4 py-3 font-semibold text-stone-900">Anjali Mehta</td>
                                 <td class="px-4 py-3 text-stone-600">COD Confirmation</td>
                                 <td class="px-4 py-3">
                                     <span class="text-xs font-bold bg-amber-100 text-amber-800 px-2 py-0.5 rounded">Escalated</span>
                                 </td>
-                                <td class="px-4 py-3 text-stone-500">0:38</td>
+                                <td class="px-4 py-3 font-medium text-stone-600">0:38</td>
                                 <td class="px-4 py-3 text-stone-500 text-xs">Today, 10:14 AM</td>
                             </tr>
 
                             <tr class="hover:bg-stone-50 transition cursor-pointer">
-                                <td class="px-4 py-3 font-bold">#1188</td>
-                                <td class="px-4 py-3 font-semibold">Sana Iyer</td>
+                                <td class="px-4 py-3 font-bold text-[#164028]">#1188</td>
+                                <td class="px-4 py-3 font-semibold text-stone-900">Sana Iyer</td>
                                 <td class="px-4 py-3 text-stone-600">Abandoned Cart</td>
                                 <td class="px-4 py-3">
                                     <span class="text-xs font-bold bg-stone-200 text-stone-700 px-2 py-0.5 rounded">No Answer</span>
                                 </td>
-                                <td class="px-4 py-3 text-stone-500">-</td>
+                                <td class="px-4 py-3 text-stone-400 font-medium">-</td>
                                 <td class="px-4 py-3 text-stone-500 text-xs">Yesterday, 2:03 PM</td>
                             </tr>
                         </tbody>

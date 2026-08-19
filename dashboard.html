@@ -19,7 +19,7 @@
                     Nexus
                 </span>
                 <button onclick="openMenu()" class="md:hidden text-emerald-200 hover:text-white text-xl font-bold">
-                    ✕
+                    X
                 </button>
             </div>
 
@@ -34,20 +34,18 @@
                 <a href="settings.html" class="sidebar-link">Settings</a>
             </nav>
 
-            <div data-user-signedin onclick="alertPop('Signed in as Kartikey Negi')" class="sidebar-footer p-4 text-xs font-bold cursor-pointer flex items-center justify-between mt-auto">
-                <div class="flex items-center gap-2">
-                    <span class="w-2.5 h-2.5 rounded-full bg-lime-400"></span>
-                    <span>Kartikey (Owner)</span>
-                </div>
-                <span>🌱</span>
+            <div data-user-signedin onclick="alertPop('Signed in as Kartikey Negi')" class="sidebar-footer p-4 text-xs font-bold cursor-pointer flex items-center gap-2 mt-auto">
+                <span class="w-2.5 h-2.5 rounded-full bg-lime-400"></span>
+                <span>Kartikey (Owner)</span>
             </div>
         </aside>
 
         <main class="flex-1 overflow-y-auto md:ml-64 p-4 md:p-8">
+            
             <div class="flex flex-col gap-4 mb-6 pb-4 border-b border-stone-300">
                 <div class="flex items-center justify-between gap-3">
                     <button onclick="openMenu()" class="md:hidden px-3 py-1.5 btn-forest text-xs rounded-md">
-                        ☰ Menu
+                        Menu
                     </button>
 
                     <div class="flex items-center gap-3 ml-auto">
@@ -68,7 +66,7 @@
 
                 <div>
                     <h1 class="font-heading text-2xl font-bold">
-                        Hey, <span data-user-firstname class="text-[#164028]">Kartikey</span> 👋
+                        Hey, <span data-user-firstname class="text-[#164028]">Kartikey</span>
                     </h1>
                     <p class="text-xs text-stone-500 mt-0.5">Quick summary of today's store activity</p>
                 </div>
@@ -97,17 +95,18 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                
                 <div class="market-card p-5">
                     <h2 class="font-heading font-bold text-base mb-3 text-[#164028]">Needs Attention</h2>
 
-                    <div class="space-y-2.5 text-sm">
+                    <div class="space-y-2 text-sm">
                         <div class="flex items-center gap-2.5 p-2 rounded hover:bg-stone-50 transition">
                             <span class="text-xs font-bold bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded">WA</span>
                             <span>Customer asking for discount on WhatsApp</span>
                         </div>
 
                         <div class="flex items-center gap-2.5 p-2 rounded hover:bg-stone-50 transition">
-                            <span class="text-xs font-bold bg-rose-100 text-rose-700 px-2 py-0.5 rounded">₹</span>
+                            <span class="text-xs font-bold bg-rose-100 text-rose-700 px-2 py-0.5 rounded">Rs</span>
                             <span>Order #1188 — payment link expired</span>
                         </div>
 
@@ -122,7 +121,7 @@
                         </div>
 
                         <div class="flex items-center gap-2.5 p-2 rounded hover:bg-stone-50 transition">
-                            <span class="text-xs font-bold bg-stone-200 text-stone-700 px-2 py-0.5 rounded">↻</span>
+                            <span class="text-xs font-bold bg-stone-200 text-stone-700 px-2 py-0.5 rounded">Return</span>
                             <span>1 return request needs a look</span>
                         </div>
                     </div>
@@ -133,21 +132,22 @@
                     
                     <div class="space-y-3 text-sm">
                         <div class="bg-amber-50 border border-amber-200 rounded-lg p-3">
-                            <p class="font-bold text-stone-900 mb-0.5">📦 Restock reminder</p>
+                            <p class="font-bold text-stone-900 mb-0.5">[Restock]   Low Inventory</p>
                             <p class="text-stone-700 text-xs">Wireless Headphones usually sell out by Friday.</p>
                         </div>
 
                         <div class="bg-amber-50 border border-amber-200 rounded-lg p-3">
-                            <p class="font-bold text-stone-900 mb-0.5">⚠️ Fix item prices</p>
+                            <p class="font-bold text-stone-900 mb-0.5">[Warning]   Fix item prices</p>
                             <p class="text-stone-700 text-xs">Product CSV has 4 items set to ₹0. Fix those before the bot sells them.</p>
                         </div>
 
                         <a href="invoices.html" class="block bg-stone-50 border border-stone-200 rounded-lg p-3 hover:bg-stone-100 transition">
-                            <p class="font-bold text-stone-900 mb-0.5">🧾 Weekly Invoices</p>
+                            <p class="font-bold text-stone-900 mb-0.5">[Billing]   Weekly Invoices</p>
                             <p class="text-stone-600 text-xs">2 invoices created this week — <span class="text-emerald-800 font-bold underline">view invoices</span></p>
                         </a>
                     </div>
                 </div>
+
             </div>
         </main>
     </div>

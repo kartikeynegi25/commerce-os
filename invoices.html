@@ -19,7 +19,7 @@
                     Nexus
                 </span>
                 <button onclick="openMenu()" class="md:hidden text-emerald-200 hover:text-white text-xl font-bold">
-                    ✕
+                    X
                 </button>
             </div>
 
@@ -34,20 +34,18 @@
                 <a href="settings.html" class="sidebar-link">Settings</a>
             </nav>
 
-            <div data-user-signedin onclick="alertPop('Signed in as Kartikey Negi')" class="sidebar-footer p-4 text-xs font-bold cursor-pointer flex items-center justify-between mt-auto">
-                <div class="flex items-center gap-2">
-                    <span class="w-2.5 h-2.5 rounded-full bg-lime-400"></span>
-                    <span>Kartikey (Owner)</span>
-                </div>
-                <span>🌱</span>
+            <div data-user-signedin onclick="alertPop('Signed in as Kartikey Negi')" class="sidebar-footer p-4 text-xs font-bold cursor-pointer flex items-center gap-2 mt-auto">
+                <span class="w-2.5 h-2.5 rounded-full bg-lime-400"></span>
+                <span>Kartikey (Owner)</span>
             </div>
         </aside>
 
         <main class="flex-1 overflow-y-auto md:ml-64 p-4 md:p-8">
+            
             <div class="flex flex-col gap-4 mb-6 pb-4 border-b border-stone-300">
                 <div class="flex items-center justify-between gap-3">
                     <button onclick="openMenu()" class="md:hidden px-3 py-1.5 btn-forest text-xs rounded-md">
-                        ☰ Menu
+                        Menu
                     </button>
 
                     <div class="flex items-center gap-3 ml-auto">
@@ -72,6 +70,7 @@
                 </div>
             </div>
 
+            <!-- search box -->
             <div class="mb-4">
                 <div class="relative max-w-sm">
                     <input
@@ -79,7 +78,7 @@
                         id="searchInput"
                         onkeyup="searchRows()"
                         placeholder="Search invoice number, order, customer..."
-                        class="w-full px-3 py-2 text-sm">
+                        class="w-full px-3 py-2 text-sm border border-stone-300 rounded-md">
                 </div>
             </div>
 
@@ -99,6 +98,7 @@
                         </thead>
 
                         <tbody class="divide-y divide-stone-100">
+                            
                             <tr class="hover:bg-stone-50 transition cursor-pointer">
                                 <td class="px-4 py-3 font-bold text-[#164028]">INV-1240</td>
                                 <td class="px-4 py-3 text-stone-500 font-medium">#1240</td>
@@ -109,7 +109,7 @@
                                     <span class="text-xs font-bold bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded">Paid</span>
                                 </td>
                                 <td class="px-4 py-3">
-                                    <a href="order-detail.html" class="text-xs font-bold text-emerald-800 hover:underline">View Invoice →</a>
+                                    <a href="order-detail.html" class="text-xs font-bold text-emerald-800 hover:underline">View Invoice -></a>
                                 </td>
                             </tr>
 
@@ -123,7 +123,7 @@
                                     <span class="text-xs font-bold bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded">Paid</span>
                                 </td>
                                 <td class="px-4 py-3">
-                                    <a href="order-detail-instagram.html" class="text-xs font-bold text-emerald-800 hover:underline">View Invoice →</a>
+                                    <a href="order-detail-instagram.html" class="text-xs font-bold text-emerald-800 hover:underline">View Invoice -></a>
                                 </td>
                             </tr>
 
