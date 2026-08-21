@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="css/custom.css">
     <script src="js/app.js"></script>
 </head>
-<body class="text-stone-900">
+<body class="text-stone-900 bg-stone-50">
 
     <div class="flex h-screen">
         <div id="mobileMenuBackdrop" onclick="openMenu()" class="fixed inset-0 bg-black/40 z-40 hidden md:hidden"></div>
@@ -19,7 +19,7 @@
                     Nexus
                 </span>
                 <button onclick="openMenu()" class="md:hidden text-emerald-200 hover:text-white text-xl font-bold">
-                    ✕
+                    X
                 </button>
             </div>
 
@@ -34,20 +34,18 @@
                 <a href="settings.html" class="sidebar-link">Settings</a>
             </nav>
 
-            <div data-user-signedin onclick="alertPop('Signed in as Kartikey Negi')" class="sidebar-footer p-4 text-xs font-bold cursor-pointer flex items-center justify-between mt-auto">
-                <div class="flex items-center gap-2">
-                    <span class="w-2.5 h-2.5 rounded-full bg-lime-400"></span>
-                    <span>Kartikey (Owner)</span>
-                </div>
-                <span>🌱</span>
+            <div data-user-signedin onclick="alertPop('Signed in as Kartikey Negi')" class="sidebar-footer p-4 text-xs font-bold cursor-pointer flex items-center gap-2 mt-auto">
+                <span class="w-2.5 h-2.5 rounded-full bg-lime-400"></span>
+                <span>Kartikey (Owner)</span>
             </div>
-        </aside>
+        </aside> 
 
         <main class="flex-1 overflow-y-auto md:ml-64 p-4 md:p-8">
+            
             <div class="flex flex-col gap-4 mb-6 pb-4 border-b border-stone-300">
                 <div class="flex items-center justify-between gap-3">
                     <button onclick="openMenu()" class="md:hidden px-3 py-1.5 btn-forest text-xs rounded-md">
-                        ☰ Menu
+                        Menu
                     </button>
 
                     <div class="flex items-center gap-3 ml-auto">
@@ -67,84 +65,86 @@
                 </div>
 
                 <div>
-                    <h1 class="font-heading text-2xl font-bold">Products</h1>
-                    <p class="text-xs text-stone-500 mt-0.5">Inventory stock, channel distribution, and active pricing</p>
+                    <h1 class="font-heading text-2xl font-bold">Products & Inventory</h1>
+                    <p class="text-xs text-stone-500 mt-0.5">Manage stock levels, pricing, and active listings</p>
                 </div>
             </div>
 
-            <div class="mb-4">
-                <div class="relative max-w-sm">
+            <!-- search box and add button -->
+            <div class="mb-4 flex flex-col sm:flex-row gap-3 items-stretch sm:items-center justify-between">
+                <div class="relative max-w-sm flex-1">
                     <input
                         type="text"
                         id="searchInput"
                         onkeyup="searchRows()"
-                        placeholder="Search product name, SKU..."
-                        class="w-full px-3 py-2 text-sm">
+                        placeholder="Search product name or SKU..."
+                        class="w-full px-3 py-2 text-sm border border-stone-300 rounded-md">
                 </div>
+
+                <button onclick="openProductModal()" class="btn-forest text-xs font-bold px-4 py-2 rounded-lg transition">
+                    + Add New Product
+                </button>
             </div>
 
+            <!-- inventory table -->
             <div class="market-card overflow-hidden">
                 <div class="overflow-x-auto">
-                    <table class="w-full text-sm">
+                    <table class="w-full text-sm text-left">
                         <thead>
                             <tr>
-                                <th class="text-left px-4 py-3 font-bold">Product</th>
-                                <th class="text-left px-4 py-3 font-bold">SKU</th>
-                                <th class="text-left px-4 py-3 font-bold">Stock</th>
-                                <th class="text-left px-4 py-3 font-bold">Price</th>
-                                <th class="text-center px-4 py-3 font-bold">Website</th>
-                                <th class="text-center px-4 py-3 font-bold">Instagram</th>
-                                <th class="text-center px-4 py-3 font-bold">WhatsApp</th>
+                                <th class="px-4 py-3 font-bold">Product Details</th>
+                                <th class="px-4 py-3 font-bold">SKU</th>
+                                <th class="px-4 py-3 font-bold">Price</th>
+                                <th class="px-4 py-3 font-bold">Stock</th>
+                                <th class="px-4 py-3 font-bold">Status</th>
+                                <th class="px-4 py-3 font-bold text-right">Action</th>
                             </tr>
                         </thead>
 
-                        <tbody class="divide-y divide-stone-100">
+                        <tbody id="productTableBody" class="divide-y divide-stone-100">
                             <tr class="hover:bg-stone-50 transition">
-                                <td class="px-4 py-3 font-bold text-stone-900">Wireless Headphones</td>
-                                <td class="px-4 py-3 text-stone-500 font-mono text-xs">WH-1000</td>
+                                <td class="px-4 py-3 font-semibold text-stone-900">Wireless Headphones</td>
+                                <td class="px-4 py-3 text-stone-500 font-mono text-xs">WIR-HEA</td>
+                                <td class="px-4 py-3 font-bold">₹2,999</td>
                                 <td class="px-4 py-3">
-                                    <span class="text-xs font-bold bg-amber-100 text-amber-800 px-2 py-0.5 rounded">4 left (Low)</span>
+                                    <span class="font-bold text-emerald-700">42 in stock</span>
                                 </td>
-                                <td class="px-4 py-3 font-bold text-stone-900">₹2,999</td>
-                                <td class="px-4 py-3 text-center"><span class="text-emerald-700 text-base font-bold">●</span></td>
-                                <td class="px-4 py-3 text-center"><span class="text-emerald-700 text-base font-bold">●</span></td>
-                                <td class="px-4 py-3 text-center"><span class="text-emerald-700 text-base font-bold">●</span></td>
+                                <td class="px-4 py-3">
+                                    <span class="text-xs font-bold bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded">Active</span>
+                                </td>
+                                <td class="px-4 py-3 text-right">
+                                    <button class="text-xs font-bold text-stone-500 hover:text-[#164028] underline">Edit</button>
+                                </td>
                             </tr>
 
                             <tr class="hover:bg-stone-50 transition">
-                                <td class="px-4 py-3 font-bold text-stone-900">Silver Jhumkas</td>
-                                <td class="px-4 py-3 text-stone-500 font-mono text-xs">JH-SLV-01</td>
+                                <td class="px-4 py-3 font-semibold text-stone-900">Silver Jhumkas</td>
+                                <td class="px-4 py-3 text-stone-500 font-mono text-xs">SIL-JHU</td>
+                                <td class="px-4 py-3 font-bold">₹1,450</td>
                                 <td class="px-4 py-3">
-                                    <span class="text-xs font-bold bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded">18 in stock</span>
+                                    <span class="font-bold text-amber-600">3 in stock</span>
                                 </td>
-                                <td class="px-4 py-3 font-bold text-stone-900">₹1,450</td>
-                                <td class="px-4 py-3 text-center"><span class="text-emerald-700 text-base font-bold">●</span></td>
-                                <td class="px-4 py-3 text-center"><span class="text-emerald-700 text-base font-bold">●</span></td>
-                                <td class="px-4 py-3 text-center"><span class="text-stone-300 text-base font-bold">●</span></td>
+                                <td class="px-4 py-3">
+                                    <span class="text-xs font-bold bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded">Active</span>
+                                </td>
+                                <td class="px-4 py-3 text-right">
+                                    <button class="text-xs font-bold text-stone-500 hover:text-[#164028] underline">Edit</button>
+                                </td>
                             </tr>
 
-                            <tr class="hover:bg-stone-50 transition">
-                                <td class="px-4 py-3 font-bold text-stone-900">Perfume Set</td>
-                                <td class="px-4 py-3 text-stone-500 font-mono text-xs">PF-SET-03</td>
+                            <tr class="hover:bg-stone-50 transition bg-stone-50/50">
+                                <td class="px-4 py-3 font-semibold text-stone-600">Perfume Set</td>
+                                <td class="px-4 py-3 text-stone-400 font-mono text-xs">PER-SET</td>
+                                <td class="px-4 py-3 font-bold text-stone-500">₹1,575</td>
                                 <td class="px-4 py-3">
-                                    <span class="text-xs font-bold bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded">32 in stock</span>
+                                    <span class="font-bold text-rose-600">Out of stock</span>
                                 </td>
-                                <td class="px-4 py-3 font-bold text-stone-900">₹1,575</td>
-                                <td class="px-4 py-3 text-center"><span class="text-emerald-700 text-base font-bold">●</span></td>
-                                <td class="px-4 py-3 text-center"><span class="text-stone-300 text-base font-bold">●</span></td>
-                                <td class="px-4 py-3 text-center"><span class="text-emerald-700 text-base font-bold">●</span></td>
-                            </tr>
-
-                            <tr class="hover:bg-stone-50 transition">
-                                <td class="px-4 py-3 font-bold text-stone-900">Home Decor Set</td>
-                                <td class="px-4 py-3 text-stone-500 font-mono text-xs">HD-SET-07</td>
                                 <td class="px-4 py-3">
-                                    <span class="text-xs font-bold bg-rose-100 text-rose-800 px-2 py-0.5 rounded">Out of stock</span>
+                                    <span class="text-xs font-bold bg-stone-200 text-stone-600 px-2 py-0.5 rounded">Draft</span>
                                 </td>
-                                <td class="px-4 py-3 font-bold text-stone-900">₹1,899</td>
-                                <td class="px-4 py-3 text-center"><span class="text-stone-300 text-base font-bold">●</span></td>
-                                <td class="px-4 py-3 text-center"><span class="text-stone-300 text-base font-bold">●</span></td>
-                                <td class="px-4 py-3 text-center"><span class="text-stone-300 text-base font-bold">●</span></td>
+                                <td class="px-4 py-3 text-right">
+                                    <button class="text-xs font-bold text-stone-500 hover:text-[#164028] underline">Edit</button>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
@@ -152,5 +152,154 @@
             </div>
         </main>
     </div>
+
+    <div id="productModal" class="fixed inset-0 bg-black/50 z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-xl shadow-xl w-full max-w-md overflow-hidden flex flex-col max-h-[90vh]">
+            
+            <div class="p-5 border-b border-stone-200 flex items-center justify-between">
+                <h2 class="font-heading font-bold text-lg text-[#164028]">Add New Product</h2>
+                <button onclick="closeProductModal()" class="text-stone-400 hover:text-stone-900 font-bold">X</button>
+            </div>
+
+            <div class="p-5 overflow-y-auto space-y-4">
+                <div>
+                    <label class="block text-xs font-bold text-stone-700 mb-1">Product Name</label>
+                    <input type="text" id="newProductName" oninput="autoSuggestSku()" placeholder="e.g. Leather Wallet" class="w-full px-3 py-2 border border-stone-300 rounded text-sm">
+                </div>
+                
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-bold text-stone-700 mb-1">Price (Rs)</label>
+                        <input type="number" id="newProductPrice" placeholder="0.00" class="w-full px-3 py-2 border border-stone-300 rounded text-sm">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-stone-700 mb-1">Stock Quantity</label>
+                        <input type="number" id="newProductStock" placeholder="10" class="w-full px-3 py-2 border border-stone-300 rounded text-sm">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-stone-700 mb-1">SKU</label>
+                    <input type="text" id="newProductSku" oninput="userEditedSku = true" placeholder="e.g. LEA-WAL" class="w-full px-3 py-2 border border-stone-300 rounded text-sm font-mono uppercase">
+                </div>
+            </div>
+
+            <div class="p-4 border-t border-stone-200 flex justify-end gap-3 bg-stone-50">
+                <button onclick="closeProductModal()" class="px-4 py-2 text-sm font-bold text-stone-600 hover:text-stone-900">Cancel</button>
+                <button onclick="saveProduct()" class="btn-forest text-sm font-bold px-5 py-2 rounded transition">Save Product</button>
+            </div>
+            
+        </div>
+    </div>
+
+    <script>
+        let userEditedSku = false;
+
+        function autoSuggestSku() {
+    if (userEditedSku === true) {
+        return;
+    }
+
+    let nameBox = document.getElementById("newProductName");
+    let skuBox = document.getElementById("newProductSku");
+    let nameText = nameBox.value.trim();
+    
+    if (nameText === "") {
+        skuBox.value = "";
+        return;
+    }
+
+    let words = nameText.split(" ");
+    let generatedSku = "";
+
+    for (let i = 0; i < Math.min(words.length, 3); i++) {
+        if (words[i] !== "") {
+            if (generatedSku !== "") {
+                generatedSku = generatedSku + "-";
+            }
+            generatedSku = generatedSku + words[i].substring(0, 3).toUpperCase();
+        }
+    }
+
+    // Generate a unique number based on the specific characters typed
+    if (generatedSku !== "") {
+        let characterSum = 0;
+        for (let i = 0; i < nameText.length; i++) {
+            characterSum = characterSum + nameText.charCodeAt(i);
+        }
+        
+        let uniqueNumber = (characterSum * 17 % 900) + 100;
+        
+        skuBox.value = generatedSku + "-" + uniqueNumber;
+    }
+}
+
+        function openProductModal() {
+            let modal = document.getElementById("productModal");
+            if (modal != null) {
+                modal.classList.remove("hidden");
+                userEditedSku = false;
+            }
+        }
+
+        function closeProductModal() {
+            let modal = document.getElementById("productModal");
+            if (modal != null) {
+                modal.classList.add("hidden");
+                
+                document.getElementById("newProductName").value = "";
+                document.getElementById("newProductPrice").value = "";
+                document.getElementById("newProductStock").value = "";
+                document.getElementById("newProductSku").value = "";
+            }
+        }
+
+        function saveProduct() {
+            let nameInput = document.getElementById("newProductName").value;
+            let priceInput = document.getElementById("newProductPrice").value;
+            let stockInput = document.getElementById("newProductStock").value;
+            let skuInput = document.getElementById("newProductSku").value;
+
+            if (nameInput === "" || priceInput === "" || stockInput === "") {
+                alertPop("Please fill out Name, Price, and Stock!");
+                return;
+            }
+
+            if (skuInput === "") {
+                skuInput = "N/A";
+            }
+
+            let tableList = document.getElementById("productTableBody");
+            
+            let stockColor = "text-emerald-700";
+            if (parseInt(stockInput) === 0) {
+                stockColor = "text-rose-600";
+            } else if (parseInt(stockInput) < 5) {
+                stockColor = "text-amber-600";
+            }
+
+            let newRow = document.createElement("tr");
+            newRow.className = "hover:bg-stone-50 transition";
+            
+            newRow.innerHTML = "" +
+                '<td class="px-4 py-3 font-semibold text-stone-900">' + nameInput + '</td>' +
+                '<td class="px-4 py-3 text-stone-500 font-mono text-xs">' + skuInput.toUpperCase() + '</td>' +
+                '<td class="px-4 py-3 font-bold">₹' + priceInput + '</td>' +
+                '<td class="px-4 py-3">' +
+                    '<span class="font-bold ' + stockColor + '">' + stockInput + ' in stock</span>' +
+                '</td>' +
+                '<td class="px-4 py-3">' +
+                    '<span class="text-xs font-bold bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded">Active</span>' +
+                '</td>' +
+                '<td class="px-4 py-3 text-right">' +
+                    '<button class="text-xs font-bold text-stone-500 hover:text-[#164028] underline">Edit</button>' +
+                '</td>';
+
+            tableList.insertBefore(newRow, tableList.firstChild);
+            
+            closeProductModal();
+            alertPop("Added " + nameInput + " to inventory!");
+        }
+    </script>
 </body>
 </html>
